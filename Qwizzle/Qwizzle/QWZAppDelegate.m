@@ -14,6 +14,8 @@
 
 // We finally got it working!
 
+// Krissada Here!
+
 #import "QWZAppDelegate.h"
 
 // Import our viewcontroller

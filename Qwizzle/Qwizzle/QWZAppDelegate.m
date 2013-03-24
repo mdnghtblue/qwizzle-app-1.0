@@ -15,6 +15,7 @@
 
 // Import our viewcontroller
 #import "QWZViewController.h"
+#import "Foundation/Foundation.h"
 
 @implementation QWZAppDelegate
 

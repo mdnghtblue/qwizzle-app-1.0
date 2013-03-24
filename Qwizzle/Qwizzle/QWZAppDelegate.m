@@ -4,23 +4,11 @@
 //
 //  Created by Krissada Dechokul on 3/22/13.
 //  Copyright (c) 2013 Florida Tech. All rights reserved.
-//HOme 
-
-// Test -Stephanie
-// Another change
-// And yet another change
-// Hello everyone!
-
-
-// We finally got it working!
-
-// Krissada Here!
 
 #import "QWZAppDelegate.h"
 
 // Import our viewcontroller
 #import "QWZViewController.h"
-#import "Foundation/Foundation.h"
 
 @implementation QWZAppDelegate
 

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		B877B19B16FFD25D00007668 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B877B19A16FFD25D00007668 /* CoreData.framework */; };
 		B877B19E16FFD3C000007668 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B877B19C16FFD3C000007668 /* DataModel.xcdatamodeld */; };
+		B877B284170108EF00007668 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B877B283170108EE00007668 /* Storyboard.storyboard */; };
+		B877B287170109BA00007668 /* WelcomView.m in Sources */ = {isa = PBXBuildFile; fileRef = B877B286170109BA00007668 /* WelcomView.m */; };
+		B877B28C170109E600007668 /* QWZCreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = B877B289170109E600007668 /* QWZCreateView.m */; };
+		B877B28D170109E600007668 /* QWZStoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = B877B28B170109E600007668 /* QWZStoreView.m */; };
 		E873E66D16FCF6640097F4F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E873E66C16FCF6640097F4F2 /* UIKit.framework */; };
 		E873E66F16FCF6640097F4F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E873E66E16FCF6640097F4F2 /* Foundation.framework */; };
 		E873E67116FCF6640097F4F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E873E67016FCF6640097F4F2 /* CoreGraphics.framework */; };
@@ -34,6 +38,13 @@
 /* Begin PBXFileReference section */
 		B877B19A16FFD25D00007668 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B877B19D16FFD3C000007668 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		B877B283170108EE00007668 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = "../../../QWZ-App 6.30.09 PM/QWZ-App/Storyboard.storyboard"; sourceTree = "<group>"; };
+		B877B285170109BA00007668 /* WelcomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomView.h; path = "../../../QWZ-App 6.30.09 PM/WelcomView.h"; sourceTree = "<group>"; };
+		B877B286170109BA00007668 /* WelcomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WelcomView.m; path = "../../../QWZ-App 6.30.09 PM/WelcomView.m"; sourceTree = "<group>"; };
+		B877B288170109E600007668 /* QWZCreateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QWZCreateView.h; path = "../../../QWZ-App 6.30.09 PM/QWZ-App/QWZCreateView.h"; sourceTree = "<group>"; };
+		B877B289170109E600007668 /* QWZCreateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QWZCreateView.m; path = "../../../QWZ-App 6.30.09 PM/QWZ-App/QWZCreateView.m"; sourceTree = "<group>"; };
+		B877B28A170109E600007668 /* QWZStoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QWZStoreView.h; path = "../../../QWZ-App 6.30.09 PM/QWZ-App/QWZStoreView.h"; sourceTree = "<group>"; };
+		B877B28B170109E600007668 /* QWZStoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QWZStoreView.m; path = "../../../QWZ-App 6.30.09 PM/QWZ-App/QWZStoreView.m"; sourceTree = "<group>"; };
 		E873E66916FCF6640097F4F2 /* Qwizzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qwizzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E873E66C16FCF6640097F4F2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E873E66E16FCF6640097F4F2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -113,6 +124,7 @@
 		E873E67216FCF6640097F4F2 /* Qwizzle */ = {
 			isa = PBXGroup;
 			children = (
+				B877B283170108EE00007668 /* Storyboard.storyboard */,
 				E873E67B16FCF6640097F4F2 /* QWZAppDelegate.h */,
 				E873E67C16FCF6640097F4F2 /* QWZAppDelegate.m */,
 				B877B19C16FFD3C000007668 /* DataModel.xcdatamodeld */,
@@ -142,6 +154,12 @@
 		E873E67316FCF6640097F4F2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B877B288170109E600007668 /* QWZCreateView.h */,
+				B877B289170109E600007668 /* QWZCreateView.m */,
+				B877B28A170109E600007668 /* QWZStoreView.h */,
+				B877B28B170109E600007668 /* QWZStoreView.m */,
+				B877B285170109BA00007668 /* WelcomView.h */,
+				B877B286170109BA00007668 /* WelcomView.m */,
 				E873E67416FCF6640097F4F2 /* Qwizzle-Info.plist */,
 				E873E67516FCF6640097F4F2 /* InfoPlist.strings */,
 				E873E67816FCF6640097F4F2 /* main.m */,
@@ -213,6 +231,7 @@
 				E873E6B616FD382D0097F4F2 /* QWZCreateViewController.xib in Resources */,
 				E873E6BB16FD40030097F4F2 /* QWZAnswerViewController.xib in Resources */,
 				E873E6C016FD41740097F4F2 /* QWZViewAnswerViewController.xib in Resources */,
+				B877B284170108EF00007668 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +252,9 @@
 				E873E6BA16FD40030097F4F2 /* QWZAnswerViewController.m in Sources */,
 				E873E6BF16FD41740097F4F2 /* QWZViewAnswerViewController.m in Sources */,
 				B877B19E16FFD3C000007668 /* DataModel.xcdatamodeld in Sources */,
+				B877B287170109BA00007668 /* WelcomView.m in Sources */,
+				B877B28C170109E600007668 /* QWZCreateView.m in Sources */,
+				B877B28D170109E600007668 /* QWZStoreView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

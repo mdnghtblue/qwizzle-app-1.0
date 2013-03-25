@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B877B19B16FFD25D00007668 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B877B19A16FFD25D00007668 /* CoreData.framework */; };
-		B877B19E16FFD3C000007668 /* QWZDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B877B19C16FFD3C000007668 /* QWZDataModel.xcdatamodeld */; };
-		B877B1A01700981700007668 /* QWZStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B877B19F1700981700007668 /* QWZStoryboard.storyboard */; };
+		B877B19E16FFD3C000007668 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B877B19C16FFD3C000007668 /* DataModel.xcdatamodeld */; };
 		E873E66D16FCF6640097F4F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E873E66C16FCF6640097F4F2 /* UIKit.framework */; };
 		E873E66F16FCF6640097F4F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E873E66E16FCF6640097F4F2 /* Foundation.framework */; };
 		E873E67116FCF6640097F4F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E873E67016FCF6640097F4F2 /* CoreGraphics.framework */; };
@@ -34,8 +33,7 @@
 
 /* Begin PBXFileReference section */
 		B877B19A16FFD25D00007668 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		B877B19D16FFD3C000007668 /* QWZDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QWZDataModel.xcdatamodel; sourceTree = "<group>"; };
-		B877B19F1700981700007668 /* QWZStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QWZStoryboard.storyboard; sourceTree = "<group>"; };
+		B877B19D16FFD3C000007668 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		E873E66916FCF6640097F4F2 /* Qwizzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qwizzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E873E66C16FCF6640097F4F2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E873E66E16FCF6640097F4F2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -117,8 +115,7 @@
 			children = (
 				E873E67B16FCF6640097F4F2 /* QWZAppDelegate.h */,
 				E873E67C16FCF6640097F4F2 /* QWZAppDelegate.m */,
-				B877B19F1700981700007668 /* QWZStoryboard.storyboard */,
-				B877B19C16FFD3C000007668 /* QWZDataModel.xcdatamodeld */,
+				B877B19C16FFD3C000007668 /* DataModel.xcdatamodeld */,
 				E873E67316FCF6640097F4F2 /* Supporting Files */,
 				E873E68916FCF6990097F4F2 /* QWZQuiz.h */,
 				E873E68A16FCF6990097F4F2 /* QWZQuiz.m */,
@@ -216,7 +213,6 @@
 				E873E6B616FD382D0097F4F2 /* QWZCreateViewController.xib in Resources */,
 				E873E6BB16FD40030097F4F2 /* QWZAnswerViewController.xib in Resources */,
 				E873E6C016FD41740097F4F2 /* QWZViewAnswerViewController.xib in Resources */,
-				B877B1A01700981700007668 /* QWZStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,7 +232,7 @@
 				E873E6B516FD382D0097F4F2 /* QWZCreateViewController.m in Sources */,
 				E873E6BA16FD40030097F4F2 /* QWZAnswerViewController.m in Sources */,
 				E873E6BF16FD41740097F4F2 /* QWZViewAnswerViewController.m in Sources */,
-				B877B19E16FFD3C000007668 /* QWZDataModel.xcdatamodeld in Sources */,
+				B877B19E16FFD3C000007668 /* DataModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,13 +356,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		B877B19C16FFD3C000007668 /* QWZDataModel.xcdatamodeld */ = {
+		B877B19C16FFD3C000007668 /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				B877B19D16FFD3C000007668 /* QWZDataModel.xcdatamodel */,
+				B877B19D16FFD3C000007668 /* DataModel.xcdatamodel */,
 			);
-			currentVersion = B877B19D16FFD3C000007668 /* QWZDataModel.xcdatamodel */;
-			path = QWZDataModel.xcdatamodeld;
+			currentVersion = B877B19D16FFD3C000007668 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

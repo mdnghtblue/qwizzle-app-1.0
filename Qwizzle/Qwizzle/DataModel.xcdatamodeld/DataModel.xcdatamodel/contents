@@ -14,7 +14,7 @@
         <relationship name="quizz" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="QuizzAnswers" inverseName="quiz" inverseEntity="QuizzAnswers" syncable="YES"/>
     </entity>
     <elements>
-        <element name="QuizzAnswers" positionX="-495" positionY="-936" width="128" height="103"/>
+        <element name="QuizzAnswers" positionX="-495" positionY="-936" width="128" height="105"/>
         <element name="QuizzTable" positionX="-243" positionY="-981" width="128" height="120"/>
     </elements>
 </model>

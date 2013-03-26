@@ -7,7 +7,7 @@
         <attribute name="postor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="q_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="qwz_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="quiz_r" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Quiz" inverseName="answer" inverseEntity="Quiz" syncable="YES"/>
+        <relationship name="quiz_r" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Quiz" inverseName="answer_r" inverseEntity="Quiz" syncable="YES"/>
         <relationship name="qustion_r" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Question" inverseName="answer_r" inverseEntity="Question" syncable="YES"/>
     </entity>
     <entity name="Question" syncable="YES">
@@ -15,7 +15,7 @@
         <attribute name="question" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="qwz_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="answer_r" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Answers" inverseName="qustion_r" inverseEntity="Answers" syncable="YES"/>
-        <relationship name="quiz_r" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Quiz" inverseName="qustion" inverseEntity="Quiz" syncable="YES"/>
+        <relationship name="quiz_r" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Quiz" inverseName="qustion_r" inverseEntity="Quiz" syncable="YES"/>
     </entity>
     <entity name="Quiz" syncable="YES">
         <attribute name="creation_date" optional="YES" attributeType="Date" syncable="YES"/>
@@ -26,8 +26,8 @@
             </userInfo>
         </attribute>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="answer" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Answers" inverseName="quiz_r" inverseEntity="Answers" syncable="YES"/>
-        <relationship name="qustion" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Question" inverseName="quiz_r" inverseEntity="Question" syncable="YES"/>
+        <relationship name="answer_r" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Answers" inverseName="quiz_r" inverseEntity="Answers" syncable="YES"/>
+        <relationship name="qustion_r" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Question" inverseName="quiz_r" inverseEntity="Question" syncable="YES"/>
         <userInfo>
             <entry key="key" value="value"/>
         </userInfo>

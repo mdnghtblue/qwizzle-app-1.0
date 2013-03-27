@@ -2,17 +2,16 @@
 //  WelcomView.m
 //  QWZ-App
 //
-//  Created by Oun AL Sayed on 3/25/13.
 //  Copyright (c) 2013 Florida Tech. All rights reserved.
 //
 
-#import "WelcomView.h"
+#import "WelcomeView.h"
 
-@interface WelcomView ()
+@interface WelcomeView ()
 
 @end
 
-@implementation WelcomView
+@implementation WelcomeView
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

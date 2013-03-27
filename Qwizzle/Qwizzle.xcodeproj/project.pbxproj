@@ -40,13 +40,13 @@
 /* Begin PBXFileReference section */
 		B877B19A16FFD25D00007668 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B877B19D16FFD3C000007668 /* QWZDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QWZDataModel.xcdatamodel; sourceTree = "<group>"; };
-		B877B283170108EE00007668 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = "../../../QWZ-App 6.30.09 PM/QWZ-App/Storyboard.storyboard"; sourceTree = "<group>"; };
-		B877B285170109BA00007668 /* WelcomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomView.h; path = "../../../QWZ-App 6.30.09 PM/WelcomView.h"; sourceTree = "<group>"; };
-		B877B286170109BA00007668 /* WelcomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WelcomView.m; path = "../../../QWZ-App 6.30.09 PM/WelcomView.m"; sourceTree = "<group>"; };
-		B877B288170109E600007668 /* QWZCreateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QWZCreateView.h; path = "../../../QWZ-App 6.30.09 PM/QWZ-App/QWZCreateView.h"; sourceTree = "<group>"; };
-		B877B289170109E600007668 /* QWZCreateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QWZCreateView.m; path = "../../../QWZ-App 6.30.09 PM/QWZ-App/QWZCreateView.m"; sourceTree = "<group>"; };
-		B877B28A170109E600007668 /* QWZStoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QWZStoreView.h; path = "../../../QWZ-App 6.30.09 PM/QWZ-App/QWZStoreView.h"; sourceTree = "<group>"; };
-		B877B28B170109E600007668 /* QWZStoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QWZStoreView.m; path = "../../../QWZ-App 6.30.09 PM/QWZ-App/QWZStoreView.m"; sourceTree = "<group>"; };
+		B877B283170108EE00007668 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		B877B285170109BA00007668 /* WelcomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomView.h; sourceTree = "<group>"; };
+		B877B286170109BA00007668 /* WelcomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomView.m; sourceTree = "<group>"; };
+		B877B288170109E600007668 /* QWZCreateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZCreateView.h; sourceTree = "<group>"; };
+		B877B289170109E600007668 /* QWZCreateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZCreateView.m; sourceTree = "<group>"; };
+		B877B28A170109E600007668 /* QWZStoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZStoreView.h; sourceTree = "<group>"; };
+		B877B28B170109E600007668 /* QWZStoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZStoreView.m; sourceTree = "<group>"; };
 		B8CB27EB17012CA1001BB56E /* QWZTakeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZTakeView.h; sourceTree = "<group>"; };
 		B8CB27EC17012CA1001BB56E /* QWZTakeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZTakeView.m; sourceTree = "<group>"; };
 		B8CB27EE17012D34001BB56E /* QWZViewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZViewView.h; sourceTree = "<group>"; };

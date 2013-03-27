@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		818B75CB1702957F00C854F4 /* QWZTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 818B75CA1702957F00C854F4 /* QWZTest.m */; };
 		B877B19B16FFD25D00007668 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B877B19A16FFD25D00007668 /* CoreData.framework */; };
 		B877B19E16FFD3C000007668 /* QWZDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B877B19C16FFD3C000007668 /* QWZDataModel.xcdatamodeld */; };
 		B877B284170108EF00007668 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B877B283170108EE00007668 /* Storyboard.storyboard */; };
@@ -39,8 +38,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		818B75C91702957F00C854F4 /* QWZTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZTest.h; sourceTree = "<group>"; };
-		818B75CA1702957F00C854F4 /* QWZTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZTest.m; sourceTree = "<group>"; };
 		B877B19A16FFD25D00007668 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B877B19D16FFD3C000007668 /* QWZDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QWZDataModel.xcdatamodel; sourceTree = "<group>"; };
 		B877B283170108EE00007668 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = "../../../QWZ-App 6.30.09 PM/QWZ-App/Storyboard.storyboard"; sourceTree = "<group>"; };
@@ -156,8 +153,6 @@
 				E873E6BC16FD41730097F4F2 /* QWZViewAnswerViewController.h */,
 				E873E6BD16FD41730097F4F2 /* QWZViewAnswerViewController.m */,
 				E873E6BE16FD41740097F4F2 /* QWZViewAnswerViewController.xib */,
-				818B75C91702957F00C854F4 /* QWZTest.h */,
-				818B75CA1702957F00C854F4 /* QWZTest.m */,
 			);
 			path = Qwizzle;
 			sourceTree = "<group>";
@@ -272,7 +267,6 @@
 				B877B28D170109E600007668 /* QWZStoreView.m in Sources */,
 				B8CB27ED17012CA1001BB56E /* QWZTakeView.m in Sources */,
 				B8CB27F017012D34001BB56E /* QWZViewView.m in Sources */,
-				818B75CB1702957F00C854F4 /* QWZTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

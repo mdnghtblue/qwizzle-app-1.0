@@ -62,10 +62,10 @@
             </objects>
             <point key="canvasLocation" x="-402" y="-155"/>
         </scene>
-        <!--Store View - Title-->
+        <!--Home View - Title-->
         <scene sceneID="fb5-ZJ-wOZ">
             <objects>
-                <viewController id="ccO-Sg-bhM" customClass="QWZStoreView" sceneMemberID="viewController">
+                <viewController id="ccO-Sg-bhM" customClass="QWZHomeView" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iBX-xl-ZH9">
                         <rect key="frame" x="0.0" y="20" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

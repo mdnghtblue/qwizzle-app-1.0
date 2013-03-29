@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Answers" syncable="YES">
+    <entity name="Answers" representedClassName="Answers" syncable="YES">
         <attribute name="a_id" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="answer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -10,14 +10,14 @@
         <relationship name="quiz_r" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Quiz" inverseName="answer_r" inverseEntity="Quiz" syncable="YES"/>
         <relationship name="qustion_r" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Question" inverseName="answer_r" inverseEntity="Question" syncable="YES"/>
     </entity>
-    <entity name="Question" syncable="YES">
+    <entity name="Question" representedClassName="Question" syncable="YES">
         <attribute name="q_id" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="question" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="qwz_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="answer_r" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Answers" inverseName="qustion_r" inverseEntity="Answers" syncable="YES"/>
         <relationship name="quiz_r" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Quiz" inverseName="qustion_r" inverseEntity="Quiz" syncable="YES"/>
     </entity>
-    <entity name="Quiz" syncable="YES">
+    <entity name="Quiz" representedClassName="Quiz" syncable="YES">
         <attribute name="creation_date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="creator" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="qwz_id" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES">
@@ -34,7 +34,7 @@
     </entity>
     <elements>
         <element name="Answers" positionX="-0" positionY="-829" width="128" height="165"/>
-        <element name="Question" positionX="-351" positionY="-793" width="128" height="118"/>
-        <element name="Quiz" positionX="-171" positionY="-981" width="128" height="133"/>
+        <element name="Question" positionX="-351" positionY="-793" width="128" height="120"/>
+        <element name="Quiz" positionX="-171" positionY="-981" width="128" height="135"/>
     </elements>
 </model>

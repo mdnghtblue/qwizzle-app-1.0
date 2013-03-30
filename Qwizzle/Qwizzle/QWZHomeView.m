@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
     
-    NSManagedObjectContext *context = nil;
+    /*NSManagedObjectContext *context = nil;
     id delegate = [[UIApplication sharedApplication] delegate];
     //if ([delegate performSelector:@selector(managedObjectContext)])
     //{
@@ -51,7 +51,7 @@
     [question2 setQ_id:@200];
     
     // Commit to core data
-    NSError *error;
+    NSError *error;*/
     //if (![context save:&error])
     //    NSLog(@"Failed to write to core data with error: %@", [error domain]);
     //else

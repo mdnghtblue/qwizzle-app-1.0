@@ -52,10 +52,10 @@
     
     // Commit to core data
     NSError *error;
-    if (![context save:&error])
-        NSLog(@"Failed to write to core data with error: %@", [error domain]);
-    else
-        NSLog(@"Wrote sample quiz to core data!");
+    //if (![context save:&error])
+    //    NSLog(@"Failed to write to core data with error: %@", [error domain]);
+    //else
+    //    NSLog(@"Wrote sample quiz to core data!");
     
 	// Do any additional setup after loading the view.
 }

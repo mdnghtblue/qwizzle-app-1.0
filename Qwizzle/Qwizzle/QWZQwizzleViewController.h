@@ -7,13 +7,15 @@
 //
 #import <UIKit/UIKit.h>
 
+@class QWZQuizSet;
+
 // Krissada: QWZViewController can fill all 3 roles: view controller, data source, and delegate
 // by implementing the following protocol: UITableViewDataSource and UITableViewDelegate.
 
 // Implement UITableViewDelegate to set the label of the delete button
 // Optional methods of the protocol allow the delegate to manage selections,
 // configure section headings and footers, help to delete and reorder cells, and perform other actions...
-@interface QWZViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface QWZQwizzleViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 {
     // This array stores all quiz sets
     NSMutableArray *allQuizSets;
@@ -23,6 +25,9 @@
     
     // The header view of a UITable could be any UIView instance 
     //IBOutlet UIView *headerView;
+    
+    // Handle the selected quiz tapped by the user
+    QWZQuizSet *selectedQuiz;
 }
 
 //- (UIView *)headerView;

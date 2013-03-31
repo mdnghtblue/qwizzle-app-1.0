@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 @class QWZQuizSet;
 
-@interface QWZAnswerViewController : UIViewController
+@interface QWZTakeQwizzleViewController : UIViewController
 {
-    
+    IBOutlet UIScrollView *scrollView;
 }
 
 // Hold a quiz set

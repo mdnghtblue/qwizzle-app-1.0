@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 @class QWZQuizSet;
 
-@interface QWZViewAnswerViewController : UIViewController
+#define OFFSET 40
+
+@interface QWZViewQwizzleViewController : UIViewController
 {
-    
+    IBOutlet UIScrollView *scrollView;
 }
 
 // Hold a quiz set

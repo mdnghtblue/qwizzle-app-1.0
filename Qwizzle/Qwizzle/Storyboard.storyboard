@@ -122,7 +122,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tHh-BP-Dqi">
                                 <items>
                                     <navigationItem title="Qwizzle" id="UqZ-Rr-ExM">
-                                        <barButtonItem key="rightBarButtonItem" title="+" id="wHH-TI-20g">
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="wHH-TI-20g">
                                             <connections>
                                                 <segue destination="k6O-Yf-cj8" kind="modal" id="VhO-58-9KP"/>
                                             </connections>
@@ -408,29 +408,12 @@
             <point key="canvasLocation" x="67" y="484"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="QWZCreateView" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZCreateView.h"/>
-        </class>
-        <class className="QWZHomeView" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZHomeView.h"/>
-        </class>
-        <class className="QWZTakeView" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZTakeView.h"/>
-        </class>
-        <class className="QWZViewView" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZViewView.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="0Ol-wS-jQK"/>
+        <segue reference="67w-Wg-4nH"/>
     </inferredMetricsTieBreakers>
 </document>

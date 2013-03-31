@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QWZCreateViewController : UIViewController
+@interface QWZCreateQwizzleViewController : UIViewController <UITextFieldDelegate>
 {
-    
+    IBOutlet UIScrollView *scrollView;
 }
 
 - (IBAction)createNewQuiz:(id)sender;

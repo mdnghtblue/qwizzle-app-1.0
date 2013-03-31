@@ -18,6 +18,7 @@
 		B877B28D170109E600007668 /* QWZHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B877B28B170109E600007668 /* QWZHomeView.m */; };
 		B8CB27ED17012CA1001BB56E /* QWZTakeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CB27EC17012CA1001BB56E /* QWZTakeView.m */; };
 		B8CB27F017012D34001BB56E /* QWZViewView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CB27EF17012D34001BB56E /* QWZViewView.m */; };
+		E833CF871707681A0006B832 /* Storyboard_v2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E833CF861707681A0006B832 /* Storyboard_v2.storyboard */; };
 		E873E66D16FCF6640097F4F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E873E66C16FCF6640097F4F2 /* UIKit.framework */; };
 		E873E66F16FCF6640097F4F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E873E66E16FCF6640097F4F2 /* Foundation.framework */; };
 		E873E67116FCF6640097F4F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E873E67016FCF6640097F4F2 /* CoreGraphics.framework */; };
@@ -30,14 +31,10 @@
 		E873E68B16FCF6990097F4F2 /* QWZQuiz.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E68A16FCF6990097F4F2 /* QWZQuiz.m */; };
 		E873E68E16FCF9930097F4F2 /* QWZQuizSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E68D16FCF9930097F4F2 /* QWZQuizSet.m */; };
 		E873E69116FD062F0097F4F2 /* QWZAnsweredQuizSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E69016FD062F0097F4F2 /* QWZAnsweredQuizSet.m */; };
-		E873E69B16FD0F980097F4F2 /* QWZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E69A16FD0F980097F4F2 /* QWZViewController.m */; };
-		E873E69F16FD1BFB0097F4F2 /* QwizzleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E873E69E16FD1BFB0097F4F2 /* QwizzleHeaderView.xib */; };
-		E873E6B516FD382D0097F4F2 /* QWZCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E6B316FD382C0097F4F2 /* QWZCreateViewController.m */; };
-		E873E6B616FD382D0097F4F2 /* QWZCreateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E873E6B416FD382D0097F4F2 /* QWZCreateViewController.xib */; };
-		E873E6BA16FD40030097F4F2 /* QWZAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E6B816FD40020097F4F2 /* QWZAnswerViewController.m */; };
-		E873E6BB16FD40030097F4F2 /* QWZAnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E873E6B916FD40030097F4F2 /* QWZAnswerViewController.xib */; };
-		E873E6BF16FD41740097F4F2 /* QWZViewAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E6BD16FD41730097F4F2 /* QWZViewAnswerViewController.m */; };
-		E873E6C016FD41740097F4F2 /* QWZViewAnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E873E6BE16FD41740097F4F2 /* QWZViewAnswerViewController.xib */; };
+		E873E69B16FD0F980097F4F2 /* QWZQwizzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E69A16FD0F980097F4F2 /* QWZQwizzleViewController.m */; };
+		E873E6B516FD382D0097F4F2 /* QWZCreateQwizzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E6B316FD382C0097F4F2 /* QWZCreateQwizzleViewController.m */; };
+		E873E6BA16FD40030097F4F2 /* QWZTakeQwizzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E6B816FD40020097F4F2 /* QWZTakeQwizzleViewController.m */; };
+		E873E6BF16FD41740097F4F2 /* QWZViewQwizzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E6BD16FD41730097F4F2 /* QWZViewQwizzleViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +57,7 @@
 		B8CB27EC17012CA1001BB56E /* QWZTakeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZTakeView.m; sourceTree = "<group>"; };
 		B8CB27EE17012D34001BB56E /* QWZViewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZViewView.h; sourceTree = "<group>"; };
 		B8CB27EF17012D34001BB56E /* QWZViewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZViewView.m; sourceTree = "<group>"; };
+		E833CF861707681A0006B832 /* Storyboard_v2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard_v2.storyboard; sourceTree = "<group>"; };
 		E873E66916FCF6640097F4F2 /* Qwizzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qwizzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E873E66C16FCF6640097F4F2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E873E66E16FCF6640097F4F2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -79,18 +77,14 @@
 		E873E68D16FCF9930097F4F2 /* QWZQuizSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZQuizSet.m; sourceTree = "<group>"; };
 		E873E68F16FD062F0097F4F2 /* QWZAnsweredQuizSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZAnsweredQuizSet.h; sourceTree = "<group>"; };
 		E873E69016FD062F0097F4F2 /* QWZAnsweredQuizSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZAnsweredQuizSet.m; sourceTree = "<group>"; };
-		E873E69916FD0F980097F4F2 /* QWZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZViewController.h; sourceTree = "<group>"; };
-		E873E69A16FD0F980097F4F2 /* QWZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZViewController.m; sourceTree = "<group>"; };
-		E873E69E16FD1BFB0097F4F2 /* QwizzleHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QwizzleHeaderView.xib; sourceTree = "<group>"; };
-		E873E6B216FD382C0097F4F2 /* QWZCreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZCreateViewController.h; sourceTree = "<group>"; };
-		E873E6B316FD382C0097F4F2 /* QWZCreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZCreateViewController.m; sourceTree = "<group>"; };
-		E873E6B416FD382D0097F4F2 /* QWZCreateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QWZCreateViewController.xib; sourceTree = "<group>"; };
-		E873E6B716FD40020097F4F2 /* QWZAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZAnswerViewController.h; sourceTree = "<group>"; };
-		E873E6B816FD40020097F4F2 /* QWZAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZAnswerViewController.m; sourceTree = "<group>"; };
-		E873E6B916FD40030097F4F2 /* QWZAnswerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QWZAnswerViewController.xib; sourceTree = "<group>"; };
-		E873E6BC16FD41730097F4F2 /* QWZViewAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZViewAnswerViewController.h; sourceTree = "<group>"; };
-		E873E6BD16FD41730097F4F2 /* QWZViewAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZViewAnswerViewController.m; sourceTree = "<group>"; };
-		E873E6BE16FD41740097F4F2 /* QWZViewAnswerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QWZViewAnswerViewController.xib; sourceTree = "<group>"; };
+		E873E69916FD0F980097F4F2 /* QWZQwizzleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZQwizzleViewController.h; sourceTree = "<group>"; };
+		E873E69A16FD0F980097F4F2 /* QWZQwizzleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZQwizzleViewController.m; sourceTree = "<group>"; };
+		E873E6B216FD382C0097F4F2 /* QWZCreateQwizzleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZCreateQwizzleViewController.h; sourceTree = "<group>"; };
+		E873E6B316FD382C0097F4F2 /* QWZCreateQwizzleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZCreateQwizzleViewController.m; sourceTree = "<group>"; };
+		E873E6B716FD40020097F4F2 /* QWZTakeQwizzleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZTakeQwizzleViewController.h; sourceTree = "<group>"; };
+		E873E6B816FD40020097F4F2 /* QWZTakeQwizzleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZTakeQwizzleViewController.m; sourceTree = "<group>"; };
+		E873E6BC16FD41730097F4F2 /* QWZViewQwizzleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZViewQwizzleViewController.h; sourceTree = "<group>"; };
+		E873E6BD16FD41730097F4F2 /* QWZViewQwizzleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZViewQwizzleViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,24 +144,21 @@
 				E873E68D16FCF9930097F4F2 /* QWZQuizSet.m */,
 				E873E68F16FD062F0097F4F2 /* QWZAnsweredQuizSet.h */,
 				E873E69016FD062F0097F4F2 /* QWZAnsweredQuizSet.m */,
-				E873E69916FD0F980097F4F2 /* QWZViewController.h */,
-				E873E69A16FD0F980097F4F2 /* QWZViewController.m */,
-				E873E69E16FD1BFB0097F4F2 /* QwizzleHeaderView.xib */,
-				E873E6B216FD382C0097F4F2 /* QWZCreateViewController.h */,
-				E873E6B316FD382C0097F4F2 /* QWZCreateViewController.m */,
-				E873E6B416FD382D0097F4F2 /* QWZCreateViewController.xib */,
-				E873E6B716FD40020097F4F2 /* QWZAnswerViewController.h */,
-				E873E6B816FD40020097F4F2 /* QWZAnswerViewController.m */,
-				E873E6B916FD40030097F4F2 /* QWZAnswerViewController.xib */,
-				E873E6BC16FD41730097F4F2 /* QWZViewAnswerViewController.h */,
-				E873E6BD16FD41730097F4F2 /* QWZViewAnswerViewController.m */,
-				E873E6BE16FD41740097F4F2 /* QWZViewAnswerViewController.xib */,
+				E873E69916FD0F980097F4F2 /* QWZQwizzleViewController.h */,
+				E873E69A16FD0F980097F4F2 /* QWZQwizzleViewController.m */,
+				E873E6B216FD382C0097F4F2 /* QWZCreateQwizzleViewController.h */,
+				E873E6B316FD382C0097F4F2 /* QWZCreateQwizzleViewController.m */,
+				E873E6B716FD40020097F4F2 /* QWZTakeQwizzleViewController.h */,
+				E873E6B816FD40020097F4F2 /* QWZTakeQwizzleViewController.m */,
+				E873E6BC16FD41730097F4F2 /* QWZViewQwizzleViewController.h */,
+				E873E6BD16FD41730097F4F2 /* QWZViewQwizzleViewController.m */,
 				8186C2FE1703E5B000CB5BDF /* Quiz.h */,
 				8186C2FF1703E5B100CB5BDF /* Quiz.m */,
 				8186C2FB1703E5B000CB5BDF /* Question.h */,
 				8186C2FC1703E5B000CB5BDF /* Question.m */,
 				8186C2F81703E5AF00CB5BDF /* Answers.h */,
 				8186C2F91703E5AF00CB5BDF /* Answers.m */,
+				E833CF861707681A0006B832 /* Storyboard_v2.storyboard */,
 			);
 			path = Qwizzle;
 			sourceTree = "<group>";
@@ -252,11 +243,8 @@
 				E873E67F16FCF6640097F4F2 /* Default.png in Resources */,
 				E873E68116FCF6640097F4F2 /* Default@2x.png in Resources */,
 				E873E68316FCF6640097F4F2 /* Default-568h@2x.png in Resources */,
-				E873E69F16FD1BFB0097F4F2 /* QwizzleHeaderView.xib in Resources */,
-				E873E6B616FD382D0097F4F2 /* QWZCreateViewController.xib in Resources */,
-				E873E6BB16FD40030097F4F2 /* QWZAnswerViewController.xib in Resources */,
-				E873E6C016FD41740097F4F2 /* QWZViewAnswerViewController.xib in Resources */,
 				B877B284170108EF00007668 /* Storyboard.storyboard in Resources */,
+				E833CF871707681A0006B832 /* Storyboard_v2.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,10 +260,10 @@
 				E873E68B16FCF6990097F4F2 /* QWZQuiz.m in Sources */,
 				E873E68E16FCF9930097F4F2 /* QWZQuizSet.m in Sources */,
 				E873E69116FD062F0097F4F2 /* QWZAnsweredQuizSet.m in Sources */,
-				E873E69B16FD0F980097F4F2 /* QWZViewController.m in Sources */,
-				E873E6B516FD382D0097F4F2 /* QWZCreateViewController.m in Sources */,
-				E873E6BA16FD40030097F4F2 /* QWZAnswerViewController.m in Sources */,
-				E873E6BF16FD41740097F4F2 /* QWZViewAnswerViewController.m in Sources */,
+				E873E69B16FD0F980097F4F2 /* QWZQwizzleViewController.m in Sources */,
+				E873E6B516FD382D0097F4F2 /* QWZCreateQwizzleViewController.m in Sources */,
+				E873E6BA16FD40030097F4F2 /* QWZTakeQwizzleViewController.m in Sources */,
+				E873E6BF16FD41740097F4F2 /* QWZViewQwizzleViewController.m in Sources */,
 				B877B19E16FFD3C000007668 /* QWZDataModel.xcdatamodeld in Sources */,
 				B877B287170109BA00007668 /* WelcomeView.m in Sources */,
 				B877B28C170109E600007668 /* QWZCreateView.m in Sources */,

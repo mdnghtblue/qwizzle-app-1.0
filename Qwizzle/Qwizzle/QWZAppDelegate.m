@@ -7,8 +7,9 @@
 
 #import "QWZAppDelegate.h"
 
+// Krissada: we now don't need this since we decided to use a storyboard
 // Import our viewcontroller
-#import "QWZViewController.h"
+//#import "QWZQwizzleViewController.h"
 
 @implementation QWZAppDelegate
 

@@ -21,77 +21,6 @@
 
 @implementation QWZQwizzleViewController
 
-// We don't need init anymore if we use the storyboard
-//// The designated initializer
-//- (id)init
-//{
-//    // Call the superclass's designated initializer
-//    // There are two options: UITableViewStylePlain and UITableViewStyleGrouped
-//    // Krissada; We are forcing to use the grouped style here
-//    self = [super initWithStyle:UITableViewStyleGrouped];
-//    
-//    // Is the superclass's designated initializer succeed?
-//    if (self) {
-//        
-//        // Initialize the 2 quiz sets here
-//        allQuizSets = [[NSMutableArray alloc] init];
-//        allAnsweredQuizSets = [[NSMutableArray alloc] init];
-//        
-//        // Add hard-coded question set here
-//        QWZQuiz *q1 = [[QWZQuiz alloc] initWithQuestion:@"What is your name?"];
-//        QWZQuiz *q2 = [[QWZQuiz alloc] initWithQuestion:@"What is your lastname?"];
-//        QWZQuiz *q3 = [[QWZQuiz alloc] initWithQuestion:@"What is your favourite color?" answer:@"Green"];
-//        
-//        QWZQuizSet *qs1 = [[QWZQuizSet alloc] initWithTitle:@"Identity Quiz Set"];
-//        [qs1 addQuiz:q1];
-//        [qs1 addQuiz:q2];
-//        
-//        QWZQuizSet *qs2 = [[QWZQuizSet alloc] initWithTitle:@"Identity Quiz Set 2"];
-//        [qs2 addQuiz:q1];
-//        
-//        QWZAnsweredQuizSet *aqs1 = [[QWZAnsweredQuizSet alloc] initWithTitle:@"Favourite Quiz Set"];
-//        [aqs1 addQuiz:q3];
-//        
-//        [allQuizSets addObject:qs1];
-//        [allQuizSets addObject:qs2];
-//        [allAnsweredQuizSets addObject:aqs1];
-//        
-//        // Every viewcontroller has this navigationItem property
-//        //UINavigationItem *n = [self navigationItem];
-//        //[n setTitle:@"Qwizzle"];
-//        
-//        // Create a new bar button item that will send addNewItem: to QWZViewController
-//        // UIBarButtonSystemItemAdd is the default + button
-//        // UIBarButtonSystemItemCompose is the default compose button
-//        //UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
-//        //                                                                     target:self
-//        //                                                                     action:@selector(addNewQuiz:)];
-//        
-//        // Set this bar button item as the right item in the navigationItem
-//        //[[self navigationItem] setRightBarButtonItem:bbi];
-//    }
-//    
-//    return self;
-//}
-//
-//- (id)initWithStyle:(UITableViewStyle)style
-//{
-//    // Call the designated initializer
-//    return [self init];
-//}
-
-// Krissada: addNewQuiz will swtich to QWZCreateViewController
-- (IBAction)addNewQuiz:(id)sender
-{
-    // Create the QWZCreateViewController
-    //QWZCreateViewController *createViewController = [[QWZCreateViewController alloc] init];
-    
-    // Krissada: Push it onto the top of the navigation controller's stack
-    //[[self navigationController] pushViewController:createViewController animated:YES];
-    
-    NSLog(@"Add New Quiz!!");
-}
-
 #pragma mark - Default App's Behavior
 // Krissada: implement this method if there is anything needed to be configured before the view is loaded for the first time
 - (void)viewDidLoad
@@ -119,8 +48,9 @@
     QWZQuiz *q5 = [[QWZQuiz alloc] initWithQuestion:@"What is your favourite sport?" answer:@"Table Tennis"];
     QWZAnsweredQuizSet *aqs1 = [[QWZAnsweredQuizSet alloc] initWithTitle:@"Favourite Quiz Set"];
     [aqs1 addQuiz:q3];
-    [aqs1 addQuiz:q4];
     [aqs1 addQuiz:q5];
+    [aqs1 addQuiz:q4];
+    
     
     [allQuizSets addObject:qs1];
     [allQuizSets addObject:qs2];
@@ -134,11 +64,12 @@
     [[self tableView] reloadData];
 }
 
-// Krissada: implement this method if there is anything needed to be done if receive memory warning
-- (void)didReceiveMemoryWarning
+- (void)submitAQwizzle:(QWZQuizSet *)qz
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSLog(@"a qwizzle has been submitted!! %@", qz);
+    NSLog(@"There are %d questions for %@", [[qz allQuizzes] count], [qz title]);
+    [allQuizSets addObject:qz];
+    [[self tableView] reloadData];
 }
 
 #pragma mark - Handle table view datasource
@@ -214,7 +145,7 @@
 // Basically it should switch to another view and load all the corresponding information
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may goes here.
+    // Navigation logic may go here.
     NSInteger section = [indexPath section];
     if (section == 0) {
         selectedQuiz = [allQuizSets objectAtIndex:[indexPath row]];
@@ -233,7 +164,7 @@
     }
 }
 
-// Krissada: this method get called automatically when we're transfering to the other view in the storyboard
+// Krissada: this method get called automatically when we're moving to the other view in the storyboard
 // All we have to do is the implement it.
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -249,9 +180,20 @@
         QWZViewQwizzleViewController *destinationViewController = segue.destinationViewController;
         [destinationViewController setQuizSet:selectedQuiz];
     }
-    else {
-        
+    else if ([segue.identifier isEqualToString:@"SEGUECreateQwizzle"]) {
+        QWZCreateQwizzleViewController *destinationViewController = segue.destinationViewController;
+        [destinationViewController setOrigin:self];
     }
+    else {
+        NSLog(@"Unidentifiable Segue");
+    }
+}
+
+// Krissada: implement this method if there is anything needed to be done if receive memory warning
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

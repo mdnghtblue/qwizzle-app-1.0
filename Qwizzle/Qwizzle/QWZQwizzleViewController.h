@@ -23,14 +23,10 @@
     // This array stores all answered quiz sets
     NSMutableArray *allAnsweredQuizSets;
     
-    // The header view of a UITable could be any UIView instance 
-    //IBOutlet UIView *headerView;
-    
     // Handle the selected quiz tapped by the user
     QWZQuizSet *selectedQuiz;
 }
 
-//- (UIView *)headerView;
-- (IBAction)addNewQuiz:(id)sender;
+- (void)submitAQwizzle:(QWZQuizSet *)qz;
 
 @end

@@ -19,6 +19,7 @@
 		B8CB27ED17012CA1001BB56E /* QWZTakeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CB27EC17012CA1001BB56E /* QWZTakeView.m */; };
 		B8CB27F017012D34001BB56E /* QWZViewView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CB27EF17012D34001BB56E /* QWZViewView.m */; };
 		E833CF871707681A0006B832 /* Storyboard_v2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E833CF861707681A0006B832 /* Storyboard_v2.storyboard */; };
+		E833CF90170904150006B832 /* UIView+FindFirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = E833CF8F170904150006B832 /* UIView+FindFirstResponder.m */; };
 		E873E66D16FCF6640097F4F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E873E66C16FCF6640097F4F2 /* UIKit.framework */; };
 		E873E66F16FCF6640097F4F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E873E66E16FCF6640097F4F2 /* Foundation.framework */; };
 		E873E67116FCF6640097F4F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E873E67016FCF6640097F4F2 /* CoreGraphics.framework */; };
@@ -58,6 +59,8 @@
 		B8CB27EE17012D34001BB56E /* QWZViewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZViewView.h; sourceTree = "<group>"; };
 		B8CB27EF17012D34001BB56E /* QWZViewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZViewView.m; sourceTree = "<group>"; };
 		E833CF861707681A0006B832 /* Storyboard_v2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard_v2.storyboard; sourceTree = "<group>"; };
+		E833CF8E170904150006B832 /* UIView+FindFirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindFirstResponder.h"; sourceTree = "<group>"; };
+		E833CF8F170904150006B832 /* UIView+FindFirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindFirstResponder.m"; sourceTree = "<group>"; };
 		E873E66916FCF6640097F4F2 /* Qwizzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qwizzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E873E66C16FCF6640097F4F2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E873E66E16FCF6640097F4F2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -159,6 +162,8 @@
 				8186C2F81703E5AF00CB5BDF /* Answers.h */,
 				8186C2F91703E5AF00CB5BDF /* Answers.m */,
 				E833CF861707681A0006B832 /* Storyboard_v2.storyboard */,
+				E833CF8E170904150006B832 /* UIView+FindFirstResponder.h */,
+				E833CF8F170904150006B832 /* UIView+FindFirstResponder.m */,
 			);
 			path = Qwizzle;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 				8186C2FA1703E5AF00CB5BDF /* Answers.m in Sources */,
 				8186C2FD1703E5B000CB5BDF /* Question.m in Sources */,
 				8186C3001703E5B100CB5BDF /* Quiz.m in Sources */,
+				E833CF90170904150006B832 /* UIView+FindFirstResponder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

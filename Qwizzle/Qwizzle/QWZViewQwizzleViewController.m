@@ -36,11 +36,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    NSLog(@"QWZViewQwizzleViewController with a quizset %@", [quizSet title]);
-    NSLog(@"This quizset have %d questions", [[quizSet allQuizzes] count]);
-    
-    //NSInteger position = OFFSET;
-    //CGRect fieldFrame = CGRectMake(20, position, 200, 31);
+    //NSLog(@"QWZViewQwizzleViewController with a quizset %@", [quizSet title]);
+    //NSLog(@"This quizset have %d questions", [[quizSet allQuizzes] count]);
     
     // For each quiz
     QWZQuiz *quiz;
@@ -50,7 +47,7 @@
     for (NSInteger i = 0; i < [[quizSet allQuizzes] count]; i++) {
         quiz = [[quizSet allQuizzes] objectAtIndex:i];
         
-        if (i == 0) { // set initial position
+        if (i == 0) { // Set initial position
             position = (i + 1) * OFFSET;
         }
         else { // Otherwise, set the position by the latest bound
@@ -59,7 +56,7 @@
         
         //////// Preparing a label for a question
         
-        CGRect labelFrame = CGRectMake(20, position, 250, 31);
+        CGRect labelFrame = CGRectMake(20, position, 250, 30);
         label = [[UILabel alloc] initWithFrame:labelFrame];
         [label setText:[[NSString alloc] initWithFormat:@"%d.) %@", (i + 1), [quiz question]]];
         [label setBackgroundColor:[UIColor clearColor]];
@@ -77,7 +74,7 @@
         //////// Preparing the label for an answer
         
         position = latestHeight + 10; // Move just a little bit
-        labelFrame = CGRectMake(40, position, 250, 31);
+        labelFrame = CGRectMake(40, position, 250, 30);
         label = [[UILabel alloc] initWithFrame:labelFrame];
         [label setText:[[NSString alloc] initWithFormat:@"%@", [quiz answer]]];
         [label setBackgroundColor:[UIColor clearColor]];

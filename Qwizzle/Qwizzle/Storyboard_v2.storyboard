@@ -45,6 +45,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6SP-31-mK4">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="KdQ-5B-Fl7"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Started!">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -60,13 +63,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.65683861580000003" green="1" blue="0.61203655940000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="6SP-31-mK4" firstAttribute="leading" secondItem="GCt-0N-QMG" secondAttribute="leading" type="default" id="4va-aB-Trk"/>
-                            <constraint firstItem="GCt-0N-QMG" firstAttribute="centerX" secondItem="Og3-ju-soC" secondAttribute="centerX" type="default" id="6E8-dS-fD6"/>
                             <constraint firstItem="FLt-ZO-ThX" firstAttribute="top" secondItem="Og3-ju-soC" secondAttribute="top" constant="103" id="9g8-L8-fbe"/>
-                            <constraint firstItem="6SP-31-mK4" firstAttribute="top" secondItem="Og3-ju-soC" secondAttribute="top" constant="196" id="W1e-cb-ZIs"/>
-                            <constraint firstItem="6SP-31-mK4" firstAttribute="trailing" secondItem="GCt-0N-QMG" secondAttribute="trailing" type="default" id="WX8-Cd-zpY"/>
+                            <constraint firstItem="6SP-31-mK4" firstAttribute="centerX" secondItem="GCt-0N-QMG" secondAttribute="centerX" type="default" id="AIc-oF-Io0"/>
+                            <constraint firstItem="6SP-31-mK4" firstAttribute="leading" secondItem="Og3-ju-soC" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="HeT-X1-vAU"/>
                             <constraint firstItem="GCt-0N-QMG" firstAttribute="centerX" secondItem="FLt-ZO-ThX" secondAttribute="centerX" type="default" id="YYm-NJ-rfO"/>
+                            <constraint firstItem="6SP-31-mK4" firstAttribute="top" secondItem="Og3-ju-soC" secondAttribute="top" constant="212" id="YwK-Yn-LkH"/>
                             <constraint firstItem="GCt-0N-QMG" firstAttribute="top" secondItem="FLt-ZO-ThX" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="r0Z-nm-Gmf"/>
+                            <constraint firstAttribute="trailing" secondItem="6SP-31-mK4" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="yze-3Q-vuc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Welcome" id="f4x-b3-U1w"/>
@@ -172,7 +175,7 @@
                     <navigationItem key="navigationItem" title="Qwizzle" id="Uj6-ly-SHP">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="9iK-hW-aAI">
                             <connections>
-                                <segue destination="Moa-q1-UmR" kind="modal" id="ajf-Wg-9si"/>
+                                <segue destination="Moa-q1-UmR" kind="modal" identifier="SEGUECreateQwizzle" id="ajf-Wg-9si"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -246,6 +249,7 @@
         <!--Create Qwizzle View Controller - Create a Qwizzle-->
         <scene sceneID="voW-5Y-1yT">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hUN-AV-H8Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Moa-q1-UmR" customClass="QWZCreateQwizzleViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sEV-DV-iG1">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
@@ -261,7 +265,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="znc-wM-HCa">
                                             <connections>
-                                                <action selector="createNewQuiz:" destination="Moa-q1-UmR" id="WhZ-Dr-EJd"/>
+                                                <action selector="submitAQwizzle:" destination="Moa-q1-UmR" id="aRh-Cu-4iO"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -287,7 +291,6 @@
                         <outlet property="scrollView" destination="Ds6-BJ-vxO" id="mnG-QK-GAt"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hUN-AV-H8Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1315" y="-642"/>
         </scene>
@@ -300,7 +303,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZCreateQwizzleViewController.h"/>
             <relationships>
                 <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="createNewQuiz:"/>
+                <relationship kind="action" name="submitAQwizzle:"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>

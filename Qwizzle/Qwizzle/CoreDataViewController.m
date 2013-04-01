@@ -1,17 +1,18 @@
 //
-//  QWZStoreView.m
-//  QWZ-App
+//  CoreDataViewController.m
+//  Qwizzle
 //
+//  Created by Stephanie Day on 3/30/13.
 //  Copyright (c) 2013 Florida Tech. All rights reserved.
 //
 
-#import "QWZHomeView.h"
+#import "CoreDataViewController.h"
 
-@interface QWZHomeView ()
+@interface CoreDataViewController ()
 
 @end
 
-@implementation QWZHomeView
+@implementation CoreDataViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,7 +26,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
 	// Do any additional setup after loading the view.
 }
 

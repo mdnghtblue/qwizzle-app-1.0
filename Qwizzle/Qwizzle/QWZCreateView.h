@@ -10,4 +10,8 @@
 
 @interface QWZCreateView : UIViewController
 
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
+- (IBAction)createQuiz:(id)sender;
+
 @end

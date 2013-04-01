@@ -13,6 +13,9 @@
 
 @implementation WelcomeView
 
+@synthesize managedObjectContext;
+@synthesize fetchedResultsController;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

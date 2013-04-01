@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Welcome View-->
         <scene sceneID="1tH-O2-tTo">
             <objects>
-                <viewController id="tMC-eP-EAi" sceneMemberID="viewController">
+                <viewController id="tMC-eP-EAi" customClass="WelcomeView" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ii4-Ny-w8o">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -158,7 +158,7 @@
         <!--Create View-->
         <scene sceneID="eXf-J4-6XP">
             <objects>
-                <viewController id="k6O-Yf-cj8" customClass="QWZCreateView" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QWZCreateView" id="k6O-Yf-cj8" customClass="QWZCreateView" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8PN-ch-Q6X">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -224,6 +224,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="createQuiz:" destination="k6O-Yf-cj8" eventType="touchUpInside" id="zse-Kh-k8A"/>
                                     <segue destination="ccO-Sg-bhM" kind="modal" id="r4p-oG-KCS"/>
                                 </connections>
                             </button>

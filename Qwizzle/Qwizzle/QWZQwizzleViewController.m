@@ -69,7 +69,13 @@
     NSLog(@"a qwizzle has been submitted!! %@", qz);
     NSLog(@"There are %d questions for %@", [[qz allQuizzes] count], [qz title]);
     [allQuizSets addObject:qz];
-    [[self tableView] reloadData];
+    
+    // Adding new Qwizzle (unanswer qwizzle) into the table, this set reside in the section 0
+    NSInteger lastRow = [allQuizSets indexOfObject:qz];
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
+    
+    // Insert this Qwizzle into the table
+    [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationTop];
 }
 
 #pragma mark - Handle table view datasource

@@ -60,7 +60,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CJk-dx-deQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-402" y="-155"/>
+            <point key="canvasLocation" x="-962" y="-141"/>
         </scene>
         <!--Home View - Title-->
         <scene sceneID="fb5-ZJ-wOZ">
@@ -415,6 +415,9 @@
         </class>
         <class className="QWZCreateView" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZCreateView.h"/>
+            <relationships>
+                <relationship kind="action" name="createQuiz:"/>
+            </relationships>
         </class>
         <class className="QWZHomeView" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZHomeView.h"/>
@@ -425,6 +428,9 @@
         <class className="QWZViewView" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZViewView.h"/>
         </class>
+        <class className="WelcomeView" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WelcomeView.h"/>
+        </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -432,6 +438,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Aae-Fj-cdi"/>
+        <segue reference="0Ol-wS-jQK"/>
     </inferredMetricsTieBreakers>
 </document>

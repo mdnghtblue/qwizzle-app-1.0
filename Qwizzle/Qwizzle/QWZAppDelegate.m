@@ -26,10 +26,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
+    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+    
     // assign the managed object context to the initial view controller
-    //WelcomeView *qvc = (WelcomeView *)self.window.rootViewController;
-    //qvc.managedObjectContext = self.managedObjectContext;
-
+    WelcomeView *qvc = (WelcomeView *)navController.childViewControllers[0];
+    qvc.managedObjectContext = self.managedObjectContext;
+    
     /*
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     

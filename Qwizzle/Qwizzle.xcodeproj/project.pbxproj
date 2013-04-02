@@ -37,6 +37,9 @@
 		E873E6B516FD382D0097F4F2 /* QWZCreateQwizzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E6B316FD382C0097F4F2 /* QWZCreateQwizzleViewController.m */; };
 		E873E6BA16FD40030097F4F2 /* QWZTakeQwizzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E6B816FD40020097F4F2 /* QWZTakeQwizzleViewController.m */; };
 		E873E6BF16FD41740097F4F2 /* QWZViewQwizzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E6BD16FD41730097F4F2 /* QWZViewQwizzleViewController.m */; };
+		E8EA1F67170B9EFF00956433 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EA1F66170B9EFF00956433 /* Default.png */; };
+		E8EA1F69170B9F0C00956433 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EA1F68170B9F0C00956433 /* Default@2x.png */; };
+		E8EA1F6B170B9F1000956433 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EA1F6A170B9F1000956433 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +94,9 @@
 		E873E6B816FD40020097F4F2 /* QWZTakeQwizzleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZTakeQwizzleViewController.m; sourceTree = "<group>"; };
 		E873E6BC16FD41730097F4F2 /* QWZViewQwizzleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZViewQwizzleViewController.h; sourceTree = "<group>"; };
 		E873E6BD16FD41730097F4F2 /* QWZViewQwizzleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZViewQwizzleViewController.m; sourceTree = "<group>"; };
+		E8EA1F66170B9EFF00956433 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		E8EA1F68170B9F0C00956433 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		E8EA1F6A170B9F1000956433 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,9 @@
 		E873E66016FCF6640097F4F2 = {
 			isa = PBXGroup;
 			children = (
+				E8EA1F6A170B9F1000956433 /* Default-568h@2x.png */,
+				E8EA1F68170B9F0C00956433 /* Default@2x.png */,
+				E8EA1F66170B9EFF00956433 /* Default.png */,
 				E873E67216FCF6640097F4F2 /* Qwizzle */,
 				E873E66B16FCF6640097F4F2 /* Frameworks */,
 				E873E66A16FCF6640097F4F2 /* Products */,
@@ -255,6 +264,9 @@
 				E873E68316FCF6640097F4F2 /* Default-568h@2x.png in Resources */,
 				B877B284170108EF00007668 /* Storyboard.storyboard in Resources */,
 				E833CF871707681A0006B832 /* Storyboard_v2.storyboard in Resources */,
+				E8EA1F67170B9EFF00956433 /* Default.png in Resources */,
+				E8EA1F69170B9F0C00956433 /* Default@2x.png in Resources */,
+				E8EA1F6B170B9F1000956433 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

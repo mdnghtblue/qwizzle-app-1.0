@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="hwZ-yV-2Jt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="hwZ-yV-2Jt">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -12,71 +12,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="JSK-qU-ioj" kind="relationship" relationship="rootViewController" id="k5d-1M-oPX"/>
+                        <segue destination="gsN-V7-zIA" kind="relationship" relationship="rootViewController" id="8o3-D6-5px"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uc6-Ag-sqt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-63" y="20"/>
-        </scene>
-        <!--Welcome View - Welcome-->
-        <scene sceneID="4pi-40-Hgs">
-            <objects>
-                <viewController id="JSK-qU-ioj" customClass="WelcomeView" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Og3-ju-soC">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Hi! Welcome to" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLt-ZO-ThX">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="5Xo-CX-DGF"/>
-                                    <constraint firstAttribute="width" constant="121" id="Buw-MA-Say"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Qwizzle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCt-0N-QMG">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="4uO-gV-KZz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="40"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6SP-31-mK4">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="KdQ-5B-Fl7"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Started!">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="gsN-V7-zIA" kind="push" id="crI-6P-rPD"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.65683861580000003" green="1" blue="0.61203655940000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="FLt-ZO-ThX" firstAttribute="top" secondItem="Og3-ju-soC" secondAttribute="top" constant="103" id="9g8-L8-fbe"/>
-                            <constraint firstItem="6SP-31-mK4" firstAttribute="centerX" secondItem="GCt-0N-QMG" secondAttribute="centerX" type="default" id="AIc-oF-Io0"/>
-                            <constraint firstItem="6SP-31-mK4" firstAttribute="leading" secondItem="Og3-ju-soC" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="HeT-X1-vAU"/>
-                            <constraint firstItem="GCt-0N-QMG" firstAttribute="centerX" secondItem="FLt-ZO-ThX" secondAttribute="centerX" type="default" id="YYm-NJ-rfO"/>
-                            <constraint firstItem="6SP-31-mK4" firstAttribute="top" secondItem="Og3-ju-soC" secondAttribute="top" constant="212" id="YwK-Yn-LkH"/>
-                            <constraint firstItem="GCt-0N-QMG" firstAttribute="top" secondItem="FLt-ZO-ThX" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="r0Z-nm-Gmf"/>
-                            <constraint firstAttribute="trailing" secondItem="6SP-31-mK4" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="yze-3Q-vuc"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Welcome" id="f4x-b3-U1w"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VkA-Rm-8Qd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="321" y="20"/>
         </scene>
         <!--Qwizzle View Controller - Qwizzle-->
         <scene sceneID="x1c-dZ-TLu">
@@ -242,6 +183,33 @@
             <point key="canvasLocation" x="1315" y="-642"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="QWZCreateQwizzleViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZCreateQwizzleViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="submitAQwizzle:"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="QWZQwizzleViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZQwizzleViewController.h"/>
+        </class>
+        <class className="QWZTakeQwizzleViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZTakeQwizzleViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="QWZViewQwizzleViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZViewQwizzleViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

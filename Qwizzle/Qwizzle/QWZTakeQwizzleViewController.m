@@ -57,20 +57,25 @@
     [titleLabel setNumberOfLines:2];
     [scrollView addSubview:titleLabel];
     
+    NSInteger y = 100;
     for (NSInteger i = 0; i < [[quizSet allQuizzes] count]; i++)
     {
-        /*// Adding the first textfield for the first question
-        CGRect questionFrame = CGRectMake(80 * i, 85, 250, 60);
-        UILabel *questionLabel = [[UILabel alloc] initWithFrame:questionFrame];
-        [questionLabel setText:[[NSString alloc] initWithFormat:@"%@", quizSet.allQuizzes[i]]];
+        NSString *qwzQuestion = [(QWZQuiz *)quizSet.allQuizzes[i] question];
+        NSLog(@"question: %@", qwzQuestion);
+        
+        // Adding the text field for the question
+        UILabel *questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, y, 250, 60)];
+        [questionLabel setText:[[NSString alloc] initWithFormat:@"%@", qwzQuestion]];
         [questionLabel setBackgroundColor:[UIColor clearColor]];
         [scrollView addSubview:questionLabel];
         
         // Adding the corresponding textfield for the first question
-        CGRect answerFrame = CGRectMake((80 * i + 70), 85, 250, 60);
-        UITextView *answerField = [[UITextView alloc] initWithFrame:answerFrame];
+        UITextView *answerField = [[UITextView alloc] initWithFrame:CGRectMake(60, y + 50, 250, 60)];
+        //[answerField s]
         [controlList addObject:answerField]; // We will need the reference later
-        [scrollView addSubview:answerField];*/
+        [scrollView addSubview:answerField];
+        
+        y += 100;
     }
 }
 

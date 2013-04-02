@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Florida Tech. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "QWZTakeQwizzleViewController.h"
 #import "QWZQuiz.h"
 #import "QWZQuizSet.h"
@@ -71,7 +73,9 @@
         
         // Adding the corresponding textfield for the first question
         UITextView *answerField = [[UITextView alloc] initWithFrame:CGRectMake(60, y + 50, 250, 60)];
-        //[answerField s]
+        [answerField setScrollsToTop:true];
+        answerField.layer.borderWidth = 2.0f;
+        answerField.layer.borderColor = [[UIColor grayColor] CGColor];
         [controlList addObject:answerField]; // We will need the reference later
         [scrollView addSubview:answerField];
         

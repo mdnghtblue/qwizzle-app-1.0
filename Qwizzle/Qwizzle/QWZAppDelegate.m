@@ -32,6 +32,8 @@
     WelcomeView *qvc = (WelcomeView *)navController.childViewControllers[0];
     qvc.managedObjectContext = self.managedObjectContext;
     
+    NSLog(@"test: %@", [navController.topViewController class]);
+    
     /*
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     

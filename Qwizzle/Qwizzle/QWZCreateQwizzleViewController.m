@@ -171,7 +171,7 @@
     
     if ([questionList count] == 0) {
         // All empty
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Opps" message:@"You should add some question before you go." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"You should add some question before you go." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
     else {

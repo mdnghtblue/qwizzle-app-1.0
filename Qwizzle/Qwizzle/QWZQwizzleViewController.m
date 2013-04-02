@@ -78,6 +78,13 @@
     [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationTop];
 }
 
+- (void)fillOutAQwizzle:(QWZAnsweredQuizSet *)qzAnswers
+{
+    NSLog(@"submitting qwizzle answers!");
+    
+    
+}
+
 #pragma mark - Handle table view datasource
 // Krissada: One of the required method needed to be implemented to use UITableViewController
 // return a cell at the given index

@@ -14,7 +14,12 @@
     IBOutlet UIScrollView *scrollView;
 }
 
+- (void)dismissKeyboard;
+
 // Hold a quiz set
 @property (nonatomic, strong) QWZQuizSet *quizSet;
+
+@property (nonatomic, strong) NSMutableArray *answerList;
+@property (nonatomic, strong) NSMutableArray *controlList;
 
 @end

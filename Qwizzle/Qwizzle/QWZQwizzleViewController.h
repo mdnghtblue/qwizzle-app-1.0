@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 
 @class QWZQuizSet;
+@class QWZAnsweredQuizSet;
 
 // Krissada: QWZViewController can fill all 3 roles: view controller, data source, and delegate
 // by implementing the following protocol: UITableViewDataSource and UITableViewDelegate.
@@ -28,5 +29,7 @@
 }
 
 - (void)submitAQwizzle:(QWZQuizSet *)qz;
+
+- (void)fillOutAQwizzle:(QWZAnsweredQuizSet *)qzAnswers;
 
 @end

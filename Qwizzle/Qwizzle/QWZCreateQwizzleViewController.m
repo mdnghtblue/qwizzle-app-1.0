@@ -102,9 +102,22 @@
     [scrollView setContentSize:CGSizeMake(scrollviewWidth, scrollviewHeight)];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self registerForKeyboardNotifications];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self removeKeyboardNotifications];
+}
+
 // Dynamically add more UIView for questions
 - (void)addMoreQuestion:(id)sender
 {
+    [self dismissKeyboard];
     //NSLog(@"add more question!");
     //NSLog(@"Control count: %d, the max is %d", [controlList count], MAX_NUMBEROFQUESTIONS);
     
@@ -134,9 +147,20 @@
         
         scrollviewHeight = scrollviewHeight + eachQuestionDistances;
         [scrollView setContentSize:CGSizeMake(scrollviewWidth, scrollviewHeight)];
+        
+        // If the number of control reached the maximum number defined, hide the add more button
+        if ([controlList count] == MAX_NUMBEROFQUESTIONS) {
+            [[scrollView viewWithTag:50] setHidden:YES];
+            
+            CGRect warningFrame = [[scrollView viewWithTag:50] frame];
+            UILabel *warningLabel = [[UILabel alloc] initWithFrame:warningFrame];
+            [warningLabel setText:[[NSString alloc] initWithFormat:@"The maximun of %d questions reached", MAX_NUMBEROFQUESTIONS]];
+            [warningLabel setBackgroundColor:[UIColor clearColor]];
+            [scrollView addSubview:warningLabel];
+        }
     }
     else { // Otherwise, display a warning and hide the button
-        NSLog(@"NO more than %d mister!!", MAX_NUMBEROFQUESTIONS);
+        NSLog(@"No more than %d, Mister!!", MAX_NUMBEROFQUESTIONS);
     }
 }
 
@@ -208,6 +232,81 @@
 {
     UIView *view = [scrollView findFirstResponder];
     [view resignFirstResponder];
+}
+
+// Call this method somewhere in your view controller setup code.
+- (void)registerForKeyboardNotifications
+{
+    NSLog(@"Registering for Keyboard Notification");
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void)removeKeyboardNotifications
+{
+    NSLog(@"Removeing for Keyboard Notification");
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
+}
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification {
+    // Getting the keyboard's size
+    NSDictionary* info = [aNotification userInfo];
+    keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    // Getting the scrollView height and add it with the keyboard's height
+    CGRect bkgndRect = [scrollView frame];
+    bkgndRect.size.height += keyboardSize.height;
+    
+    // Resize the scrollView
+    [scrollView setContentSize:CGSizeMake(bkgndRect.size.width, bkgndRect.size.height)];
+    //[activeField.superview setFrame:bkgndRect];
+    //[scrollView setContentOffset:CGPointMake(0.0, activeField.frame.origin.y-kbSize.height) animated:YES];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    activeField = textField;
+    
+    //[scrollView setContentOffset:CGPointMake(0.0, activeField.frame.origin.y-keyboardSize.height) animated:YES];
+    
+    CGPoint point = activeField.frame.origin ;
+    point.x = 0;
+    //point.y = keyboardBounds.origin.y;
+    [scrollView setContentOffset:point animated:YES];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    activeField = nil;
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    // Getting the keyboard's size
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    // Getting the current scrollView height and minus it with the keyboard's height
+    CGRect bkgndRect = [scrollView frame];
+    bkgndRect.size.height -= kbSize.height;
+    
+    // Resize the scrollView
+    [scrollView setContentSize:CGSizeMake(bkgndRect.size.width, bkgndRect.size.height)];
 }
 
 - (void)didReceiveMemoryWarning

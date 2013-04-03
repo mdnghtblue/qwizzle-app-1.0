@@ -81,8 +81,13 @@
 - (void)fillOutAQwizzle:(QWZAnsweredQuizSet *)qzAnswers
 {
     NSLog(@"submitting qwizzle answers!");
+    [allAnsweredQuizSets addObject:qzAnswers];
     
+    NSInteger lastRow = [allAnsweredQuizSets indexOfObject:qzAnswers];
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:1];
     
+    // Insert the new Qwizzle answers into the table
+    [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationTop];
 }
 
 #pragma mark - Handle table view datasource

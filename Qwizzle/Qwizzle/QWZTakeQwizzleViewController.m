@@ -8,9 +8,11 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "QWZQwizzleViewController.h"
 #import "QWZTakeQwizzleViewController.h"
 #import "QWZQuiz.h"
 #import "QWZQuizSet.h"
+#import "QWZAnsweredQuizSet.h"
 
 #import "UIView+FindFirstResponder.h"
 
@@ -20,22 +22,11 @@
 
 @implementation QWZTakeQwizzleViewController
 
+@synthesize origin; // The origin's viewcontroller: it is needed to pass data back
 @synthesize quizSet;
 @synthesize controlList;
 @synthesize answerList;
-
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (self) {
-//        // Custom initialization
-//        
-//        // Every viewcontroller has this navigationItem property
-//        UINavigationItem *n = [self navigationItem];
-//        [n setTitle:@"Answer Qwizzle"];
-//    }
-//    return self;
-//}
+@synthesize answeredQuizSet;
 
 - (void)viewDidLoad
 {
@@ -66,13 +57,13 @@
         NSLog(@"question: %@", qwzQuestion);
         
         // Adding the text field for the question
-        UILabel *questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, y, 250, 60)];
+        UILabel *questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, y, 250, 60)];
         [questionLabel setText:[[NSString alloc] initWithFormat:@"%@", qwzQuestion]];
         [questionLabel setBackgroundColor:[UIColor clearColor]];
         [scrollView addSubview:questionLabel];
         
         // Adding the corresponding textfield for the first question
-        UITextView *answerField = [[UITextView alloc] initWithFrame:CGRectMake(60, y + 50, 250, 60)];
+        UITextView *answerField = [[UITextView alloc] initWithFrame:CGRectMake(40, y + 50, 250, 60)];
         [answerField setScrollsToTop:true];
         answerField.layer.borderWidth = 2.0f;
         answerField.layer.borderColor = [[UIColor grayColor] CGColor];
@@ -83,10 +74,57 @@
     }
 }
 
+- (IBAction)fillOutAQwizzle:(id)sender
+{
+    NSLog(@"Submitting qwizzle answers....");
+    
+    // Validate code may go here
+    NSInteger emptyCount = 0;
+    for (NSInteger i = 0; i < [controlList count]; i++) {
+        NSLog(@"%d of %d) %@", i, [controlList count], [[controlList objectAtIndex:i] text]);
+        
+        NSString *text = [[controlList objectAtIndex:i] text];
+        if (text == nil || [text isEqualToString:@""]) {
+            NSLog(@"Empty cell detected!");
+            emptyCount++;
+        }
+        else {
+            NSLog(@"Question detected!: %@", [text copy]);
+            [answerList addObject:[text copy]];
+        }
+    }
+    
+    if ([answerList count] == 0) {
+        // All empty
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"You should fill out some answers before you go." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else {
+        NSLog(@"answerList: %@", answerList);
+        
+        for (NSInteger i = 0; i < [answerList count]; i++) {
+            // Add a new item to the answered quiz set with the original question and the given answer
+            [answeredQuizSet addQuiz:[[QWZQuiz alloc] initWithQuestion:[[quizSet allQuizzes] objectAtIndex:i] answer:[answerList objectAtIndex:i]]];
+        }
+        
+        // Submit a qwizzle to parents' viewcontroller
+        [origin fillOutAQwizzle:answeredQuizSet];
+        
+        // Dismiss this view
+        [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)cancel:(id)sender
+{
+    // Dismiss this dialog
+    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)dismissKeyboard

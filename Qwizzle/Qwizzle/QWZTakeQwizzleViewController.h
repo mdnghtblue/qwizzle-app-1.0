@@ -8,18 +8,21 @@
 
 #import <UIKit/UIKit.h>
 @class QWZQuizSet;
+@class QWZAnsweredQuizSet;
+@class QWZQwizzleViewController;
 
 @interface QWZTakeQwizzleViewController : UIViewController
 {
     IBOutlet UIScrollView *scrollView;
 }
 
-- (void)dismissKeyboard;
-
-// Hold a quiz set
-@property (nonatomic, strong) QWZQuizSet *quizSet;
-
+@property (nonatomic, weak) QWZQwizzleViewController *origin;
 @property (nonatomic, strong) NSMutableArray *answerList;
 @property (nonatomic, strong) NSMutableArray *controlList;
+@property (nonatomic, strong) QWZQuizSet *quizSet;
+@property (nonatomic, strong) QWZAnsweredQuizSet *answeredQuizSet;
+
+- (IBAction)fillOutAQwizzle:(id)sender;
+
 
 @end

@@ -28,6 +28,8 @@
     QWZQuizSet *selectedQuiz;
 }
 
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 - (void)submitAQwizzle:(QWZQuizSet *)qz;
 
 - (void)fillOutAQwizzle:(QWZAnsweredQuizSet *)qzAnswers;

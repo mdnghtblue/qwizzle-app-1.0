@@ -12,7 +12,7 @@
 
 // Import our viewcontroller
 //#import "QWZViewController.h"
-#import "WelcomeView.h"
+#import "QWZQwizzleViewController.h"
 #import <CoreData/CoreData.h>
 
 
@@ -26,13 +26,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-//    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
-//    
-//    // assign the managed object context to the initial view controller
-//    WelcomeView *qvc = (WelcomeView *)navController.childViewControllers[0];
-//    qvc.managedObjectContext = self.managedObjectContext;
-//    
-//    NSLog(@"test: %@", [navController.topViewController class]);
+    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+    
+    NSLog(@"test: %@", [navController.viewControllers[0] class]);
+    
+    // assign the managed object context to the initial view controller
+    QWZQwizzleViewController *qvc = (QWZQwizzleViewController *)navController.childViewControllers[0];
+    qvc.managedObjectContext = self.managedObjectContext;
     
     /*
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

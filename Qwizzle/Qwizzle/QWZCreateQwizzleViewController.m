@@ -262,51 +262,48 @@
 }
 
 // Called when the UIKeyboardDidShowNotification is sent.
-- (void)keyboardWasShown:(NSNotification*)aNotification {
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
     // Getting the keyboard's size
     NSDictionary* info = [aNotification userInfo];
-    keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
     // Getting the scrollView height and add it with the keyboard's height
-    CGRect bkgndRect = [scrollView frame];
-    bkgndRect.size.height += keyboardSize.height;
+    CGRect currentFrame = [scrollView frame];
+    currentFrame.size.height += keyboardSize.height;
     
-    // Resize the scrollView
-    [scrollView setContentSize:CGSizeMake(bkgndRect.size.width, bkgndRect.size.height)];
-    //[activeField.superview setFrame:bkgndRect];
-    //[scrollView setContentOffset:CGPointMake(0.0, activeField.frame.origin.y-kbSize.height) animated:YES];
+    // Make the scrollView bigger
+    [scrollView setContentSize:CGSizeMake(currentFrame.size.width, currentFrame.size.height)];
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    activeField = textField;
-    
-    //[scrollView setContentOffset:CGPointMake(0.0, activeField.frame.origin.y-keyboardSize.height) animated:YES];
-    
-    CGPoint point = activeField.frame.origin ;
-    point.x = 0;
-    //point.y = keyboardBounds.origin.y;
-    [scrollView setContentOffset:point animated:YES];
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    activeField = nil;
-}
 
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
     // Getting the keyboard's size
     NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
     // Getting the current scrollView height and minus it with the keyboard's height
-    CGRect bkgndRect = [scrollView frame];
-    bkgndRect.size.height -= kbSize.height;
+    CGRect currentFrame = [scrollView frame];
+    currentFrame.size.height -= keyboardSize.height;
     
-    // Resize the scrollView
-    [scrollView setContentSize:CGSizeMake(bkgndRect.size.width, bkgndRect.size.height)];
+    // Resize the scrollView back to the original
+    [scrollView setContentSize:CGSizeMake(currentFrame.size.width, currentFrame.size.height)];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    // Get the current origin of the textfield
+    CGPoint point = textField.frame.origin ;
+    point.x = 0;
+    point.y = point.y - 115; // adjust the position just to accommodate the keyboard
+    [scrollView setContentOffset:point animated:YES]; // Move the scrollView to the position
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+
 }
 
 - (void)didReceiveMemoryWarning

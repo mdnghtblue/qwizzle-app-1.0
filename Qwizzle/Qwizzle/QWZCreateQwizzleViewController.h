@@ -39,10 +39,6 @@
     NSInteger scrollviewHeight;
     
     NSInteger tag;
-    
-    UITextField *activeField;
-    CGSize keyboardSize;
-    CGRect keyboardBounds;
 }
 
 - (IBAction)submitAQwizzle:(id)sender;

@@ -15,6 +15,7 @@
 		B877B284170108EF00007668 /* Storyboard-old.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B877B283170108EE00007668 /* Storyboard-old.storyboard */; };
 		B877B28C170109E600007668 /* QWZCreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = B877B289170109E600007668 /* QWZCreateView.m */; };
 		B877B28D170109E600007668 /* QWZHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B877B28B170109E600007668 /* QWZHomeView.m */; };
+		B8C0C0F3170D3F7B00CF94EA /* QWZFetchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C0C0F2170D3F7B00CF94EA /* QWZFetchViewController.m */; };
 		B8CB27ED17012CA1001BB56E /* QWZTakeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CB27EC17012CA1001BB56E /* QWZTakeView.m */; };
 		B8CB27F017012D34001BB56E /* QWZViewView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CB27EF17012D34001BB56E /* QWZViewView.m */; };
 		B8EF9447170D1D4200FCBAB5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B8EF9446170D1D4200FCBAB5 /* libsqlite3.dylib */; };
@@ -55,6 +56,8 @@
 		B877B289170109E600007668 /* QWZCreateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZCreateView.m; sourceTree = "<group>"; };
 		B877B28A170109E600007668 /* QWZHomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZHomeView.h; sourceTree = "<group>"; };
 		B877B28B170109E600007668 /* QWZHomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZHomeView.m; sourceTree = "<group>"; };
+		B8C0C0F1170D3F7B00CF94EA /* QWZFetchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZFetchViewController.h; sourceTree = "<group>"; };
+		B8C0C0F2170D3F7B00CF94EA /* QWZFetchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZFetchViewController.m; sourceTree = "<group>"; };
 		B8CB27EB17012CA1001BB56E /* QWZTakeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZTakeView.h; sourceTree = "<group>"; };
 		B8CB27EC17012CA1001BB56E /* QWZTakeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZTakeView.m; sourceTree = "<group>"; };
 		B8CB27EE17012D34001BB56E /* QWZViewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZViewView.h; sourceTree = "<group>"; };
@@ -103,8 +106,8 @@
 				B8EF9447170D1D4200FCBAB5 /* libsqlite3.dylib in Frameworks */,
 				B877B19B16FFD25D00007668 /* CoreData.framework in Frameworks */,
 				E873E66D16FCF6640097F4F2 /* UIKit.framework in Frameworks */,
-				E873E66F16FCF6640097F4F2 /* Foundation.framework in Frameworks */,
 				E873E67116FCF6640097F4F2 /* CoreGraphics.framework in Frameworks */,
+				E873E66F16FCF6640097F4F2 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +193,8 @@
 				E833CF861707681A0006B832 /* Storyboard_v2.storyboard */,
 				E833CF8E170904150006B832 /* UIView+FindFirstResponder.h */,
 				E833CF8F170904150006B832 /* UIView+FindFirstResponder.m */,
+				B8C0C0F1170D3F7B00CF94EA /* QWZFetchViewController.h */,
+				B8C0C0F2170D3F7B00CF94EA /* QWZFetchViewController.m */,
 			);
 			path = Qwizzle;
 			sourceTree = "<group>";
@@ -297,6 +302,11 @@
 				8186C2FD1703E5B000CB5BDF /* Question.m in Sources */,
 				8186C3001703E5B100CB5BDF /* Quiz.m in Sources */,
 				E833CF90170904150006B832 /* UIView+FindFirstResponder.m in Sources */,
+<<<<<<< HEAD
+=======
+				8186C30317076D4F00CB5BDF /* CoreDataViewController.m in Sources */,
+				B8C0C0F3170D3F7B00CF94EA /* QWZFetchViewController.m in Sources */,
+>>>>>>> syn request
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

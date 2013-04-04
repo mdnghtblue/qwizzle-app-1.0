@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Answers" representedClassName="Answers" syncable="YES">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Answer" representedClassName="Answers" syncable="YES">
         <attribute name="a_id" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="answer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -14,7 +14,7 @@
         <attribute name="q_id" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="question" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="qwz_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="answer_r" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Answers" inverseName="qustion_r" inverseEntity="Answers" syncable="YES"/>
+        <relationship name="answer_r" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Answer" inverseName="qustion_r" inverseEntity="Answer" syncable="YES"/>
         <relationship name="quiz_r" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Quiz" inverseName="qustion_r" inverseEntity="Quiz" syncable="YES"/>
     </entity>
     <entity name="Quiz" representedClassName="Quiz" syncable="YES">
@@ -26,14 +26,14 @@
             </userInfo>
         </attribute>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="answer_r" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Answers" inverseName="quiz_r" inverseEntity="Answers" syncable="YES"/>
+        <relationship name="answer_r" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Answer" inverseName="quiz_r" inverseEntity="Answer" syncable="YES"/>
         <relationship name="qustion_r" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Question" inverseName="quiz_r" inverseEntity="Question" syncable="YES"/>
         <userInfo>
             <entry key="key" value="value"/>
         </userInfo>
     </entity>
     <elements>
-        <element name="Answers" positionX="-0" positionY="-829" width="128" height="165"/>
+        <element name="Answer" positionX="-0" positionY="-829" width="128" height="165"/>
         <element name="Question" positionX="-351" positionY="-793" width="128" height="120"/>
         <element name="Quiz" positionX="-171" positionY="-981" width="128" height="135"/>
     </elements>

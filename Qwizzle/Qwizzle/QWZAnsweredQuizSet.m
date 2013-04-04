@@ -8,7 +8,6 @@
 
 #import "QWZAnsweredQuizSet.h"
 
-
 @implementation QWZAnsweredQuizSet
 
 @end

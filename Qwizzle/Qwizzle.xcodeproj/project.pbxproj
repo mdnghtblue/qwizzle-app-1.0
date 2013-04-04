@@ -19,6 +19,7 @@
 		B877B28D170109E600007668 /* QWZHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B877B28B170109E600007668 /* QWZHomeView.m */; };
 		B8CB27ED17012CA1001BB56E /* QWZTakeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CB27EC17012CA1001BB56E /* QWZTakeView.m */; };
 		B8CB27F017012D34001BB56E /* QWZViewView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CB27EF17012D34001BB56E /* QWZViewView.m */; };
+		B8EF9447170D1D4200FCBAB5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B8EF9446170D1D4200FCBAB5 /* libsqlite3.dylib */; };
 		E833CF871707681A0006B832 /* Storyboard_v2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E833CF861707681A0006B832 /* Storyboard_v2.storyboard */; };
 		E833CF90170904150006B832 /* UIView+FindFirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = E833CF8F170904150006B832 /* UIView+FindFirstResponder.m */; };
 		E873E66D16FCF6640097F4F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E873E66C16FCF6640097F4F2 /* UIKit.framework */; };
@@ -64,6 +65,7 @@
 		B8CB27EC17012CA1001BB56E /* QWZTakeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZTakeView.m; sourceTree = "<group>"; };
 		B8CB27EE17012D34001BB56E /* QWZViewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZViewView.h; sourceTree = "<group>"; };
 		B8CB27EF17012D34001BB56E /* QWZViewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZViewView.m; sourceTree = "<group>"; };
+		B8EF9446170D1D4200FCBAB5 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		E833CF861707681A0006B832 /* Storyboard_v2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard_v2.storyboard; sourceTree = "<group>"; };
 		E833CF8E170904150006B832 /* UIView+FindFirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindFirstResponder.h"; sourceTree = "<group>"; };
 		E833CF8F170904150006B832 /* UIView+FindFirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindFirstResponder.m"; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8EF9447170D1D4200FCBAB5 /* libsqlite3.dylib in Frameworks */,
 				B877B19B16FFD25D00007668 /* CoreData.framework in Frameworks */,
 				E873E66D16FCF6640097F4F2 /* UIKit.framework in Frameworks */,
 				E873E66F16FCF6640097F4F2 /* Foundation.framework in Frameworks */,
@@ -117,6 +120,7 @@
 		E873E66016FCF6640097F4F2 = {
 			isa = PBXGroup;
 			children = (
+				B8EF9446170D1D4200FCBAB5 /* libsqlite3.dylib */,
 				E8EA1F6A170B9F1000956433 /* Default-568h@2x.png */,
 				E8EA1F68170B9F0C00956433 /* Default@2x.png */,
 				E8EA1F66170B9EFF00956433 /* Default.png */,

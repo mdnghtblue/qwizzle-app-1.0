@@ -13,8 +13,8 @@
     
 }
 
-@property (nonatomic, copy) NSString *question; // Hold the question of the question
-@property (nonatomic, copy) NSString *answer;   // Hold the answer of the question
+@property (nonatomic, retain) NSString *question; // Hold the question of the question
+@property (nonatomic, retain) NSString *answer;   // Hold the answer of the question
 @property (nonatomic, readonly, strong) NSDate *dateCreated;    // Hold the creation date of the question
 
 // The designated initializer

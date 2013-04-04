@@ -41,6 +41,9 @@
                                    action:@selector(dismissKeyboard)];
     [scrollView addGestureRecognizer:tap];
     
+    controlList = [[NSMutableArray alloc] init];
+    answerList = [[NSMutableArray alloc] init];
+    
     // Preparing UI - Create and configure programmatically
     CGRect titleFrame = CGRectMake(40, 10, 250, 60);
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
@@ -89,7 +92,7 @@
             emptyCount++;
         }
         else {
-            NSLog(@"Question detected!: %@", [text copy]);
+            NSLog(@"Answer detected!: %@", [text copy]);
             [answerList addObject:[text copy]];
         }
     }
@@ -102,16 +105,19 @@
     else {
         NSLog(@"answerList: %@", answerList);
         
+        answeredQuizSet = [[QWZAnsweredQuizSet alloc] initWithTitle:[quizSet title]];
         for (NSInteger i = 0; i < [answerList count]; i++) {
             // Add a new item to the answered quiz set with the original question and the given answer
-            [answeredQuizSet addQuiz:[[QWZQuiz alloc] initWithQuestion:[[quizSet allQuizzes] objectAtIndex:i] answer:[answerList objectAtIndex:i]]];
+            NSLog(@"getting the question: %@", [[[quizSet allQuizzes] objectAtIndex:i] question]);
+            [answeredQuizSet addQuiz:[[QWZQuiz alloc] initWithQuestion:[[[quizSet allQuizzes] objectAtIndex:i] question] answer:[answerList objectAtIndex:i]]];
         }
         
         // Submit a qwizzle to parents' viewcontroller
         [origin fillOutAQwizzle:answeredQuizSet];
         
         // Dismiss this view
-        [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+        //[[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
     }
 }
 

@@ -192,6 +192,7 @@
         // Get the destination's view controller (User is taking a Qwizzle)
         QWZTakeQwizzleViewController *destinationViewController = segue.destinationViewController;
         [destinationViewController setQuizSet:selectedQuiz];
+        [destinationViewController setOrigin:self];
     }
     else if ([segue.identifier isEqualToString:@"SEGUEViewQwizzle"]){
         // Get the destination's view controller (User is viewing a Qwizzle)

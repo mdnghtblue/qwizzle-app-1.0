@@ -162,7 +162,7 @@
     }
 }
 
-// Krissada: createNewQuiz will create a new quiz, shoule check & validate every question here.
+// CreateNewQuiz will create a new quiz, should check & validate every question here.
 - (IBAction)submitAQwizzle:(id)sender
 {
     NSLog(@"Submitting a Qwizzle, validation in process");
@@ -184,7 +184,7 @@
     }
     
     if ([questionList count] == 0) {
-        // All empty
+        // It's all empty, show some alert
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"You should add some question before you go." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }

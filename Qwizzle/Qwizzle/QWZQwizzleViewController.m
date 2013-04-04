@@ -22,7 +22,7 @@
 @implementation QWZQwizzleViewController
 
 #pragma mark - Default App's Behavior
-// Krissada: implement this method if there is anything needed to be configured before the view is loaded for the first time
+// Implement this method if there is anything needed to be configured before the view is loaded for the first time
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,7 +57,7 @@
     [allAnsweredQuizSets addObject:aqs1];
 }
 
-// Krissada: implement this method if there is anything needed to be configure before the view appear on-screen
+// Implement this method if there is anything needed to be configure before the view appear on-screen
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -87,16 +87,26 @@
     NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:1];
     
     // Insert the new Qwizzle answers into the table
-    [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationTop];
+    [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip]
+                            withRowAnimation:UITableViewRowAnimationTop];
+    
+    // Remove the quizset from the your Qwizzle section
+    NSInteger selectedRow = [allQuizSets indexOfObject:selectedQuiz];
+    NSIndexPath *selectedIndex = [NSIndexPath indexPathForRow:selectedRow inSection:0]; 
+    [allQuizSets removeObjectIdenticalTo:selectedQuiz];
+    
+    // Remove the cell from the table
+    [[self tableView] deleteRowsAtIndexPaths:[NSArray arrayWithObject:selectedIndex]
+                            withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark - Handle table view datasource
-// Krissada: One of the required method needed to be implemented to use UITableViewController
-// return a cell at the given index
+// One of the required method needed to be implemented to use UITableViewController
+// - return a cell at the given index
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Krissada: We can ignore this stuff, it's just that everybody is doing this when they use UITableView
+    // We can ignore this stuff, it's just that everybody is doing this when they use UITableView
     static NSString *QWizzleCellIdentifier = @"QWizzleCell";
     
     // Check for a reusable cell first, use that if it exists
@@ -109,7 +119,7 @@
     }
     
     
-    // Krissada: Set the text on the cell with the desciption of the item
+    // Set the text on the cell with the desciption of the item
     // We need to get the cell from the correct section here
     NSInteger section = [indexPath section];
     if (section == 0) { 
@@ -148,7 +158,7 @@
     return 2;
 }
 
-// Krissada: we have to get the correct title for each section
+// We have to get the correct title for each section
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if(section == 0) {
         return @"Your Qwizzles";
@@ -159,7 +169,7 @@
 }
 
 #pragma mark - Table view delegate
-// Krissada: Implement this method to response when the user is tapping any row
+// Implement this method to response when the user is tapping any row
 // Basically it should switch to another view and load all the corresponding information
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -175,6 +185,7 @@
     }
     else if (section == 1) {
         selectedQuiz = [allAnsweredQuizSets objectAtIndex:[indexPath row]];
+        
         [self performSegueWithIdentifier:@"SEGUEViewQwizzle" sender:self];
     }
     else {
@@ -182,7 +193,7 @@
     }
 }
 
-// Krissada: this method get called automatically when we're moving to the other view in the storyboard
+// This method get called automatically when we're moving to the other view in the storyboard
 // All we have to do is the implement it.
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

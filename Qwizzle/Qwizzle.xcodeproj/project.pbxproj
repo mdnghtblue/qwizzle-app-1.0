@@ -10,11 +10,9 @@
 		8186C2FA1703E5AF00CB5BDF /* Answers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C2F91703E5AF00CB5BDF /* Answers.m */; };
 		8186C2FD1703E5B000CB5BDF /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C2FC1703E5B000CB5BDF /* Question.m */; };
 		8186C3001703E5B100CB5BDF /* Quiz.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C2FF1703E5B100CB5BDF /* Quiz.m */; };
-		8186C30317076D4F00CB5BDF /* CoreDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C30217076D4E00CB5BDF /* CoreDataViewController.m */; };
 		B877B19B16FFD25D00007668 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B877B19A16FFD25D00007668 /* CoreData.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		B877B19E16FFD3C000007668 /* QWZDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B877B19C16FFD3C000007668 /* QWZDataModel.xcdatamodeld */; };
-		B877B284170108EF00007668 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B877B283170108EE00007668 /* Storyboard.storyboard */; };
-		B877B287170109BA00007668 /* WelcomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B877B286170109BA00007668 /* WelcomeView.m */; };
+		B877B284170108EF00007668 /* Storyboard-old.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B877B283170108EE00007668 /* Storyboard-old.storyboard */; };
 		B877B28C170109E600007668 /* QWZCreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = B877B289170109E600007668 /* QWZCreateView.m */; };
 		B877B28D170109E600007668 /* QWZHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B877B28B170109E600007668 /* QWZHomeView.m */; };
 		B8CB27ED17012CA1001BB56E /* QWZTakeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CB27EC17012CA1001BB56E /* QWZTakeView.m */; };
@@ -50,13 +48,9 @@
 		8186C2FC1703E5B000CB5BDF /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
 		8186C2FE1703E5B000CB5BDF /* Quiz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quiz.h; sourceTree = "<group>"; };
 		8186C2FF1703E5B100CB5BDF /* Quiz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quiz.m; sourceTree = "<group>"; };
-		8186C30117076D4D00CB5BDF /* CoreDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataViewController.h; sourceTree = "<group>"; };
-		8186C30217076D4E00CB5BDF /* CoreDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataViewController.m; sourceTree = "<group>"; };
 		B877B19A16FFD25D00007668 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B877B19D16FFD3C000007668 /* QWZDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QWZDataModel.xcdatamodel; sourceTree = "<group>"; };
-		B877B283170108EE00007668 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
-		B877B285170109BA00007668 /* WelcomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeView.h; sourceTree = "<group>"; };
-		B877B286170109BA00007668 /* WelcomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeView.m; sourceTree = "<group>"; };
+		B877B283170108EE00007668 /* Storyboard-old.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Storyboard-old.storyboard"; sourceTree = "<group>"; };
 		B877B288170109E600007668 /* QWZCreateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZCreateView.h; sourceTree = "<group>"; };
 		B877B289170109E600007668 /* QWZCreateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZCreateView.m; sourceTree = "<group>"; };
 		B877B28A170109E600007668 /* QWZHomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZHomeView.h; sourceTree = "<group>"; };
@@ -117,6 +111,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8186C364170D3B5400CB5BDF /* old files */ = {
+			isa = PBXGroup;
+			children = (
+				B8CB27EF17012D34001BB56E /* QWZViewView.m */,
+				B8CB27EE17012D34001BB56E /* QWZViewView.h */,
+				B8CB27EC17012CA1001BB56E /* QWZTakeView.m */,
+				B8CB27EB17012CA1001BB56E /* QWZTakeView.h */,
+				B877B28B170109E600007668 /* QWZHomeView.m */,
+				B877B28A170109E600007668 /* QWZHomeView.h */,
+				B877B289170109E600007668 /* QWZCreateView.m */,
+				B877B288170109E600007668 /* QWZCreateView.h */,
+				B877B283170108EE00007668 /* Storyboard-old.storyboard */,
+			);
+			name = "old files";
+			sourceTree = "<group>";
+		};
 		E873E66016FCF6640097F4F2 = {
 			isa = PBXGroup;
 			children = (
@@ -152,13 +162,11 @@
 		E873E67216FCF6640097F4F2 /* Qwizzle */ = {
 			isa = PBXGroup;
 			children = (
-				B877B283170108EE00007668 /* Storyboard.storyboard */,
+				E873E67316FCF6640097F4F2 /* Supporting Files */,
+				8186C364170D3B5400CB5BDF /* old files */,
 				E873E67B16FCF6640097F4F2 /* QWZAppDelegate.h */,
 				E873E67C16FCF6640097F4F2 /* QWZAppDelegate.m */,
 				B877B19C16FFD3C000007668 /* QWZDataModel.xcdatamodeld */,
-				8186C30117076D4D00CB5BDF /* CoreDataViewController.h */,
-				8186C30217076D4E00CB5BDF /* CoreDataViewController.m */,
-				E873E67316FCF6640097F4F2 /* Supporting Files */,
 				E873E68916FCF6990097F4F2 /* QWZQuiz.h */,
 				E873E68A16FCF6990097F4F2 /* QWZQuiz.m */,
 				E873E68C16FCF9930097F4F2 /* QWZQuizSet.h */,
@@ -189,16 +197,6 @@
 		E873E67316FCF6640097F4F2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B877B288170109E600007668 /* QWZCreateView.h */,
-				B877B289170109E600007668 /* QWZCreateView.m */,
-				B877B28A170109E600007668 /* QWZHomeView.h */,
-				B877B28B170109E600007668 /* QWZHomeView.m */,
-				B877B285170109BA00007668 /* WelcomeView.h */,
-				B877B286170109BA00007668 /* WelcomeView.m */,
-				B8CB27EB17012CA1001BB56E /* QWZTakeView.h */,
-				B8CB27EC17012CA1001BB56E /* QWZTakeView.m */,
-				B8CB27EE17012D34001BB56E /* QWZViewView.h */,
-				B8CB27EF17012D34001BB56E /* QWZViewView.m */,
 				E873E67416FCF6640097F4F2 /* Qwizzle-Info.plist */,
 				E873E67516FCF6640097F4F2 /* InfoPlist.strings */,
 				E873E67816FCF6640097F4F2 /* main.m */,
@@ -266,7 +264,7 @@
 				E873E67F16FCF6640097F4F2 /* Default.png in Resources */,
 				E873E68116FCF6640097F4F2 /* Default@2x.png in Resources */,
 				E873E68316FCF6640097F4F2 /* Default-568h@2x.png in Resources */,
-				B877B284170108EF00007668 /* Storyboard.storyboard in Resources */,
+				B877B284170108EF00007668 /* Storyboard-old.storyboard in Resources */,
 				E833CF871707681A0006B832 /* Storyboard_v2.storyboard in Resources */,
 				E8EA1F67170B9EFF00956433 /* Default.png in Resources */,
 				E8EA1F69170B9F0C00956433 /* Default@2x.png in Resources */,
@@ -291,7 +289,6 @@
 				E873E6BA16FD40030097F4F2 /* QWZTakeQwizzleViewController.m in Sources */,
 				E873E6BF16FD41740097F4F2 /* QWZViewQwizzleViewController.m in Sources */,
 				B877B19E16FFD3C000007668 /* QWZDataModel.xcdatamodeld in Sources */,
-				B877B287170109BA00007668 /* WelcomeView.m in Sources */,
 				B877B28C170109E600007668 /* QWZCreateView.m in Sources */,
 				B877B28D170109E600007668 /* QWZHomeView.m in Sources */,
 				B8CB27ED17012CA1001BB56E /* QWZTakeView.m in Sources */,
@@ -300,7 +297,6 @@
 				8186C2FD1703E5B000CB5BDF /* Question.m in Sources */,
 				8186C3001703E5B100CB5BDF /* Quiz.m in Sources */,
 				E833CF90170904150006B832 /* UIView+FindFirstResponder.m in Sources */,
-				8186C30317076D4F00CB5BDF /* CoreDataViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

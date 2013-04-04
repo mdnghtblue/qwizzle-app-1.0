@@ -191,7 +191,6 @@
             <point key="canvasLocation" x="1315" y="-642"/>
         </scene>
     </scenes>
-<<<<<<< HEAD
     <classes>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
@@ -221,8 +220,6 @@
             </relationships>
         </class>
     </classes>
-=======
->>>>>>> I did the database tables, triggers...etc.
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

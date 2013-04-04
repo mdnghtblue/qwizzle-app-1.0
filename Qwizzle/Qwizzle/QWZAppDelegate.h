@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-
-
 @interface QWZAppDelegate : UIResponder <UIApplicationDelegate>
+
 @property (strong, nonatomic) UIWindow *window;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;

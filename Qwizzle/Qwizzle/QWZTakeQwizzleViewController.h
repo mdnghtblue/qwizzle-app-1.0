@@ -11,7 +11,7 @@
 @class QWZAnsweredQuizSet;
 @class QWZQwizzleViewController;
 
-@interface QWZTakeQwizzleViewController : UIViewController
+@interface QWZTakeQwizzleViewController : UIViewController <UITextViewDelegate>
 {
     IBOutlet UIScrollView *scrollView;
 }

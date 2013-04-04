@@ -118,11 +118,9 @@
 - (void)addMoreQuestion:(id)sender
 {
     [self dismissKeyboard];
-    //NSLog(@"add more question!");
-    //NSLog(@"Control count: %d, the max is %d", [controlList count], MAX_NUMBEROFQUESTIONS);
     
-    if ([controlList count] < MAX_NUMBEROFQUESTIONS) { // If it's not on the limit, then add more questions
-        
+    // If it does not reach the limit, then add more questions
+    if ([controlList count] < MAX_NUMBEROFQUESTIONS) { 
         // Adjust the distance between controls
         y = y + eachQuestionDistances;
 
@@ -182,14 +180,6 @@
         else {
             NSLog(@"Question detected!: %@", [text copy]);
             [questionList addObject:[text copy]];
-            
-//            // Add hard-coded question set here
-//            QWZQuiz *q1 = [[QWZQuiz alloc] initWithQuestion:@"What is your name?"];
-//            QWZQuiz *q2 = [[QWZQuiz alloc] initWithQuestion:@"What is your lastname?"];
-//            
-//            QWZQuizSet *qs1 = [[QWZQuizSet alloc] initWithTitle:@"Identity Quiz Set"];
-//            [qs1 addQuiz:q1];
-//            [qs1 addQuiz:q2];
         }
     }
     
@@ -234,6 +224,7 @@
     [view resignFirstResponder];
 }
 
+#pragma mark handling keyboard
 // Call this method somewhere in your view controller setup code.
 - (void)registerForKeyboardNotifications
 {
@@ -311,11 +302,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-//- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-//{
-//    [textField resignFirstResponder];
-//    return YES;
-//}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];

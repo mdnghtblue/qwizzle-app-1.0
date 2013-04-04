@@ -68,6 +68,7 @@
         // Adding the corresponding textfield for the first question
         UITextView *answerField = [[UITextView alloc] initWithFrame:CGRectMake(40, y + 50, 250, 60)];
         [answerField setScrollsToTop:true];
+        [answerField setDelegate:self];
         answerField.layer.borderWidth = 2.0f;
         answerField.layer.borderColor = [[UIColor grayColor] CGColor];
         [controlList addObject:answerField]; // We will need the reference later
@@ -75,6 +76,18 @@
         
         y += 100;
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self registerForKeyboardNotifications];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self removeKeyboardNotifications];
 }
 
 - (IBAction)fillOutAQwizzle:(id)sender
@@ -119,6 +132,79 @@
         [self.navigationController popViewControllerAnimated:YES];
         //[[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
     }
+}
+
+#pragma mark handling keyboard
+// Call this method somewhere in your view controller setup code.
+- (void)registerForKeyboardNotifications
+{
+    NSLog(@"Registering for Keyboard Notification");
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void)removeKeyboardNotifications
+{
+    NSLog(@"Removeing for Keyboard Notification");
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
+}
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    // Getting the keyboard's size
+    NSDictionary* info = [aNotification userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    // Getting the scrollView height and add it with the keyboard's height
+    CGRect currentFrame = [scrollView frame];
+    currentFrame.size.height += keyboardSize.height;
+    
+    // Make the scrollView bigger
+    [scrollView setContentSize:CGSizeMake(currentFrame.size.width, currentFrame.size.height)];
+}
+
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    // Getting the keyboard's size
+    NSDictionary* info = [aNotification userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    // Getting the current scrollView height and minus it with the keyboard's height
+    CGRect currentFrame = [scrollView frame];
+    currentFrame.size.height -= keyboardSize.height;
+    
+    // Resize the scrollView back to the original
+    [scrollView setContentSize:CGSizeMake(currentFrame.size.width, currentFrame.size.height)];
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    // Get the current origin of the textfield
+    CGPoint point = textView.frame.origin ;
+    point.x = 0;
+    point.y = point.y - 115; // adjust the position just to accommodate the keyboard
+    [scrollView setContentOffset:point animated:YES]; // Move the scrollView to the position
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    
 }
 
 - (void)didReceiveMemoryWarning

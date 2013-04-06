@@ -36,17 +36,17 @@
     QWZQuiz *q1 = [[QWZQuiz alloc] initWithQuestion:@"What is your name?"];
     QWZQuiz *q2 = [[QWZQuiz alloc] initWithQuestion:@"What is your lastname?"];
     
-    QWZQuizSet *qs1 = [[QWZQuizSet alloc] initWithTitle:@"Identity Quiz Set"];
+    QWZQuizSet *qs1 = [[QWZQuizSet alloc] initWithTitle:@"Identity Qwizzle"];
     [qs1 addQuiz:q1];
     [qs1 addQuiz:q2];
     
-    QWZQuizSet *qs2 = [[QWZQuizSet alloc] initWithTitle:@"Identity Quiz Set 2"];
+    QWZQuizSet *qs2 = [[QWZQuizSet alloc] initWithTitle:@"Identity Qwizzle Pack 2"];
     [qs2 addQuiz:q1];
     
     QWZQuiz *q3 = [[QWZQuiz alloc] initWithQuestion:@"What is your favourite color?" answer:@"Green"];
     QWZQuiz *q4 = [[QWZQuiz alloc] initWithQuestion:@"What is your favourite food?" answer:@"Fried Rice"];
     QWZQuiz *q5 = [[QWZQuiz alloc] initWithQuestion:@"What is your favourite sport?" answer:@"Table Tennis"];
-    QWZAnsweredQuizSet *aqs1 = [[QWZAnsweredQuizSet alloc] initWithTitle:@"Favourite Quiz Set"];
+    QWZAnsweredQuizSet *aqs1 = [[QWZAnsweredQuizSet alloc] initWithTitle:@"Preference Qwizzle"];
     [aqs1 addQuiz:q3];
     [aqs1 addQuiz:q5];
     [aqs1 addQuiz:q4];

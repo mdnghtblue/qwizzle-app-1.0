@@ -2,7 +2,7 @@
 //  QWZViewController.m
 //  Qwizzle
 //
-//  Created by Krissada Dechokul on 3/22/13.
+//  Created by Team Qwizzle on 3/22/13.
 //  Copyright (c) 2013 Florida Tech. All rights reserved.
 //
 
@@ -90,14 +90,15 @@
     [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip]
                             withRowAnimation:UITableViewRowAnimationTop];
     
+    // We might even be able to edit your Qwizzle: so we should not remove the Qwizzle?
     // Remove the quizset from the your Qwizzle section
-    NSInteger selectedRow = [allQuizSets indexOfObject:selectedQuiz];
-    NSIndexPath *selectedIndex = [NSIndexPath indexPathForRow:selectedRow inSection:0]; 
-    [allQuizSets removeObjectIdenticalTo:selectedQuiz];
+    //NSInteger selectedRow = [allQuizSets indexOfObject:selectedQuiz];
+    //NSIndexPath *selectedIndex = [NSIndexPath indexPathForRow:selectedRow inSection:0];
+    //[allQuizSets removeObjectIdenticalTo:selectedQuiz];
     
     // Remove the cell from the table
-    [[self tableView] deleteRowsAtIndexPaths:[NSArray arrayWithObject:selectedIndex]
-                            withRowAnimation:UITableViewRowAnimationFade];
+    //[[self tableView] deleteRowsAtIndexPaths:[NSArray arrayWithObject:selectedIndex]
+    //                        withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark - Handle table view datasource

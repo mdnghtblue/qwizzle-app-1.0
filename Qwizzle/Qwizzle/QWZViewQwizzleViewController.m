@@ -2,7 +2,7 @@
 //  QWZViewAnswerViewController.m
 //  Qwizzle
 //
-//  Created by Krissada Dechokul on 3/22/13.
+//  Created by Team Qwizzle on 3/22/13.
 //  Copyright (c) 2013 Florida Tech. All rights reserved.
 //
 
@@ -17,19 +17,6 @@
 @implementation QWZViewQwizzleViewController
 
 @synthesize quizSet;
-
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (self) {
-//        // Custom initialization
-//        
-//        // Every viewcontroller has this navigationItem property
-//        UINavigationItem *n = [self navigationItem];
-//        [n setTitle:@"Answered Qwizzle"];
-//    }
-//    return self;
-//}
 
 - (void)viewDidLoad
 {

@@ -2,16 +2,10 @@
 //  QWZAppDelegate.m
 //  Qwizzle
 //
-//  Created by Krissada Dechokul on 3/22/13.
+//  Created by Team Qwizzle on 3/22/13.
 //  Copyright (c) 2013 Florida Tech. All rights reserved.
 
 #import "QWZAppDelegate.h"
-
-// Import our viewcontroller
-//#import "QWZQwizzleViewController.h"
-
-// Import our viewcontroller
-//#import "QWZViewController.h"
 #import "QWZQwizzleViewController.h"
 #import <CoreData/CoreData.h>
 
@@ -26,13 +20,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
-    
-    NSLog(@"test: %@", [navController.viewControllers[0] class]);
-    
-    // assign the managed object context to the initial view controller
-    QWZQwizzleViewController *qvc = (QWZQwizzleViewController *)navController.childViewControllers[0];
-    qvc.managedObjectContext = self.managedObjectContext;
+//    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+//    
+//    NSLog(@"test: %@", [navController.viewControllers[0] class]);
+//    
+//    // assign the managed object context to the initial view controller
+//    QWZQwizzleViewController *qvc = (QWZQwizzleViewController *)navController.childViewControllers[0];
+//    qvc.managedObjectContext = self.managedObjectContext;
     
     /*
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

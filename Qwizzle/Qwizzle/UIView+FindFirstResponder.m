@@ -2,14 +2,13 @@
 //  UIView+FindFirstResponder.m
 //  Qwizzle
 //
-//  Created by Krissada Dechokul on 3/31/13.
+//  Created by Team Qwizzle on 3/31/13.
 //  Copyright (c) 2013 Florida Tech. All rights reserved.
 //
 
 #import "UIView+FindFirstResponder.h"
 
-// Krissada: This category finds and return the firstresponder
-// 
+// This category finds and return the firstresponder
 @implementation UIView (FindFirstResponder)
 
 - (UIView *)findFirstResponder

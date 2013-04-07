@@ -173,8 +173,6 @@
     // Validate code may go here
     NSInteger emptyCount = 0;
     for (NSInteger i = 0; i < [controlList count]; i++) {
-        NSLog(@"%d of %d) %@", i, [controlList count], [[controlList objectAtIndex:i] text]);
-        
         NSString *text = [[controlList objectAtIndex:i] text];
         if (text == nil || [text isEqualToString:@""]) {
             NSLog(@"Empty cell detected!");
@@ -192,8 +190,6 @@
         [alert show];
     }
     else {
-        NSLog(@"questionList: %@", questionList);
-        
         UITextField *title = (UITextField *)[scrollView viewWithTag:25];
         NSString *titleText = [title text];
         if (titleText == nil || [titleText isEqualToString:@""]) {
@@ -215,20 +211,15 @@
     }
 }
 
+// Called if the user tap the calcel button on the navigation bar
 - (IBAction)cancel:(id)sender
 {
     // Dismiss this dialog
     [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)dismissKeyboard
-{
-    UIView *view = [scrollView findFirstResponder];
-    [view resignFirstResponder];
-}
-
 #pragma mark handling keyboard
-// Call this method somewhere in your view controller setup code.
+// Call this method to register for all keyboard appearance notifications
 - (void)registerForKeyboardNotifications
 {
     NSLog(@"Registering for Keyboard Notification");
@@ -242,6 +233,7 @@
     
 }
 
+// Call this method to remove all keyboard appearance notifications
 - (void)removeKeyboardNotifications
 {
     NSLog(@"Removeing for Keyboard Notification");
@@ -263,11 +255,10 @@
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
     // Getting the scrollView height and add it with the keyboard's height
-    CGRect currentFrame = [scrollView frame];
-    currentFrame.size.height += keyboardSize.height;
+    scrollviewHeight += keyboardSize.height;
     
     // Make the scrollView bigger
-    [scrollView setContentSize:CGSizeMake(currentFrame.size.width, currentFrame.size.height)];
+    [scrollView setContentSize:CGSizeMake(scrollviewWidth, scrollviewHeight)];
 }
 
 
@@ -278,38 +269,43 @@
     NSDictionary* info = [aNotification userInfo];
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
-    // Getting the current scrollView height and minus it with the keyboard's height
-    CGRect currentFrame = [scrollView frame];
-    currentFrame.size.height -= keyboardSize.height;
+    // Getting the scrollView height and add it with the keyboard's height
+    scrollviewHeight -= keyboardSize.height;
     
-    // Resize the scrollView back to the original
-    [scrollView setContentSize:CGSizeMake(currentFrame.size.width, currentFrame.size.height)];
+    // Make the scrollView bigger
+    [scrollView setContentSize:CGSizeMake(scrollviewWidth, scrollviewHeight)];
 }
 
+// Called when the user is beginning to edit a text field
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     // Get the current origin of the textfield
     CGPoint point = textField.frame.origin ;
     point.x = 0;
-    point.y = point.y - 115; // adjust the position just to accommodate the keyboard
+    point.y = point.y - KEYBOARD_OFFSET; // adjust the position just to accommodate the keyboard
     [scrollView setContentOffset:point animated:YES]; // Move the scrollView to the position
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
+// The system will call this method to see whether a text field should return and dismiss the keyboard
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+// This method was registered to the UITapGestureRecognizer
+// To allow user to tap anywhere on the screen to dismiss the keyboard
+- (void)dismissKeyboard
+{
+    UIView *view = [scrollView findFirstResponder];
+    [view resignFirstResponder];
+}
+
+// Implement this method if there is anything needed to be done if we receive a memory warning
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

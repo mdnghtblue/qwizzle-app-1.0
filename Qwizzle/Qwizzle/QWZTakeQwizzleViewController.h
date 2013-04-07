@@ -11,6 +11,8 @@
 @class QWZAnsweredQuizSet;
 @class QWZQwizzleViewController;
 
+#define KEYBOARD_OFFSET 115
+
 @interface QWZTakeQwizzleViewController : UIViewController <UITextViewDelegate>
 {
     IBOutlet UIScrollView *scrollView;

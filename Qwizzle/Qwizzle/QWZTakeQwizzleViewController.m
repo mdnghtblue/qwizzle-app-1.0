@@ -143,7 +143,7 @@
 }
 
 #pragma mark handling keyboard
-// Call this method somewhere in your view controller setup code.
+// Call this method to register for all keyboard appearance notifications
 - (void)registerForKeyboardNotifications
 {
     NSLog(@"Registering for Keyboard Notification");
@@ -157,6 +157,7 @@
     
 }
 
+// Call this method to remove all keyboard appearance notifications
 - (void)removeKeyboardNotifications
 {
     NSLog(@"Removeing for Keyboard Notification");
@@ -199,30 +200,29 @@
     [scrollView setContentSize:CGSizeMake(scrollviewWidth, scrollviewHeight)];
 }
 
+// Called when the user is beginning to edit a text field
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     // Get the current origin of the textfield
     CGPoint point = textView.frame.origin ;
     point.x = 0;
-    point.y = point.y - 115; // adjust the position just to accommodate the keyboard
+    point.y = point.y - KEYBOARD_OFFSET; // adjust the position just to accommodate the keyboard
     [scrollView setContentOffset:point animated:YES]; // Move the scrollView to the position
 }
 
-- (void)textViewDidEndEditing:(UITextView *)textView
-{
-    
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
+// This method was registered to the UITapGestureRecognizer
+// To allow user to tap anywhere on the screen to dismiss the keyboard
 - (void)dismissKeyboard
 {
     UIView *view = [scrollView findFirstResponder];
     [view resignFirstResponder];
+}
+
+// Implement this method if there is anything needed to be done if we receive a memory warning
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

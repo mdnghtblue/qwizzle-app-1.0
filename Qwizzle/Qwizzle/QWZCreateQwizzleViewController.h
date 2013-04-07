@@ -11,8 +11,8 @@
 @class QWZQwizzleViewController;
 @class QWZQuizSet;
 
-#define MAX_NUMBEROFQUESTIONS 5
-#define OFFSET 40
+#define MAX_NUMBEROFQUESTIONS 20
+#define KEYBOARD_OFFSET 115
 
 @interface QWZCreateQwizzleViewController : UIViewController <UITextFieldDelegate>
 {

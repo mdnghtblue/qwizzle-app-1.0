@@ -1,5 +1,5 @@
 //
-//  QWZViewController.m
+//  QWZQwizzleViewController.m
 //  Qwizzle
 //
 //  Created by Team Qwizzle on 3/22/13.

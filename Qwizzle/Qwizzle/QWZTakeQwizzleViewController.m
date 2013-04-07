@@ -44,6 +44,11 @@
     controlList = [[NSMutableArray alloc] init];
     answerList = [[NSMutableArray alloc] init];
     
+    // Set the initial content size of the scroll view to make it scrollable
+    scrollviewWidth = 320;
+    scrollviewHeight = 175;
+    [scrollView setContentSize:CGSizeMake(scrollviewWidth, scrollviewHeight)];
+    
     // Preparing UI - Create and configure programmatically
     CGRect titleFrame = CGRectMake(40, 10, 250, 60);
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
@@ -75,6 +80,9 @@
         [scrollView addSubview:answerField];
         
         y += 100;
+        
+        scrollviewHeight = scrollviewHeight + 100;
+        [scrollView setContentSize:CGSizeMake(scrollviewWidth, scrollviewHeight)];
     }
 }
 
@@ -168,13 +176,12 @@
     // Getting the keyboard's size
     NSDictionary* info = [aNotification userInfo];
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
+
     // Getting the scrollView height and add it with the keyboard's height
-    CGRect currentFrame = [scrollView frame];
-    currentFrame.size.height += keyboardSize.height;
-    
+    scrollviewHeight += keyboardSize.height;
+
     // Make the scrollView bigger
-    [scrollView setContentSize:CGSizeMake(currentFrame.size.width, currentFrame.size.height)];
+    [scrollView setContentSize:CGSizeMake(scrollviewWidth, scrollviewHeight)];
 }
 
 
@@ -185,12 +192,11 @@
     NSDictionary* info = [aNotification userInfo];
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
-    // Getting the current scrollView height and minus it with the keyboard's height
-    CGRect currentFrame = [scrollView frame];
-    currentFrame.size.height -= keyboardSize.height;
+    // Getting the scrollView height and add it with the keyboard's height
+    scrollviewHeight -= keyboardSize.height;
     
-    // Resize the scrollView back to the original
-    [scrollView setContentSize:CGSizeMake(currentFrame.size.width, currentFrame.size.height)];
+    // Make the scrollView bigger
+    [scrollView setContentSize:CGSizeMake(scrollviewWidth, scrollviewHeight)];
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
@@ -211,12 +217,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)cancel:(id)sender
-{
-    // Dismiss this dialog
-    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)dismissKeyboard

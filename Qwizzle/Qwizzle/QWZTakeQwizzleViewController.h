@@ -14,6 +14,9 @@
 @interface QWZTakeQwizzleViewController : UIViewController <UITextViewDelegate>
 {
     IBOutlet UIScrollView *scrollView;
+    
+    NSInteger scrollviewWidth;
+    NSInteger scrollviewHeight;
 }
 
 @property (nonatomic, weak) QWZQwizzleViewController *origin;

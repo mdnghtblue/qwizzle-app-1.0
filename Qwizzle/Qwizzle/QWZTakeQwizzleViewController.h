@@ -22,7 +22,7 @@
 @property (nonatomic, strong) QWZQuizSet *quizSet;
 @property (nonatomic, strong) QWZAnsweredQuizSet *answeredQuizSet;
 
-- (IBAction)fillOutAQwizzle:(id)sender;
+- (IBAction)prepareToFillOutAQwizzle:(id)sender;
 
 
 @end

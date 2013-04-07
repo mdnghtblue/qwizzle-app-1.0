@@ -41,7 +41,7 @@
     NSInteger tag;
 }
 
-- (IBAction)submitAQwizzle:(id)sender;
+- (IBAction)prepareToSubmitAQwizzle:(id)sender;
 - (void)addMoreQuestion:(id)sender;
 - (void)dismissKeyboard;
 

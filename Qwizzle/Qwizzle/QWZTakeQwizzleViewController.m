@@ -90,7 +90,7 @@
     [self removeKeyboardNotifications];
 }
 
-- (IBAction)fillOutAQwizzle:(id)sender
+- (IBAction)prepareToFillOutAQwizzle:(id)sender
 {
     NSLog(@"Submitting qwizzle answers....");
     

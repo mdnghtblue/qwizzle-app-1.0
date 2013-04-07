@@ -166,7 +166,7 @@
 }
 
 // CreateNewQuiz will create a new quiz, should check & validate every question here.
-- (IBAction)submitAQwizzle:(id)sender
+- (IBAction)prepareToSubmitAQwizzle:(id)sender
 {
     NSLog(@"Submitting a Qwizzle, validation in process");
     

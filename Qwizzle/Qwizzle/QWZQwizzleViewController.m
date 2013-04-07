@@ -198,19 +198,19 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // If the table view is asking to commit a delete command...
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
-        
-//        BNRItemStore *ps = [BNRItemStore sharedStore];
-//        NSArray *items = [ps allItems];
-//        BNRItem *p = [items objectAtIndex:[indexPath row]];
-//        [ps removeItem:p];
-        
-//        NSInteger selectedRow = [allQuizSets indexOfObject:selectedQuiz];
-        //NSIndexPath *selectedIndex = [NSIndexPath indexPathForRow:selectedRow inSection:0];
-        //[allQuizSets removeObjectIdenticalTo:selectedQuiz];
-        
-        // We also remove that row from the table view with an animation
-//        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        NSInteger section = [indexPath section];
+        if (section == 0) {
+            NSLog(@"Deleting the row %d from %@", [indexPath row], indexPath);
+            [allQuizSets removeObjectAtIndex:[indexPath row]];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+        else if (section == 1) {
+            [allAnsweredQuizSets removeObjectAtIndex:[indexPath row]];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+        else {
+            NSLog(@"Unidentified section");
+        }
     }
 }
 

@@ -8,11 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B877B19B16FFD25D00007668 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B877B19A16FFD25D00007668 /* CoreData.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		B877B284170108EF00007668 /* Storyboard-old.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B877B283170108EE00007668 /* Storyboard-old.storyboard */; };
-		B877B28C170109E600007668 /* QWZCreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = B877B289170109E600007668 /* QWZCreateView.m */; };
-		B877B28D170109E600007668 /* QWZHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B877B28B170109E600007668 /* QWZHomeView.m */; };
-		B8CB27ED17012CA1001BB56E /* QWZTakeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CB27EC17012CA1001BB56E /* QWZTakeView.m */; };
-		B8CB27F017012D34001BB56E /* QWZViewView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CB27EF17012D34001BB56E /* QWZViewView.m */; };
 		E833CF871707681A0006B832 /* Storyboard_v2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E833CF861707681A0006B832 /* Storyboard_v2.storyboard */; };
 		E833CF90170904150006B832 /* UIView+FindFirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = E833CF8F170904150006B832 /* UIView+FindFirstResponder.m */; };
 		E873E66D16FCF6640097F4F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E873E66C16FCF6640097F4F2 /* UIKit.framework */; };
@@ -38,15 +33,6 @@
 
 /* Begin PBXFileReference section */
 		B877B19A16FFD25D00007668 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		B877B283170108EE00007668 /* Storyboard-old.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Storyboard-old.storyboard"; sourceTree = "<group>"; };
-		B877B288170109E600007668 /* QWZCreateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZCreateView.h; sourceTree = "<group>"; };
-		B877B289170109E600007668 /* QWZCreateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZCreateView.m; sourceTree = "<group>"; };
-		B877B28A170109E600007668 /* QWZHomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZHomeView.h; sourceTree = "<group>"; };
-		B877B28B170109E600007668 /* QWZHomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZHomeView.m; sourceTree = "<group>"; };
-		B8CB27EB17012CA1001BB56E /* QWZTakeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZTakeView.h; sourceTree = "<group>"; };
-		B8CB27EC17012CA1001BB56E /* QWZTakeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZTakeView.m; sourceTree = "<group>"; };
-		B8CB27EE17012D34001BB56E /* QWZViewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZViewView.h; sourceTree = "<group>"; };
-		B8CB27EF17012D34001BB56E /* QWZViewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZViewView.m; sourceTree = "<group>"; };
 		E833CF861707681A0006B832 /* Storyboard_v2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard_v2.storyboard; sourceTree = "<group>"; };
 		E833CF8E170904150006B832 /* UIView+FindFirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindFirstResponder.h"; sourceTree = "<group>"; };
 		E833CF8F170904150006B832 /* UIView+FindFirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindFirstResponder.m"; sourceTree = "<group>"; };
@@ -97,22 +83,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8186C364170D3B5400CB5BDF /* old files */ = {
-			isa = PBXGroup;
-			children = (
-				B8CB27EF17012D34001BB56E /* QWZViewView.m */,
-				B8CB27EE17012D34001BB56E /* QWZViewView.h */,
-				B8CB27EC17012CA1001BB56E /* QWZTakeView.m */,
-				B8CB27EB17012CA1001BB56E /* QWZTakeView.h */,
-				B877B28B170109E600007668 /* QWZHomeView.m */,
-				B877B28A170109E600007668 /* QWZHomeView.h */,
-				B877B289170109E600007668 /* QWZCreateView.m */,
-				B877B288170109E600007668 /* QWZCreateView.h */,
-				B877B283170108EE00007668 /* Storyboard-old.storyboard */,
-			);
-			name = "old files";
-			sourceTree = "<group>";
-		};
 		E873E66016FCF6640097F4F2 = {
 			isa = PBXGroup;
 			children = (
@@ -148,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				E873E67316FCF6640097F4F2 /* Supporting Files */,
-				8186C364170D3B5400CB5BDF /* old files */,
 				E873E67B16FCF6640097F4F2 /* QWZAppDelegate.h */,
 				E873E67C16FCF6640097F4F2 /* QWZAppDelegate.m */,
 				E873E68916FCF6990097F4F2 /* QWZQuiz.h */,
@@ -242,7 +211,6 @@
 				E873E67F16FCF6640097F4F2 /* Default.png in Resources */,
 				E873E68116FCF6640097F4F2 /* Default@2x.png in Resources */,
 				E873E68316FCF6640097F4F2 /* Default-568h@2x.png in Resources */,
-				B877B284170108EF00007668 /* Storyboard-old.storyboard in Resources */,
 				E833CF871707681A0006B832 /* Storyboard_v2.storyboard in Resources */,
 				E8EA1F67170B9EFF00956433 /* Default.png in Resources */,
 				E8EA1F69170B9F0C00956433 /* Default@2x.png in Resources */,
@@ -266,10 +234,6 @@
 				E873E6B516FD382D0097F4F2 /* QWZCreateQwizzleViewController.m in Sources */,
 				E873E6BA16FD40030097F4F2 /* QWZTakeQwizzleViewController.m in Sources */,
 				E873E6BF16FD41740097F4F2 /* QWZViewQwizzleViewController.m in Sources */,
-				B877B28C170109E600007668 /* QWZCreateView.m in Sources */,
-				B877B28D170109E600007668 /* QWZHomeView.m in Sources */,
-				B8CB27ED17012CA1001BB56E /* QWZTakeView.m in Sources */,
-				B8CB27F017012D34001BB56E /* QWZViewView.m in Sources */,
 				E833CF90170904150006B832 /* UIView+FindFirstResponder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

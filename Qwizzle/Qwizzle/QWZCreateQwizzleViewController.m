@@ -1,5 +1,5 @@
 //
-//  QWZCreateViewController.m
+//  QWZCreateQwizzleViewController.m
 //  Qwizzle
 //
 //  Created by Team Qwizzle on 3/22/13.
@@ -24,6 +24,7 @@
 @synthesize questionList;
 @synthesize quizSet;
 
+// Implement this method if there is anything needed to be configured before the view is loaded for the first time
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -49,7 +50,7 @@
     [titleField setTag:25]; // For refenrencing: could any number
     [scrollView addSubview:titleField];
 
-    // Krissada: Begin the dynamic part...
+    // Beginning the dynamic part...
     x = 20;
     y = 85;
     textWidth = 25;
@@ -90,24 +91,26 @@
     [insertButton addTarget:self
                      action:@selector(addMoreQuestion:)
            forControlEvents:UIControlEventTouchUpInside];
-    [insertButton setTitle:@"Add more question"
+    [insertButton setTitle:@"Add another question"
                   forState:UIControlStateNormal];
     
-    [insertButton setTag:50]; // For refenrencing: could any number
+    [insertButton setTag:50]; // For referencing: could be any number
     [scrollView addSubview:insertButton];
     
-    // Set content size of the scroll view to make it scrollable
+    // Set the content size of the scroll view to make it scrollable
     scrollviewWidth = 320;
     scrollviewHeight = 175;
     [scrollView setContentSize:CGSizeMake(scrollviewWidth, scrollviewHeight)];
 }
 
+// Implement this method if there is anything needed to be configured before the view appears on the screen 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self registerForKeyboardNotifications];
 }
 
+// Implement this method if there is anything needed to be configured before the view disappears on the screen 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];

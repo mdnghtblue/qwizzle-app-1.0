@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B877B19B16FFD25D00007668 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B877B19A16FFD25D00007668 /* CoreData.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		E833CF871707681A0006B832 /* Storyboard_v2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E833CF861707681A0006B832 /* Storyboard_v2.storyboard */; };
+		E833CF871707681A0006B832 /* QWZStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E833CF861707681A0006B832 /* QWZStoryboard.storyboard */; };
 		E833CF90170904150006B832 /* UIView+FindFirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = E833CF8F170904150006B832 /* UIView+FindFirstResponder.m */; };
 		E873E66D16FCF6640097F4F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E873E66C16FCF6640097F4F2 /* UIKit.framework */; };
 		E873E66F16FCF6640097F4F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E873E66E16FCF6640097F4F2 /* Foundation.framework */; };
@@ -33,7 +33,7 @@
 
 /* Begin PBXFileReference section */
 		B877B19A16FFD25D00007668 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		E833CF861707681A0006B832 /* Storyboard_v2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard_v2.storyboard; sourceTree = "<group>"; };
+		E833CF861707681A0006B832 /* QWZStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QWZStoryboard.storyboard; sourceTree = "<group>"; };
 		E833CF8E170904150006B832 /* UIView+FindFirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindFirstResponder.h"; sourceTree = "<group>"; };
 		E833CF8F170904150006B832 /* UIView+FindFirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindFirstResponder.m"; sourceTree = "<group>"; };
 		E873E66916FCF6640097F4F2 /* Qwizzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qwizzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,7 +134,7 @@
 				E873E6B816FD40020097F4F2 /* QWZTakeQwizzleViewController.m */,
 				E873E6BC16FD41730097F4F2 /* QWZViewQwizzleViewController.h */,
 				E873E6BD16FD41730097F4F2 /* QWZViewQwizzleViewController.m */,
-				E833CF861707681A0006B832 /* Storyboard_v2.storyboard */,
+				E833CF861707681A0006B832 /* QWZStoryboard.storyboard */,
 				E833CF8E170904150006B832 /* UIView+FindFirstResponder.h */,
 				E833CF8F170904150006B832 /* UIView+FindFirstResponder.m */,
 			);
@@ -211,7 +211,7 @@
 				E873E67F16FCF6640097F4F2 /* Default.png in Resources */,
 				E873E68116FCF6640097F4F2 /* Default@2x.png in Resources */,
 				E873E68316FCF6640097F4F2 /* Default-568h@2x.png in Resources */,
-				E833CF871707681A0006B832 /* Storyboard_v2.storyboard in Resources */,
+				E833CF871707681A0006B832 /* QWZStoryboard.storyboard in Resources */,
 				E8EA1F67170B9EFF00956433 /* Default.png in Resources */,
 				E8EA1F69170B9F0C00956433 /* Default@2x.png in Resources */,
 				E8EA1F6B170B9F1000956433 /* Default-568h@2x.png in Resources */,

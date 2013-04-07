@@ -194,6 +194,35 @@
     }
 }
 
+// Change the label of the delete button
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"Remove";
+}
+
+// This method is sent to ItemsViewController with committing edit with 2 extra arguments
+// 1. UITableViewCellEditingStyle - Delete, Edit, or etc...
+// 2. NSIndexPath - index of the row
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // If the table view is asking to commit a delete command...
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        
+//        BNRItemStore *ps = [BNRItemStore sharedStore];
+//        NSArray *items = [ps allItems];
+//        BNRItem *p = [items objectAtIndex:[indexPath row]];
+//        [ps removeItem:p];
+        
+//        NSInteger selectedRow = [allQuizSets indexOfObject:selectedQuiz];
+        //NSIndexPath *selectedIndex = [NSIndexPath indexPathForRow:selectedRow inSection:0];
+        //[allQuizSets removeObjectIdenticalTo:selectedQuiz];
+        
+        // We also remove that row from the table view with an animation
+//        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
 // This method get called automatically when we're moving to the other view in the storyboard
 // All we have to do is the implement it.
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -64,9 +64,10 @@
     [[self tableView] reloadData];
 }
 
+// This method receives a newly created Qwizzle from the QWZCreateQwizzleController and updates the mainview
 - (void)submitAQwizzle:(QWZQuizSet *)qz
 {
-    NSLog(@"a qwizzle has been submitted!! %@", qz);
+    NSLog(@"A qwizzle has been submitted!! %@", qz);
     NSLog(@"There are %d questions for %@", [[qz allQuizzes] count], [qz title]);
     [allQuizSets addObject:qz];
     
@@ -78,9 +79,10 @@
     [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationTop];
 }
 
+// This method receives a newly created Qwizzle from the QWZTakeQwizzleController and updates the mainview
 - (void)fillOutAQwizzle:(QWZAnsweredQuizSet *)qzAnswers
 {
-    NSLog(@"submitting qwizzle answers!");
+    NSLog(@"Submitting qwizzle answers");
     [allAnsweredQuizSets addObject:qzAnswers];
     
     NSInteger lastRow = [allAnsweredQuizSets indexOfObject:qzAnswers];
@@ -89,16 +91,6 @@
     // Insert the new Qwizzle answers into the table
     [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip]
                             withRowAnimation:UITableViewRowAnimationTop];
-    
-    // We might even be able to edit your Qwizzle: so we should not remove the Qwizzle?
-    // Remove the quizset from the your Qwizzle section
-    //NSInteger selectedRow = [allQuizSets indexOfObject:selectedQuiz];
-    //NSIndexPath *selectedIndex = [NSIndexPath indexPathForRow:selectedRow inSection:0];
-    //[allQuizSets removeObjectIdenticalTo:selectedQuiz];
-    
-    // Remove the cell from the table
-    //[[self tableView] deleteRowsAtIndexPaths:[NSArray arrayWithObject:selectedIndex]
-    //                        withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark - Handle table view datasource
@@ -118,8 +110,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:QWizzleCellIdentifier];
     }
-    
-    
+
     // Set the text on the cell with the desciption of the item
     // We need to get the cell from the correct section here
     NSInteger section = [indexPath section];
@@ -135,11 +126,11 @@
     return cell;
 }
 
-// Krissada: One of the required method needed to be implemented to use UITableViewController
-// return the number rows given a section number
+// One of the required methods needed to be implemented to use UITableViewController
+// Return the number of rows given a section number
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Krissada: we need to get the correct number associated with the given section here
+    // We need to get the correct number associated with the given section here
     NSInteger row = 0;
     if (section == 0) {
         row = [allQuizSets count];
@@ -154,9 +145,9 @@
 
 #pragma mark handling multiple section
 // The table view needs to know how many sections it should expect.
-// Krissada: we have exactly 2 sections here - an unanswer set and an answered quiz set
+// We have exactly 2 sections here - a quizset and an answered quizset
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return NUMBER_OF_SECTION;
 }
 
 // We have to get the correct title for each section
@@ -170,7 +161,7 @@
 }
 
 #pragma mark - Table view delegate
-// Implement this method to response when the user is tapping any row
+// Implement this method to respond when the user is tapping any row
 // Basically it should switch to another view and load all the corresponding information
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -224,7 +215,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 }
 
 // This method get called automatically when we're moving to the other view in the storyboard
-// All we have to do is the implement it.
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSLog(@"prepareForSegue: %@", segue.identifier);
@@ -241,6 +231,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         [destinationViewController setQuizSet:selectedQuiz];
     }
     else if ([segue.identifier isEqualToString:@"SEGUECreateQwizzle"]) {
+        // Get the destination's view controller (User is creating a Qwizzle)
         QWZCreateQwizzleViewController *destinationViewController = segue.destinationViewController;
         [destinationViewController setOrigin:self];
     }
@@ -249,7 +240,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     }
 }
 
-// Krissada: implement this method if there is anything needed to be done if receive memory warning
+// Implement this method if there is anything needed to be done if we receive a memory warning
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

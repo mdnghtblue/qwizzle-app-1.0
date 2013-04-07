@@ -10,6 +10,8 @@
 @class QWZQuizSet;
 @class QWZAnsweredQuizSet;
 
+#define NUMBER_OF_SECTION 2
+
 // QWZViewController can fill all 3 roles: view controller, data source, and delegate
 // by implementing the following protocol: UITableViewDataSource and UITableViewDelegate.
 

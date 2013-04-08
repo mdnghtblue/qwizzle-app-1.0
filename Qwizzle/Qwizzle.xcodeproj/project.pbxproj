@@ -25,6 +25,8 @@
 		E873E6B516FD382D0097F4F2 /* QWZCreateQwizzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E6B316FD382C0097F4F2 /* QWZCreateQwizzleViewController.m */; };
 		E873E6BA16FD40030097F4F2 /* QWZTakeQwizzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E6B816FD40020097F4F2 /* QWZTakeQwizzleViewController.m */; };
 		E873E6BF16FD41740097F4F2 /* QWZViewQwizzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E6BD16FD41730097F4F2 /* QWZViewQwizzleViewController.m */; };
+		E8A31CE3171299680090BECD /* Qwicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A31CDF171297620090BECD /* Qwicon@2x.png */; };
+		E8A31CE41712996D0090BECD /* Qwicon.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A31CE1171297650090BECD /* Qwicon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,8 @@
 		E873E6B816FD40020097F4F2 /* QWZTakeQwizzleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZTakeQwizzleViewController.m; sourceTree = "<group>"; };
 		E873E6BC16FD41730097F4F2 /* QWZViewQwizzleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZViewQwizzleViewController.h; sourceTree = "<group>"; };
 		E873E6BD16FD41730097F4F2 /* QWZViewQwizzleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZViewQwizzleViewController.m; sourceTree = "<group>"; };
+		E8A31CDF171297620090BECD /* Qwicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Qwicon@2x.png"; path = "../Qwicon@2x.png"; sourceTree = "<group>"; };
+		E8A31CE1171297650090BECD /* Qwicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Qwicon.png; path = ../Qwicon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,8 @@
 		E873E67316FCF6640097F4F2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E8A31CE1171297650090BECD /* Qwicon.png */,
+				E8A31CDF171297620090BECD /* Qwicon@2x.png */,
 				E873E67416FCF6640097F4F2 /* Qwizzle-Info.plist */,
 				E873E67516FCF6640097F4F2 /* InfoPlist.strings */,
 				E873E67816FCF6640097F4F2 /* main.m */,
@@ -201,6 +207,8 @@
 				E873E68116FCF6640097F4F2 /* Default@2x.png in Resources */,
 				E873E68316FCF6640097F4F2 /* Default-568h@2x.png in Resources */,
 				E833CF871707681A0006B832 /* QWZStoryboard.storyboard in Resources */,
+				E8A31CE3171299680090BECD /* Qwicon@2x.png in Resources */,
+				E8A31CE41712996D0090BECD /* Qwicon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

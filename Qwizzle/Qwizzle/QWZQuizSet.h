@@ -19,6 +19,8 @@
 }
 
 @property (nonatomic, copy) NSString *title;   // Hold the title of this set of quiz
+@property (nonatomic, copy) NSString *creator;    // Hold the owner of this set of quiz
+@property (nonatomic, readonly, strong) NSDate *dateCreated;    // Hold the creation date of the question
 
 // The designated initializer
 - (id)initWithTitle:(NSString *)title;

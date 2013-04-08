@@ -160,6 +160,26 @@
     }
 }
 
+// Display an appropriate message to users and encourage them to create a new Qwizzle
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if (section == 0) {
+        if ([allQuizSets count] == 0) {
+            return @"None yet! Tap + button to create one";
+        }
+        else {
+            return nil;
+        }
+    }
+    else {
+        if ([allAnsweredQuizSets count] == 0) {
+            return @"None taken yet";
+        }
+        else {
+            return nil;
+        }
+    }
+}
+
 #pragma mark - Table view delegate
 // Implement this method to respond when the user is tapping any row
 // Basically it should switch to another view and load all the corresponding information

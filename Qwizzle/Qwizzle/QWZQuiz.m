@@ -22,7 +22,7 @@
     // Always call the superclass's designated initializer
     self = [super init];
     
-    // Is the superclass's designated initializer succeed?
+    // Did the superclass's designated initializer succeed?
     if (self) {
         [self setQuestion:q]; // Set a question using a setter
         [self setAnswer:a]; // Set an answer using a setter

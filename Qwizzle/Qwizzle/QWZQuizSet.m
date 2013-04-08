@@ -20,12 +20,12 @@
     // Always call the superclass's designated initializer
     self = [super init];
     
-    // Is the superclass's designated initializer succeed?
+    // Did the superclass's designated initializer succeed?
     if (self) {
         allQuizzes = [[NSMutableArray alloc] init];
         title = [t copy];
-        dateCreated = [[NSDate alloc] init]; // Initialize the date this quiz
-        creator = [[NSString alloc] initWithFormat:@"Lucy"]; // We will get it from the device UniqueID
+        dateCreated = [[NSDate alloc] init]; // Initialize the date this quiz was taken
+        creator = [[NSString alloc] initWithFormat:@"iOS user"]; // Temporary: we will get it from the device UniqueID
     }
     
     // Return the address of the newly initialized object
@@ -38,19 +38,19 @@
     return [self initWithTitle:@"Default Title"];
 }
 
-// Get all quizzes
+// Get all questions in the quizset
 - (NSArray *)allQuizzes
 {
     return allQuizzes;
 }
 
-// Add a new quiz
+// Add a new question
 - (void)addQuiz:(QWZQuiz *)q
 {
     [allQuizzes addObject:q];
 }
 
-// Remove a quiz
+// Remove a question
 - (void)removeQuiz:(QWZQuiz *)q
 {
     [allQuizzes removeObjectIdenticalTo:q];

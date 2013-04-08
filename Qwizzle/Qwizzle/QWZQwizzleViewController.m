@@ -34,19 +34,19 @@
     
     // Add hard-coded question set here
     QWZQuiz *q1 = [[QWZQuiz alloc] initWithQuestion:@"What is your name?"];
-    QWZQuiz *q2 = [[QWZQuiz alloc] initWithQuestion:@"What is your lastname?"];
+    QWZQuiz *q2 = [[QWZQuiz alloc] initWithQuestion:@"What is your last name?"];
     
-    QWZQuizSet *qs1 = [[QWZQuizSet alloc] initWithTitle:@"Identity Qwizzle"];
+    QWZQuizSet *qs1 = [[QWZQuizSet alloc] initWithTitle:@"Sample Qwizzle"];
     [qs1 addQuiz:q1];
     [qs1 addQuiz:q2];
     
-    QWZQuizSet *qs2 = [[QWZQuizSet alloc] initWithTitle:@"Identity Qwizzle Pack 2"];
+    QWZQuizSet *qs2 = [[QWZQuizSet alloc] initWithTitle:@"Sample Qwizzle Pack 2"];
     [qs2 addQuiz:q1];
     
     QWZQuiz *q3 = [[QWZQuiz alloc] initWithQuestion:@"What is your favourite color?" answer:@"Green"];
     QWZQuiz *q4 = [[QWZQuiz alloc] initWithQuestion:@"What is your favourite food?" answer:@"Fried Rice"];
     QWZQuiz *q5 = [[QWZQuiz alloc] initWithQuestion:@"What is your favourite sport?" answer:@"Table Tennis"];
-    QWZAnsweredQuizSet *aqs1 = [[QWZAnsweredQuizSet alloc] initWithTitle:@"Preference Qwizzle"];
+    QWZAnsweredQuizSet *aqs1 = [[QWZAnsweredQuizSet alloc] initWithTitle:@"My favorite things"];
     [aqs1 addQuiz:q3];
     [aqs1 addQuiz:q5];
     [aqs1 addQuiz:q4];

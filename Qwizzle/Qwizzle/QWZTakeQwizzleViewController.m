@@ -1,5 +1,5 @@
 //
-//  QWZAnswerViewController.m
+//  QWZTakeQwizzleViewController.m
 //  Qwizzle
 //
 //  Created by Team Qwizzle on 3/22/13.
@@ -46,9 +46,8 @@
     answerList = [[NSMutableArray alloc] init];
     
     // Set the initial content size of the scroll view to make it scrollable
-    scrollviewWidth = 320;
-    scrollviewHeight = 175;
-    [scrollView setContentSize:CGSizeMake(scrollviewWidth, scrollviewHeight)];
+
+    [scrollView setContentSize:CGSizeMake(SCROLL_VIEW_WIDTH, SCROLL_VIEW_HEIGHT)];
     
     // Preparing UI - Create and configure programmatically
     CGRect titleFrame = CGRectMake(40, 10, 250, 60);
@@ -59,20 +58,20 @@
     [titleLabel setNumberOfLines:2];
     [scrollView addSubview:titleLabel];
     
-    NSInteger y = 100;
+    NSInteger y = QUIZSET_VERTICAL_OFFSET; // initial vertical position for question set
     for (NSInteger i = 0; i < [[quizSet allQuizzes] count]; i++)
     {
         NSString *qwzQuestion = [(QWZQuiz *)quizSet.allQuizzes[i] question];
         NSLog(@"question: %@", qwzQuestion);
         
         // Adding the text field for the question
-        UILabel *questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, y, 250, 60)];
+        UILabel *questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(QUIZSET_HORIZONTAL_POS, y, QUIZSET_ITEM_WIDTH, QUIZSET_ITEM_HEIGHT)];
         [questionLabel setText:[[NSString alloc] initWithFormat:@"%@", qwzQuestion]];
         [questionLabel setBackgroundColor:[UIColor clearColor]];
         [scrollView addSubview:questionLabel];
         
         // Adding the corresponding textfield for the first question
-        UITextView *answerField = [[UITextView alloc] initWithFrame:CGRectMake(40, y + 50, 250, 60)];
+        UITextView *answerField = [[UITextView alloc] initWithFrame:CGRectMake(QUIZSET_HORIZONTAL_POS, y + ANSWER_VERTICAL_OFFSET, QUIZSET_ITEM_WIDTH, QUIZSET_ITEM_HEIGHT)];
         [answerField setScrollsToTop:true];
         [answerField setDelegate:self];
         answerField.layer.borderWidth = 2.0f;
@@ -80,9 +79,9 @@
         [controlList addObject:answerField]; // We will need the reference later
         [scrollView addSubview:answerField];
         
-        y += 100;
+        y += QUIZSET_VERTICAL_OFFSET;
         
-        scrollviewHeight = scrollviewHeight + 100;
+        scrollviewHeight = scrollviewHeight + QUIZSET_VERTICAL_OFFSET;
         [scrollView setContentSize:CGSizeMake(scrollviewWidth, scrollviewHeight)];
     }
 }
@@ -101,6 +100,7 @@
     [self removeKeyboardNotifications];
 }
 
+// This method performs any actions necessary to process taking a qwizzle before returning control to the root view controller
 - (IBAction)prepareToFillOutAQwizzle:(id)sender
 {
     NSLog(@"Submitting qwizzle answers....");
@@ -136,7 +136,7 @@
             [answeredQuizSet addQuiz:[[QWZQuiz alloc] initWithQuestion:[[[quizSet allQuizzes] objectAtIndex:i] question] answer:[answerList objectAtIndex:i]]];
         }
         
-        // Submit a qwizzle to parents' viewcontroller
+        // Submit a qwizzle to parents' view controller
         [origin fillOutAQwizzle:answeredQuizSet];
         
         // Dismiss this view
@@ -156,7 +156,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillBeHidden:)
                                                  name:UIKeyboardWillHideNotification object:nil];
-    
 }
 
 // Call this method to remove all keyboard appearance notifications
@@ -186,7 +185,6 @@
     // Make the scrollView bigger
     [scrollView setContentSize:CGSizeMake(scrollviewWidth, scrollviewHeight)];
 }
-
 
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification

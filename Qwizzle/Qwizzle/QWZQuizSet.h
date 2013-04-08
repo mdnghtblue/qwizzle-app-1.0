@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 // Using @class directive allow us to use QWZQuiz as a declaration name w/o importing a whole header file
-// The compiler does not need to know the detail implementation of the class, save compilation time
+// The compiler does not need to know the detailed implementation of the class, to save compilation time
 @class QWZQuiz;
 
 @interface QWZQuizSet : NSObject
@@ -25,13 +25,13 @@
 // The designated initializer
 - (id)initWithTitle:(NSString *)title;
 
-// Get all quizzes
+// Get all questions in the quizset
 - (NSArray *)allQuizzes;
 
-// Add a new quiz
+// Add a new question
 - (void)addQuiz:(QWZQuiz *)q;
 
-// Remove a quiz
+// Remove a question
 - (void)removeQuiz:(QWZQuiz *)q;
 
 // Move a quiz from an index to another index

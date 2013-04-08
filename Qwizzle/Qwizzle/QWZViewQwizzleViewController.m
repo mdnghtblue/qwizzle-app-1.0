@@ -1,5 +1,5 @@
 //
-//  QWZViewAnswerViewController.m
+//  QWZViewQwizzleViewController.m
 //  Qwizzle
 //
 //  Created by Team Qwizzle on 3/22/13.
@@ -23,8 +23,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    //NSLog(@"QWZViewQwizzleViewController with a quizset %@", [quizSet title]);
-    //NSLog(@"This quizset have %d questions", [[quizSet allQuizzes] count]);
+    NSLog(@"QWZViewQwizzleViewController with a quizset %@", [quizSet title]);
+    NSLog(@"This quizset has %d questions", [[quizSet allQuizzes] count]);
     
     // For each quiz
     QWZQuiz *quiz;
@@ -41,9 +41,10 @@
             position = latestHeight + OFFSET;
         }
         
-        //////// Preparing a label for a question
+        // Preparing a label for a question
+        CGRect labelFrame = CGRectMake(QUESTION_HORIZONTAL_POS, position, QUIZSET_ITEM_WIDTH, QUIZSET_ITEM_HEIGHT);
         
-        CGRect labelFrame = CGRectMake(20, position, 250, 30);
+        // Create the new label and assign values to the necessary fields
         label = [[UILabel alloc] initWithFrame:labelFrame];
         [label setText:[[NSString alloc] initWithFormat:@"%d.) %@", (i + 1), [quiz question]]];
         [label setBackgroundColor:[UIColor clearColor]];
@@ -58,10 +59,11 @@
         latestHeight = labelSize.height + position;
         [scrollView addSubview:label];
 
-        //////// Preparing the label for an answer
-        
+        // Preparing the label for an answer
         position = latestHeight + 10; // Move just a little bit
-        labelFrame = CGRectMake(40, position, 250, 30);
+        labelFrame = CGRectMake(ANSWER_HORIZONTAL_POS, position, QUIZSET_ITEM_WIDTH, QUIZSET_ITEM_HEIGHT);
+        
+        // Create the new label and assign values to the necessary fields
         label = [[UILabel alloc] initWithFrame:labelFrame];
         [label setText:[[NSString alloc] initWithFormat:@"%@", [quiz answer]]];
         [label setBackgroundColor:[UIColor clearColor]];
@@ -77,7 +79,7 @@
         [scrollView addSubview:label];
     }
     
-    [scrollView setContentSize:CGSizeMake(320, latestHeight + 20)];
+    [scrollView setContentSize:CGSizeMake(SCROLLVIEW_WIDTH, latestHeight + SCROLLVIEW_HEIGHT_OFFSET)];
 }
 
 // Implement this method if there is anything needed to be done if we receive a memory warning

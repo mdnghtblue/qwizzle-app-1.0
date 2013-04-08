@@ -75,8 +75,6 @@
         latestHeight = labelSize.height + position;
 
         [scrollView addSubview:label];
-        
-        NSLog(@"question: %@ - answer %@", [quiz question], [quiz answer]);
     }
     
     [scrollView setContentSize:CGSizeMake(320, latestHeight + 20)];

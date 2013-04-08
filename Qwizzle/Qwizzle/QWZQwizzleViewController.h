@@ -30,10 +30,10 @@
     QWZQuizSet *selectedQuiz;
 }
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+// This method receives a newly created Qwizzle from the QWZCreateQwizzleController and updates the mainview
+- (void)submitAQwizzle:(QWZQuizSet *)qz; 
 
-- (void)submitAQwizzle:(QWZQuizSet *)qz;
-
+// This method receives a newly created Qwizzle from the QWZTakeQwizzleController and updates the mainview
 - (void)fillOutAQwizzle:(QWZAnsweredQuizSet *)qzAnswers;
 
 @end

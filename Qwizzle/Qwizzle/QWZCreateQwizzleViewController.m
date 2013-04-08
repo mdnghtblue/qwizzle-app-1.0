@@ -19,10 +19,10 @@
 
 @implementation QWZCreateQwizzleViewController
 
-@synthesize origin; // The origin's viewcontroller: it is needed to pass data back
-@synthesize controlList;
-@synthesize questionList;
-@synthesize quizSet;
+@synthesize origin; // Store the origin's viewcontroller for submitting data back
+@synthesize questionList; // Store the questions that users actually filled out
+@synthesize controlList; // Store the dynamically created text fields
+@synthesize quizSet; // Store the newly created quizSet (a Qwizzle)
 
 // Implement this method if there is anything needed to be configured before the view is loaded for the first time
 - (void)viewDidLoad

@@ -41,13 +41,20 @@
     NSInteger tag;
 }
 
-- (IBAction)prepareToSubmitAQwizzle:(id)sender;
-- (void)addMoreQuestion:(id)sender;
-- (void)dismissKeyboard;
+@property (nonatomic, weak) QWZQwizzleViewController *origin; // Store the origin's viewcontroller for submitting data back
+@property (nonatomic, strong) NSMutableArray *questionList; // Store the questions that users actually filled out
+@property (nonatomic, strong) NSMutableArray *controlList; // Store the dynamically created text fields
+@property (nonatomic, strong) QWZQuizSet *quizSet; // Store the newly created quizSet (a Qwizzle)
 
-@property (nonatomic, weak) QWZQwizzleViewController *origin;
-@property (nonatomic, strong) NSMutableArray *questionList;
-@property (nonatomic, strong) NSMutableArray *controlList;
-@property (nonatomic, strong) QWZQuizSet *quizSet;
+// prepareToSubmitAQwizzle will create a new quiz, check & validate every question here
+// Then will submit the quiz into the origin's viewcontroller.
+- (IBAction)prepareToSubmitAQwizzle:(id)sender;
+
+// Dynamically add more UIView for questions
+- (void)addMoreQuestion:(id)sender;
+
+// This method was registered to the UITapGestureRecognizer
+// To allow user to tap anywhere on the screen to dismiss the keyboard
+- (void)dismissKeyboard;
 
 @end

@@ -94,8 +94,8 @@
 }
 
 #pragma mark - Handle table view datasource
-// One of the required method needed to be implemented to use UITableViewController
-// - return a cell at the given index
+// One of the required methods needed to be implemented to use UITableViewController
+// - Return a cell at the given index
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -127,7 +127,7 @@
 }
 
 // One of the required methods needed to be implemented to use UITableViewController
-// Return the number of rows given a section number
+// - Return the number of rows given a section number
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // We need to get the correct number associated with the given section here
@@ -143,7 +143,7 @@
     return row;
 }
 
-#pragma mark handling multiple section
+#pragma mark Handle multiple section
 // The table view needs to know how many sections it should expect.
 // We have exactly 2 sections here - a quizset and an answered quizset
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

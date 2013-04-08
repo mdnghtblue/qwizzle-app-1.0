@@ -165,7 +165,8 @@
     }
 }
 
-// CreateNewQuiz will create a new quiz, should check & validate every question here.
+// prepareToSubmitAQwizzle will create a new quiz, check & validate every question here
+// Then will submit the quiz into the origin's viewcontroller.
 - (IBAction)prepareToSubmitAQwizzle:(id)sender
 {
     NSLog(@"Submitting a Qwizzle, validation in process");
@@ -254,7 +255,7 @@
     NSDictionary* info = [aNotification userInfo];
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
-    // Getting the scrollView height and add it with the keyboard's height
+    // Getting the scrollView's height and add it with the keyboard's height
     scrollviewHeight += keyboardSize.height;
     
     // Make the scrollView bigger
@@ -269,7 +270,7 @@
     NSDictionary* info = [aNotification userInfo];
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
-    // Getting the scrollView height and add it with the keyboard's height
+    // Getting the scrollView's height and add it with the keyboard's height
     scrollviewHeight -= keyboardSize.height;
     
     // Make the scrollView bigger

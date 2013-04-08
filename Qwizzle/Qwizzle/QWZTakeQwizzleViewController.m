@@ -28,6 +28,7 @@
 @synthesize answerList;
 @synthesize answeredQuizSet;
 
+// Implement this method if there is anything needed to be configured before the view is loaded for the first time
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -86,12 +87,14 @@
     }
 }
 
+// Implement this method if there is anything needed to be configured before the view appears on the screen 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self registerForKeyboardNotifications];
 }
 
+// Implement this method if there is anything needed to be configured before the view disappears on the screen 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -138,7 +141,6 @@
         
         // Dismiss this view
         [self.navigationController popViewControllerAnimated:YES];
-        //[[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -178,7 +180,7 @@
     NSDictionary* info = [aNotification userInfo];
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
 
-    // Getting the scrollView height and add it with the keyboard's height
+    // Getting the scrollView's height and add it with the keyboard's height
     scrollviewHeight += keyboardSize.height;
 
     // Make the scrollView bigger
@@ -193,7 +195,7 @@
     NSDictionary* info = [aNotification userInfo];
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
-    // Getting the scrollView height and add it with the keyboard's height
+    // Getting the scrollView's height and add it with the keyboard's height
     scrollviewHeight -= keyboardSize.height;
     
     // Make the scrollView bigger

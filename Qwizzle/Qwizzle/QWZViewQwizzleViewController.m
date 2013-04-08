@@ -80,17 +80,9 @@
     }
     
     [scrollView setContentSize:CGSizeMake(320, latestHeight + 20)];
-    //for (QWZQuiz *quiz in [quizSet allQuizzes]) {
-        
-    //}
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-
+// Implement this method if there is anything needed to be done if we receive a memory warning
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

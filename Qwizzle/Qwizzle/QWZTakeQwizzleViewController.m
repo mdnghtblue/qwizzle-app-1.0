@@ -81,7 +81,7 @@
         
         y += QUIZSET_VERTICAL_OFFSET;
         
-        scrollviewHeight = scrollviewHeight + QUIZSET_VERTICAL_OFFSET;
+        scrollviewHeight = scrollviewHeight + QUESTION_DISTANCES;
         [scrollView setContentSize:CGSizeMake(scrollviewWidth, scrollviewHeight)];
     }
 }

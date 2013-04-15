@@ -15,6 +15,8 @@
 #import "QWZTakeQwizzleViewController.h"
 #import "QWZViewQwizzleViewController.h"
 
+#import "QWZQwizzleStore.h"
+
 @interface QWZQwizzleViewController ()
 
 @end
@@ -265,6 +267,44 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark store connection
+- (IBAction)fetchQwizzle:(id)sender
+{
+    // Get ahold of the segmented control that is currently in the title view
+    UIView *currentTitleView = [[self navigationItem] titleView];
+    
+    UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+
+    [[self navigationItem] setTitleView:aiView];
+    [aiView startAnimating];
+    
+    void (^completionBlock)(NSArray *obj, NSError *err) =
+    ^(NSArray *obj, NSError *err) {
+        // When the request completes, this block will be called.
+        
+        // When the request completes - success or failure
+        // replace the activity indicator with the previous title
+        [[self navigationItem] setTitleView:currentTitleView];
+        
+        if (!err) {
+            // If everything went ok, grab the channel object, and
+            // reload the table
+            //channel = obj;
+            NSLog(@"Inside a block with no error: %@", obj);
+            //[[self tableView] reloadData];
+        } else {
+            // If things went bad, show an alert view
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [av show];
+        }
+    };
+    
+    // Initiate the request
+    [[QWZQwizzleStore sharedStore] fetchQwizzleWithCompletion:completionBlock];
+    
+    [[QWZQwizzleStore sharedStore] fetchAnsweredQwizzleWithCompletion:completionBlock];
 }
 
 @end

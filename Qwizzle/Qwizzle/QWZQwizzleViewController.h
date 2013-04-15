@@ -36,4 +36,6 @@
 // This method receives a newly created Qwizzle from the QWZTakeQwizzleController and updates the mainview
 - (void)fillOutAQwizzle:(QWZAnsweredQuizSet *)qzAnswers;
 
+- (IBAction)fetchQwizzle:(id)sender;
+
 @end

@@ -2,7 +2,7 @@
 //  QWZQwizzleStore.m
 //  Qwizzle
 //
-//  Created by Krissada Dechokul on 4/17/13.
+//  Created by Team Qwizzle on 4/17/13.
 //  Copyright (c) 2013 Florida Tech. All rights reserved.
 //
 
@@ -29,7 +29,7 @@
 // This method fetch all Qwizzle created by this user
 - (void)fetchQwizzleWithCompletion:(void (^)(NSArray *, NSError *))block
 {
-    NSLog(@"fetchQwizzleWithCompletion");
+    NSLog(@"fetchQwizzleWithCompletion with codeblock %@", block);
     
     NSURL *url = [NSURL URLWithString:@"http://qwizzleapp.com/users.php"];
     
@@ -54,7 +54,7 @@
 // This method fetch all Qwizzle that this user has answered
 - (void)fetchAnsweredQwizzleWithCompletion:(void (^)(NSArray *, NSError *))block
 {
-    NSLog(@"fetchAnsweredQwizzleWithCompletion");
+    NSLog(@"fetchAnsweredQwizzleWithCompletion with codeblock: %@", block);
     
     NSURL *url = [NSURL URLWithString:@"http://boatboat001.com/index.php/feed/popular.json"];
 }

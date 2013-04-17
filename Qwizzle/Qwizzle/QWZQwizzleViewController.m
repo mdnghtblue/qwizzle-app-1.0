@@ -305,7 +305,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         }
     }; // Finish declaring a code block to run after finish running the connection
     
-    // Initiate the request
+    // Initiate the request, send the code block to the Store object to run after the connection is completed.
     [[QWZQwizzleStore sharedStore] fetchQwizzleWithCompletion:completionBlock];
     
     [[QWZQwizzleStore sharedStore] fetchAnsweredQwizzleWithCompletion:completionBlock];

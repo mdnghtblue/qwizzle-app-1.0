@@ -61,6 +61,11 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Qwizzle" id="Uj6-ly-SHP">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="0Xn-Gg-Xc4">
+                            <connections>
+                                <action selector="fetchQwizzle:" destination="gsN-V7-zIA" id="gzJ-qU-iwf"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="9iK-hW-aAI">
                             <connections>
                                 <segue destination="Moa-q1-UmR" kind="modal" identifier="SEGUECreateQwizzle" id="ajf-Wg-9si"/>
@@ -205,6 +210,9 @@
         </class>
         <class className="QWZQwizzleViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZQwizzleViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="fetchQwizzle:"/>
+            </relationships>
         </class>
         <class className="QWZTakeQwizzleViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZTakeQwizzleViewController.h"/>

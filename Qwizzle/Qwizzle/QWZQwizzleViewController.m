@@ -15,6 +15,8 @@
 #import "QWZTakeQwizzleViewController.h"
 #import "QWZViewQwizzleViewController.h"
 
+#import "QWZQwizzleStore.h"
+
 @interface QWZQwizzleViewController ()
 
 @end
@@ -265,6 +267,48 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark store object & connection
+- (IBAction)fetchQwizzle:(id)sender
+{
+    // Get ahold of the segmented control that is currently in the title view
+    UIView *currentTitleView = [[self navigationItem] titleView];
+    
+    // Create an activity indicator while loading
+    UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    
+    [[self navigationItem] setTitleView:aiView];
+    [aiView startAnimating];
+    
+    // To handle a-synchronous connection, we need to provide codeblock to run "LATER"
+    // whenever the connection really finish loading stuffs from the web
+    // Think of a codeblock as an anonymous function in JavaScript (this codeblock's named completionBlock)
+    void (^completionBlock)(NSArray *obj, NSError *err) = ^(NSArray *obj, NSError *err) {
+        
+        // When the request completes, this block will be called.
+        
+        // When the request completes - success or failure, replaces the activity indicator with the previous title
+        [[self navigationItem] setTitleView:currentTitleView];
+        
+        if (!err) {
+            // If everything went ok (not error), grab the object, and reload the table
+            NSLog(@"Inside a block with no error: %@", obj);
+            
+            // Update the datasource model and the view
+            //allQuizSet = obj;
+            //[[self tableView] reloadData];
+        } else {
+            // If things went bad, show an alert view to users
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [av show];
+        }
+    }; // Finish declaring a code block to run after finish running the connection
+    
+    // Initiate the request
+    [[QWZQwizzleStore sharedStore] fetchQwizzleWithCompletion:completionBlock];
+    
+    [[QWZQwizzleStore sharedStore] fetchAnsweredQwizzleWithCompletion:completionBlock];
 }
 
 @end

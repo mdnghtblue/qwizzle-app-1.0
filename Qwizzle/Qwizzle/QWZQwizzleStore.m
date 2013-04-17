@@ -29,6 +29,8 @@
     NSLog(@"fetchQwizzleWithCompletion");
     
     NSURL *url = [NSURL URLWithString:@"http://boatboat001.com/index.php/feed/latest.json"];
+                  
+                  //@"http://qwizzleapp.com/users.php"];
     
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
     

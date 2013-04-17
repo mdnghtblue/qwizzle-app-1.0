@@ -63,6 +63,7 @@
     NSLog(@"all the question is here: %@", q);
     NSLog(@"There are %d quizsets here", [q count]);
     
+    // Lop through
     for (int i = 0; i < [q count]; i++) {
         NSLog(@"%d) %@", i, [[q objectAtIndex:i] objectForKey:@"title"]);
     }

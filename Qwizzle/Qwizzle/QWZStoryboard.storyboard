@@ -68,6 +68,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="9iK-hW-aAI">
                             <connections>
+                                <action selector="fetchQwizzle:" destination="gsN-V7-zIA" id="JPC-35-nKF"/>
                                 <segue destination="Moa-q1-UmR" kind="modal" identifier="SEGUECreateQwizzle" id="ajf-Wg-9si"/>
                             </connections>
                         </barButtonItem>
@@ -134,7 +135,7 @@
                     <navigationItem key="navigationItem" title="Take a Qwizzle" id="m9Q-Ym-Axj">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="3m9-p0-yo0">
                             <connections>
-                                <action selector="prepareToFillOutAQwizzle:" destination="AdB-gS-UTD" id="TDL-pz-T4w"/>
+                                <action selector="prepareToFillOutAQwizzle:" destination="AdB-gS-UTD" id="dne-yp-yyg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

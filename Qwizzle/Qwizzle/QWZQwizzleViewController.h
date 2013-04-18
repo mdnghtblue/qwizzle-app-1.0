@@ -39,4 +39,6 @@
 // This method is called when users tap the refresh button
 - (IBAction)fetchQwizzle:(id)sender;
 
+- (IBAction)sendInformation:(id)sender;
+
 @end

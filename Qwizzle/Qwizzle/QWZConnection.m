@@ -45,6 +45,8 @@ static NSMutableArray *sharedConnectionList = nil;
 // A delegate method for NSURLConnection that retrieve the data and report success or failure
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
+    NSLog(@"new chunk of data: %@", data);
+    NSLog(@"--------------------");
     [container appendData:data];
 }
 
@@ -56,6 +58,11 @@ static NSMutableArray *sharedConnectionList = nil;
     // If there is a "root object"
     if ([self jsonRootObject]) {
         // Create a parser with the incoming data and let the root object parse its contents
+        NSLog(@"The downloaded data was %@", container);
+        NSLog(@"--------------------");
+        NSString *myString = [[NSString alloc] initWithData:container encoding:NSUTF8StringEncoding];
+        NSLog(@"The raw data was %@", container);
+        NSLog(@"The downloaded data was %@", myString);
         
         // Turn JSON data into basic model objects
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:container options:0 error:nil];

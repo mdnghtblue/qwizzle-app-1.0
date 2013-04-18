@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class QWZQwizzle;
+
 // This class prepare network request for every object in this app
 @interface QWZQwizzleStore : NSObject
 {
@@ -18,9 +20,11 @@
 + (QWZQwizzleStore *)sharedStore;
 
 // This method fetch all Qwizzle created by this user
-- (void)fetchQwizzleWithCompletion:(void (^)(NSArray *obj, NSError *err))block;
+- (void)fetchQwizzleWithCompletion:(void (^)(QWZQwizzle *obj, NSError *err))block;
 
 // This method fetch all Qwizzle that this user has answered
-- (void)fetchAnsweredQwizzleWithCompletion:(void (^)(NSArray *obj, NSError *err))block;
+- (void)fetchAnsweredQwizzleWithCompletion:(void (^)(QWZQwizzle *obj, NSError *err))block;
+
+- (void)sendInformationToServerWithCompletion:(void (^)(QWZQwizzle *obj, NSError *err))block;
 
 @end

@@ -64,6 +64,19 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    // Get the stored data before the view appear
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *username = [defaults objectForKey:@"username"];
+    if (username == nil) {
+        // There is no user information stored on the device yet, redirect to the login page
+        [self redirectToLoginPage];
+    }
+    else {
+        // Otherwise, Load all the data associated with this user
+        NSLog(@"Loading user's data... ");
+    }
+    
     [[self tableView] reloadData];
 }
 
@@ -258,6 +271,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         QWZCreateQwizzleViewController *destinationViewController = segue.destinationViewController;
         [destinationViewController setOrigin:self];
     }
+    else if ([segue.identifier isEqualToString:@"SEGUELogin"]) {
+
+    }
     else {
         NSLog(@"Unidentifiable Segue");
     }
@@ -348,6 +364,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     }; // Finish declaring a code block to run after finish running the connection
     
     [[QWZQwizzleStore sharedStore] sendInformationToServerWithCompletion:completionBlock];
+}
+
+#pragma mark login and logout
+- (void)redirectToLoginPage
+{
+    [self performSegueWithIdentifier:@"SEGUELogin" sender:self];
 }
 
 @end

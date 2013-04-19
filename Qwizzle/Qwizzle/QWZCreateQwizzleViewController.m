@@ -212,7 +212,7 @@
     }
 }
 
-// Called if the user tap the calcel button on the navigation bar
+// Called if the user tap the cancel button on the navigation bar
 - (IBAction)cancel:(id)sender
 {
     // Dismiss this dialog

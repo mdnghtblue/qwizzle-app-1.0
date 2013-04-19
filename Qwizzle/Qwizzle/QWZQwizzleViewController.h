@@ -41,4 +41,7 @@
 
 - (IBAction)sendInformation:(id)sender;
 
+// This method redirect the user into the login page
+- (void)redirectToLoginPage;
+
 @end

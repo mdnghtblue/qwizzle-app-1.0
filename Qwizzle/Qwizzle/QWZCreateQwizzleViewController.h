@@ -50,6 +50,9 @@
 // Then will submit the quiz into the origin's viewcontroller.
 - (IBAction)prepareToSubmitAQwizzle:(id)sender;
 
+// Dismiss this page
+- (IBAction)cancel:(id)sender;
+
 // Dynamically add more UIView for questions
 - (void)addMoreQuestion:(id)sender;
 

@@ -29,6 +29,7 @@
 		E873E6B516FD382D0097F4F2 /* QWZCreateQwizzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E6B316FD382C0097F4F2 /* QWZCreateQwizzleViewController.m */; };
 		E873E6BA16FD40030097F4F2 /* QWZTakeQwizzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E6B816FD40020097F4F2 /* QWZTakeQwizzleViewController.m */; };
 		E873E6BF16FD41740097F4F2 /* QWZViewQwizzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E873E6BD16FD41730097F4F2 /* QWZViewQwizzleViewController.m */; };
+		E873ED2117279CB300F84FA7 /* JSONContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = E873ED2017279CB300F84FA7 /* JSONContainer.m */; };
 		E8A31CE3171299680090BECD /* Qwicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A31CDF171297620090BECD /* Qwicon@2x.png */; };
 		E8A31CE41712996D0090BECD /* Qwicon.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A31CE1171297650090BECD /* Qwicon.png */; };
 /* End PBXBuildFile section */
@@ -74,6 +75,8 @@
 		E873E6B816FD40020097F4F2 /* QWZTakeQwizzleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZTakeQwizzleViewController.m; sourceTree = "<group>"; };
 		E873E6BC16FD41730097F4F2 /* QWZViewQwizzleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZViewQwizzleViewController.h; sourceTree = "<group>"; };
 		E873E6BD16FD41730097F4F2 /* QWZViewQwizzleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZViewQwizzleViewController.m; sourceTree = "<group>"; };
+		E873ED1F17279CB300F84FA7 /* JSONContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONContainer.h; sourceTree = "<group>"; };
+		E873ED2017279CB300F84FA7 /* JSONContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONContainer.m; sourceTree = "<group>"; };
 		E8A31CDF171297620090BECD /* Qwicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Qwicon@2x.png"; path = "../Qwicon@2x.png"; sourceTree = "<group>"; };
 		E8A31CE1171297650090BECD /* Qwicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Qwicon.png; path = ../Qwicon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -134,6 +137,8 @@
 				E873E68D16FCF9930097F4F2 /* QWZQuizSet.m */,
 				E873E68F16FD062F0097F4F2 /* QWZAnsweredQuizSet.h */,
 				E873E69016FD062F0097F4F2 /* QWZAnsweredQuizSet.m */,
+				E85D2C521720E34C00447785 /* QWZLoginViewController.h */,
+				E85D2C531720E34C00447785 /* QWZLoginViewController.m */,
 				E873E69916FD0F980097F4F2 /* QWZQwizzleViewController.h */,
 				E873E69A16FD0F980097F4F2 /* QWZQwizzleViewController.m */,
 				E873E6B216FD382C0097F4F2 /* QWZCreateQwizzleViewController.h */,
@@ -150,8 +155,8 @@
 				E85E40A1171E53D9007A9296 /* QWZConnection.h */,
 				E85E40A2171E53DA007A9296 /* QWZConnection.m */,
 				E85E409D171E51C6007A9296 /* JSONSerializable.h */,
-				E85D2C521720E34C00447785 /* QWZLoginViewController.h */,
-				E85D2C531720E34C00447785 /* QWZLoginViewController.m */,
+				E873ED1F17279CB300F84FA7 /* JSONContainer.h */,
+				E873ED2017279CB300F84FA7 /* JSONContainer.m */,
 			);
 			path = Qwizzle;
 			sourceTree = "<group>";
@@ -255,6 +260,7 @@
 				E85E40A3171E53DA007A9296 /* QWZConnection.m in Sources */,
 				E85E40A6171E5B28007A9296 /* QWZQwizzleStore.m in Sources */,
 				E85D2C541720E34C00447785 /* QWZLoginViewController.m in Sources */,
+				E873ED2117279CB300F84FA7 /* JSONContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

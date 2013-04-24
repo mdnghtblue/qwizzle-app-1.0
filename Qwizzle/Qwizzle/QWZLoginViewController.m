@@ -38,7 +38,7 @@
     // Otherwise, the user can't use this app and stay in this login view.
     // In the future, we might provide the register button in this view that allow user to actually register for an account
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:@"Krissada" forKey:@"username"];
+    [defaults setObject:@"2" forKey:@"user_id"];
     
     // Dismiss this dialog
     [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];

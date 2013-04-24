@@ -16,7 +16,8 @@
 #import "QWZViewQwizzleViewController.h"
 
 #import "QWZQwizzleStore.h"
-#import "QWZQwizzle.h"
+
+#import "JSONContainer.h"
 
 @interface QWZQwizzleViewController ()
 
@@ -67,8 +68,8 @@
     
     // Get the stored data before the view appear
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *username = [defaults objectForKey:@"username"];
-    if (username == nil) {
+    NSString *userID = [defaults objectForKey:@"user_id"];
+    if (userID == nil) {
         // There is no user information stored on the device yet, redirect to the login page
         [self redirectToLoginPage];
     }
@@ -81,18 +82,52 @@
 }
 
 // This method receives a newly created Qwizzle from the QWZCreateQwizzleController and updates the mainview
-- (void)submitAQwizzle:(QWZQuizSet *)qz
+- (void)submitAQwizzle:(QWZQuizSet *)quizSet
 {
-    NSLog(@"A qwizzle has been submitted!! %@", qz);
-    NSLog(@"There are %d questions for %@", [[qz allQuizzes] count], [qz title]);
-    [allQuizSets addObject:qz];
+    NSLog(@"A qwizzle has been submitted!! %@", quizSet);
+    NSLog(@"There are %d questions for %@", [[quizSet allQuizzes] count], [quizSet title]);
+    [allQuizSets addObject:quizSet];
     
     // Adding new Qwizzle (unanswer qwizzle) into the table, this set reside in the section 0
-    NSInteger lastRow = [allQuizSets indexOfObject:qz];
+    NSInteger lastRow = [allQuizSets indexOfObject:quizSet];
     NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
     
     // Insert this Qwizzle into the table
     [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationTop];
+    
+    
+    
+    
+    // Get ahold of the segmented control that is currently in the title view
+    UIView *currentTitleView = [[self navigationItem] titleView];
+    
+    // Create an activity indicator while loading
+    UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    
+    [[self navigationItem] setTitleView:aiView];
+    [aiView startAnimating];
+    
+    // The codeblock to run after the connection finish loading
+    void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
+        
+        // Replaces the activity indicator with the previous title
+        [[self navigationItem] setTitleView:currentTitleView];
+        
+        if (!err) {
+            // If everything went ok (with no error), grab the object, and reload the table
+            NSLog(@"Information sent with no error: %@", obj);
+            
+            // Update the datasource model and the view
+            //allQuizSet = obj;
+            //[[self tableView] reloadData];
+        } else {
+            // If things went bad, show an alert view to users
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [av show];
+        }
+    }; // Finish declaring a code block to run after finish running the connection
+    
+    [[QWZQwizzleStore sharedStore] sendQwizzle:quizSet WithCompletion:completionBlock];
 }
 
 // This method receives a newly created Qwizzle from the QWZTakeQwizzleController and updates the mainview
@@ -289,47 +324,49 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 #pragma mark store object & connection
 - (IBAction)fetchQwizzle:(id)sender
 {
-    // Get ahold of the segmented control that is currently in the title view
-    UIView *currentTitleView = [[self navigationItem] titleView];
-    
-    // Create an activity indicator while loading
-    UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    
-    [[self navigationItem] setTitleView:aiView];
-    [aiView startAnimating];
-    
-    // To handle a-synchronous connection, we need to provide codeblock to run "LATER"
-    // whenever the connection really finish loading stuffs from the web
-    // Think of a codeblock as an anonymous function in JavaScript (this codeblock's named completionBlock)
-    void (^completionBlock)(QWZQwizzle *obj, NSError *err) = ^(QWZQwizzle *obj, NSError *err) {
-        
-        // When the request completes, this block will be called.
-        
-        // When the request completes - success or failure, replaces the activity indicator with the previous title
-        [[self navigationItem] setTitleView:currentTitleView];
-        
-        if (!err) {
-            // If everything went ok (not error), grab the object, and reload the table
-            NSLog(@"Inside a block with no error: %@", obj);
-            
-            // Update the datasource model and the view
-            //allQuizSet = obj;
-            //[[self tableView] reloadData];
-        } else {
-            // If things went bad, show an alert view to users
-            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [av show];
-        }
-    }; // Finish declaring a code block to run after finish running the connection
-    
-    // Initiate the request, send the code block to the Store object to run after the connection is completed.
-    [[QWZQwizzleStore sharedStore] fetchQwizzleWithCompletion:completionBlock];
-    
-    [[QWZQwizzleStore sharedStore] fetchAnsweredQwizzleWithCompletion:completionBlock];
+    NSLog(@"fetchQwizzle");
+//    // Get ahold of the segmented control that is currently in the title view
+//    UIView *currentTitleView = [[self navigationItem] titleView];
+//    
+//    // Create an activity indicator while loading
+//    UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+//    
+//    [[self navigationItem] setTitleView:aiView];
+//    [aiView startAnimating];
+//    
+//    // To handle a-synchronous connection, we need to provide codeblock to run "LATER"
+//    // whenever the connection really finish loading stuffs from the web
+//    // Think of a codeblock as an anonymous function in JavaScript (this codeblock's named completionBlock)
+//    void (^completionBlock)(QWZQwizzle *obj, NSError *err) = ^(QWZQwizzle *obj, NSError *err) {
+//        
+//        // When the request completes, this block will be called.
+//        
+//        // When the request completes - success or failure, replaces the activity indicator with the previous title
+//        [[self navigationItem] setTitleView:currentTitleView];
+//        
+//        if (!err) {
+//            // If everything went ok (not error), grab the object, and reload the table
+//            NSLog(@"Inside a block with no error: %@", obj);
+//            
+//            // Update the datasource model and the view
+//            //allQuizSet = obj;
+//            //[[self tableView] reloadData];
+//        } else {
+//            // If things went bad, show an alert view to users
+//            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//            [av show];
+//        }
+//    }; // Finish declaring a code block to run after finish running the connection
+//    
+//    // Initiate the request, send the code block to the Store object to run after the connection is completed.
+//    [[QWZQwizzleStore sharedStore] fetchQwizzleWithCompletion:completionBlock];
+//    
+//    [[QWZQwizzleStore sharedStore] fetchAnsweredQwizzleWithCompletion:completionBlock];
 }
 
 - (IBAction)sendInformation:(id)sender
 {
+    NSLog(@"sendInformation");
     // Get ahold of the segmented control that is currently in the title view
     UIView *currentTitleView = [[self navigationItem] titleView];
     
@@ -338,11 +375,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     
     [[self navigationItem] setTitleView:aiView];
     [aiView startAnimating];
-    
+
     // To handle a-synchronous connection, we need to provide codeblock to run "LATER"
     // whenever the connection really finish loading stuffs from the web
     // Think of a codeblock as an anonymous function in JavaScript (this codeblock's named completionBlock)
-    void (^completionBlock)(QWZQwizzle *obj, NSError *err) = ^(QWZQwizzle *obj, NSError *err) {
+    void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
         
         // When the request completes, this block will be called.
         
@@ -350,7 +387,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         [[self navigationItem] setTitleView:currentTitleView];
         
         if (!err) {
-            // If everything went ok (not error), grab the object, and reload the table
+            // If everything went ok (with no error), grab the object, and reload the table
             NSLog(@"Information sent with no error: %@", obj);
             
             // Update the datasource model and the view

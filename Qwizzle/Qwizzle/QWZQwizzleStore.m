@@ -10,7 +10,9 @@
 #import "QWZConnection.h"
 
 // The store need to know the data structure
-#import "QWZQwizzle.h"
+#import "JSONContainer.h"
+#import "QWZQuizSet.h"
+#import "QWZQuiz.h"
 
 @implementation QWZQwizzleStore
 
@@ -27,40 +29,40 @@
 }
 
 // This method fetch all Qwizzle created by this user
-- (void)fetchQwizzleWithCompletion:(void (^)(QWZQwizzle *, NSError *))block
+- (void)fetchQwizzleWithCompletion:(void (^)(JSONContainer *, NSError *))block
 {
     NSLog(@"fetchQwizzleWithCompletion with codeblock %@", block);
-    
-    NSURL *url = [NSURL URLWithString:@"http://qwizzleapp.com/users.php"];
-    
-    NSURLRequest *req = [NSURLRequest requestWithURL:url];
-    
-    // Create an empty Qwizzle
-    QWZQwizzle *qwizzle = [[QWZQwizzle alloc] init];
-    
-    // Create a connection "actor" object that will transfer data to/from the server
-    QWZConnection *connection = [[QWZConnection alloc] initWithRequest:req];
-    
-    // When the connection completes, this block from the controller will be called
-    [connection setCompletionBlock:block];
-    
-    // Let the empty channel parse the returning data from the web service
-    [connection setJsonRootObject:qwizzle];
-    
-    // Fire the connection
-    [connection start];
+//    
+//    NSURL *url = [NSURL URLWithString:@"http://qwizzleapp.com/users.php"];
+//    
+//    NSURLRequest *req = [NSURLRequest requestWithURL:url];
+//    
+//    // Create an empty Qwizzle
+//    QWZQwizzle *qwizzle = [[QWZQwizzle alloc] init];
+//    
+//    // Create a connection "actor" object that will transfer data to/from the server
+//    QWZConnection *connection = [[QWZConnection alloc] initWithRequest:req];
+//    
+//    // When the connection completes, this block from the controller will be called
+//    [connection setCompletionBlock:block];
+//    
+//    // Let the empty channel parse the returning data from the web service
+//    [connection setJsonRootObject:qwizzle];
+//    
+//    // Fire the connection
+//    [connection start];
 }
 
 // This method fetch all Qwizzle that this user has answered
-- (void)fetchAnsweredQwizzleWithCompletion:(void (^)(QWZQwizzle *, NSError *))block
+- (void)fetchAnsweredQwizzleWithCompletion:(void (^)(JSONContainer *, NSError *))block
 {
     NSLog(@"fetchAnsweredQwizzleWithCompletion with codeblock: %@", block);
     
-    NSURL *url = [NSURL URLWithString:@"http://boatboat001.com/index.php/feed/latest.json"];
+//    NSURL *url = [NSURL URLWithString:@"http://boatboat001.com/index.php/feed/latest.json"];
 }
 
 // Test sending information to the server
-- (void)sendInformationToServerWithCompletion:(void (^)(QWZQwizzle *, NSError *))block
+- (void)sendInformationToServerWithCompletion:(void (^)(JSONContainer *, NSError *))block
 {
     NSLog(@"sendInformationToServerWithCompletion with codeblock: %@", block);
     
@@ -74,8 +76,8 @@
     NSString *postString = @"company=nanosoft&quality=AWESOME!";
     [req setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     
-    // Create an empty Qwizzle
-    QWZQwizzle *qwizzle = [[QWZQwizzle alloc] init];
+    // Create an empty JSONContainer
+    JSONContainer *json = [[JSONContainer alloc] init];
     
     // Create a connection "actor" object that will transfer data to/from the server
     QWZConnection *connection = [[QWZConnection alloc] initWithRequest:req];
@@ -84,7 +86,64 @@
     [connection setCompletionBlock:block];
     
     // Let the empty channel parse the returning data from the web service
-    [connection setJsonRootObject:qwizzle];
+    [connection setJsonRootObject:json];
+    
+    // Fire the connection
+    [connection start];
+}
+
+- (void)sendQwizzle:(QWZQuizSet *)quizSet
+     WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
+{
+    NSLog(@"sendQwizzle %@ with codeblock: %@", quizSet, block);
+    
+    // Get User's ID
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userID = [defaults objectForKey:@"user_id"];
+    
+    // Construct URL
+    //NSString *createQwizzleURL = [NSString stringWithFormat:@"http://qwizzleapp.com/qwizzle/%@", userID];
+    NSString *createQwizzleURL = [NSString stringWithFormat:@"http://qwizzleapp.com/qwizzle/"];
+    
+    NSURL *url = [NSURL URLWithString:createQwizzleURL];
+    
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url
+                                                       cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                   timeoutInterval:60.0];
+    
+    // Start constructing body message
+    [req setHTTPMethod:@"PUT"];
+    NSMutableString *postString = [[NSMutableString alloc] init];
+    [postString appendString:@"{"];
+    
+    [postString appendString:[NSString stringWithFormat:@"\"creator\": %@,", userID]];
+    [postString appendString:[NSString stringWithFormat:@"\"title\": \"%@\",", [quizSet title]]];
+    
+    [postString appendString:@"\"questions\": ["];
+    NSInteger count = 0;
+    for (QWZQuiz *quiz in [quizSet allQuizzes]) {
+        if (count > 0) { [postString appendString:@","]; }
+        [postString appendString:[NSString stringWithFormat:@"{\"question\": \"%@\"}", [quiz question]]];
+        count++;
+    }
+    [postString appendString:@"]"];
+    
+    [postString appendString:@"}"];
+    
+    [req setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    // End constructing body message
+    
+    // Create an empty JSONContainer
+    JSONContainer *json = [[JSONContainer alloc] init];
+    
+    // Create a connection "actor" object that will transfer data to/from the server
+    QWZConnection *connection = [[QWZConnection alloc] initWithRequest:req];
+    
+    // When the connection completes, this block from the controller will be called
+    [connection setCompletionBlock:block];
+    
+    // Let the empty channel parse the returning data from the web service
+    [connection setJsonRootObject:json];
     
     // Fire the connection
     [connection start];

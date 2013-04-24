@@ -12,4 +12,8 @@
 
 - (void)readFromJSONDictionary:(NSDictionary *)dict;
 
+- (void)setJSON:(NSDictionary *)dict;
+
+- (NSDictionary *)JSON;
+
 @end

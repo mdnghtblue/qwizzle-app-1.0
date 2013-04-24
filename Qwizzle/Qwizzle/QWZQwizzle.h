@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JSONSerializable.h"
 
-@interface QWZQwizzle : NSObject <JSONSerializable>
+@interface QWZQwizzle : NSObject 
 {
     // This array stores all quiz sets
     NSMutableArray *allQuizSets;

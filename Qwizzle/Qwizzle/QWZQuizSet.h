@@ -18,6 +18,7 @@
     NSMutableArray *allQuizzes;
 }
 
+@property (nonatomic) NSInteger quizSetID;
 @property (nonatomic, copy) NSString *title;   // Hold the title of this set of quiz
 @property (nonatomic, copy) NSString *creator;    // Hold the owner of this set of quiz
 @property (nonatomic, readonly, strong) NSDate *dateCreated;    // Hold the creation date of the question
@@ -33,6 +34,8 @@
 
 // Remove a question
 - (void)removeQuiz:(QWZQuiz *)q;
+
+- (void)removeAllQuizzes;
 
 // Move a quiz from an index to another index
 - (void)moveQuizAtIndex:(int)from toIndex:(int)to;

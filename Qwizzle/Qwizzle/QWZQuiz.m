@@ -11,6 +11,7 @@
 @implementation QWZQuiz
 
 // Initialize a property using @synthesize directive, we get a free getter and setter to the property using this method
+@synthesize questionID;
 @synthesize question;
 @synthesize answer;
 @synthesize dateCreated;
@@ -37,6 +38,20 @@
 {
     // Call the designated initializer with a default value
     return [self initWithQuestion:q answer:@""];
+}
+
+- (id)initWithID:(NSInteger)qid question:(NSString *)q andAnswer:(NSString *)a
+{
+    self = [super init];
+    
+    if (self) {
+        questionID = qid;
+        [self setQuestion:q]; // Set a question using a setter
+        [self setAnswer:a]; // Set an answer using a setter
+        dateCreated = [[NSDate alloc] init]; // Initialize the date this quiz
+    }
+    
+    return self;
 }
 
 - (id)init

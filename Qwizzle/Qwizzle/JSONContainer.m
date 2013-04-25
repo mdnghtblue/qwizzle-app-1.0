@@ -31,7 +31,7 @@
     [self setJSONData:[JSON copy]];
 }
 
-- (NSDictionary *)JSON
+- (NSMutableDictionary *)JSON
 {
     return [self JSONData];
 }

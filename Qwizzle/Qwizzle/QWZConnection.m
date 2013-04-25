@@ -63,7 +63,7 @@ static NSMutableArray *sharedConnectionList = nil;
         
         // Turn JSON data into basic model objects
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:container options:0 error:nil];
-        
+
         // Have the root object construct itself from basic model objects
         [[self jsonRootObject] setJSON:dict];
         

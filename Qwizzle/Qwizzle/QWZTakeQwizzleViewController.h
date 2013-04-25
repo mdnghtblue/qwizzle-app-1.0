@@ -37,5 +37,6 @@
 
 - (IBAction)prepareToFillOutAQwizzle:(id)sender;
 
+- (void)constructUI;
 
 @end

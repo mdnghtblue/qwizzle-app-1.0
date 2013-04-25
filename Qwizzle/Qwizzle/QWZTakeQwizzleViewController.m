@@ -16,6 +16,9 @@
 
 #import "UIView+FindFirstResponder.h"
 
+#import "QWZQwizzleStore.h"
+#import "JSONContainer.h"
+
 @interface QWZTakeQwizzleViewController ()
 
 @end
@@ -42,11 +45,57 @@
                                    action:@selector(dismissKeyboard)];
     [scrollView addGestureRecognizer:tap];
     
+    [quizSet removeAllQuizzes];
+    
     controlList = [[NSMutableArray alloc] init];
     answerList = [[NSMutableArray alloc] init];
     
-    // Set the initial content size of the scroll view to make it scrollable
+    // Start preparing to get all the questions of this quizset
+    // Prepare to connect to the web service
+    // Get ahold of the segmented control that is currently in the title view
+    UIView *currentTitleView = [[self navigationItem] titleView];
+    
+    // Create an activity indicator while loading
+    UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    
+    [[self navigationItem] setTitleView:aiView];
+    [aiView startAnimating];
+    
+    // The codeblock to run after finish loading the connection
+    void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
+        
+        // Replaces the activity indicator with the previous title
+        [[self navigationItem] setTitleView:currentTitleView];
+        
+        if (!err) {
+            // If everything went ok (with no error), grab the object, and reload the table
+            
+            QWZQuiz *qz = nil;
+            NSDictionary *question = nil;
+            NSArray *questions = [[obj JSON] objectForKey:@"questions"];
+            for (int i = 0; i < [questions count]; i++) {
+                question = [[questions objectAtIndex:i] objectForKey:@"question"];
+                qz = [[QWZQuiz alloc] initWithID:[[question objectForKey:@"id"] intValue] question:[[question objectForKey:@"text"] copy] andAnswer:@""];
+                
+                [quizSet addQuiz:qz];
+            }
+            
+            // Construct the UI
+            [self constructUI];
+        } else {
+            // If things went bad, show an alert view to users
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [av show];
+        }
+    }; // Finish declaring a code block to run after finish running the connection
+    
+    [[QWZQwizzleStore sharedStore] fetchQuestions:[quizSet quizSetID] WithCompletion:completionBlock];
+}
 
+- (void)constructUI
+{
+    
+    // Set the initial content size of the scroll view to make it scrollable
     [scrollView setContentSize:CGSizeMake(SCROLL_VIEW_WIDTH, SCROLL_VIEW_HEIGHT)];
     
     // Preparing UI - Create and configure programmatically
@@ -57,19 +106,19 @@
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
     [titleLabel setNumberOfLines:2];
     [scrollView addSubview:titleLabel];
-    
+
     NSInteger y = QUIZSET_VERTICAL_OFFSET; // initial vertical position for question set
     for (NSInteger i = 0; i < [[quizSet allQuizzes] count]; i++)
     {
         NSString *qwzQuestion = [(QWZQuiz *)quizSet.allQuizzes[i] question];
         NSLog(@"question: %@", qwzQuestion);
-        
+
         // Adding the text field for the question
         UILabel *questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(QUIZSET_HORIZONTAL_POS, y, QUIZSET_ITEM_WIDTH, QUIZSET_ITEM_HEIGHT)];
         [questionLabel setText:[[NSString alloc] initWithFormat:@"%@", qwzQuestion]];
         [questionLabel setBackgroundColor:[UIColor clearColor]];
         [scrollView addSubview:questionLabel];
-        
+
         // Adding the corresponding textfield for the first question
         UITextView *answerField = [[UITextView alloc] initWithFrame:CGRectMake(QUIZSET_HORIZONTAL_POS, y + ANSWER_VERTICAL_OFFSET, QUIZSET_ITEM_WIDTH, QUIZSET_ITEM_HEIGHT)];
         [answerField setScrollsToTop:true];
@@ -78,9 +127,9 @@
         answerField.layer.borderColor = [[UIColor grayColor] CGColor];
         [controlList addObject:answerField]; // We will need the reference later
         [scrollView addSubview:answerField];
-        
+
         y += QUIZSET_VERTICAL_OFFSET;
-        
+
         scrollviewHeight = scrollviewHeight + QUESTION_DISTANCES;
         [scrollView setContentSize:CGSizeMake(scrollviewWidth, scrollviewHeight)];
     }

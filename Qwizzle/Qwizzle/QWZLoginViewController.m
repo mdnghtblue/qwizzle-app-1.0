@@ -9,7 +9,7 @@
 #import "QWZLoginViewController.h"
 
 #import "QWZQwizzleStore.h"
-#import "QWZQwizzle.h"
+#import "JSONContainer.h"
 
 @interface QWZLoginViewController ()
 

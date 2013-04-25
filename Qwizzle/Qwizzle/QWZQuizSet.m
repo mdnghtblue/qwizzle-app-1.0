@@ -10,6 +10,7 @@
 
 @implementation QWZQuizSet
 
+@synthesize quizSetID;
 @synthesize title;
 @synthesize creator;
 @synthesize dateCreated;
@@ -54,6 +55,11 @@
 - (void)removeQuiz:(QWZQuiz *)q
 {
     [allQuizzes removeObjectIdenticalTo:q];
+}
+
+- (void)removeAllQuizzes
+{
+    [allQuizzes removeAllObjects];
 }
 
 // Move a quiz from an index to another index

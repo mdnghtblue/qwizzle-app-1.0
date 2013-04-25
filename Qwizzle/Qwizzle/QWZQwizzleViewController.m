@@ -16,7 +16,6 @@
 #import "QWZViewQwizzleViewController.h"
 
 #import "QWZQwizzleStore.h"
-
 #import "JSONContainer.h"
 
 @interface QWZQwizzleViewController ()
@@ -36,16 +35,16 @@
     allQuizSets = [[NSMutableArray alloc] init];
     allAnsweredQuizSets = [[NSMutableArray alloc] init];
     
-    // Add hard-coded question set here
-    QWZQuiz *q1 = [[QWZQuiz alloc] initWithQuestion:@"What is your name?"];
-    QWZQuiz *q2 = [[QWZQuiz alloc] initWithQuestion:@"What is your last name?"];
-    
-    QWZQuizSet *qs1 = [[QWZQuizSet alloc] initWithTitle:@"Sample Qwizzle"];
-    [qs1 addQuiz:q1];
-    [qs1 addQuiz:q2];
-    
-    QWZQuizSet *qs2 = [[QWZQuizSet alloc] initWithTitle:@"Sample Qwizzle Pack 2"];
-    [qs2 addQuiz:q1];
+//    // Add hard-coded question set here
+//    QWZQuiz *q1 = [[QWZQuiz alloc] initWithQuestion:@"What is your name?"];
+//    QWZQuiz *q2 = [[QWZQuiz alloc] initWithQuestion:@"What is your last name?"];
+//    
+//    QWZQuizSet *qs1 = [[QWZQuizSet alloc] initWithTitle:@"Sample Qwizzle"];
+//    [qs1 addQuiz:q1];
+//    [qs1 addQuiz:q2];
+//    
+//    QWZQuizSet *qs2 = [[QWZQuizSet alloc] initWithTitle:@"Sample Qwizzle Pack 2"];
+//    [qs2 addQuiz:q1];
     
     QWZQuiz *q3 = [[QWZQuiz alloc] initWithQuestion:@"What is your favourite color?" answer:@"Green"];
     QWZQuiz *q4 = [[QWZQuiz alloc] initWithQuestion:@"What is your favourite food?" answer:@"Fried Rice"];
@@ -55,6 +54,24 @@
     [aqs1 addQuiz:q5];
     [aqs1 addQuiz:q4];
     
+    // Add hard-coded question set here
+    //QWZQuiz *nq1 = [[QWZQuiz alloc] initWithID:13 question:@"Why are you so awesome?" andAnswer:@""];
+    //QWZQuiz *nq2 = [[QWZQuiz alloc] initWithID:14 question:@"How do you feel being so awesome?" andAnswer:@""];
+    //QWZQuiz *nq3 = [[QWZQuiz alloc] initWithID:15 question:@"What would you do next?" andAnswer:@""];
+    
+    QWZQuizSet *qs1 = [[QWZQuizSet alloc] initWithTitle:@"How to be awesome"];
+    //[qs1 addQuiz:nq1];
+    //[qs1 addQuiz:nq2];
+    //[qs1 addQuiz:nq3];
+    [qs1 setQuizSetID:19];
+    
+    QWZQuiz *nq4 = [[QWZQuiz alloc] initWithID:7 question:@"What do you think about apples?" andAnswer:@""];
+    QWZQuiz *nq5 = [[QWZQuiz alloc] initWithID:8 question:@"What do you think about bananas?" andAnswer:@""];
+    
+    QWZQuizSet *qs2 = [[QWZQuizSet alloc] initWithTitle:@"Favorite Foods 2"];
+    [qs2 addQuiz:nq4];
+    [qs2 addQuiz:nq5];
+    [qs2 setQuizSetID:16];
     
     [allQuizSets addObject:qs1];
     [allQuizSets addObject:qs2];
@@ -95,9 +112,7 @@
     // Insert this Qwizzle into the table
     [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationTop];
     
-    
-    
-    
+    // Prepare to connect to the web service
     // Get ahold of the segmented control that is currently in the title view
     UIView *currentTitleView = [[self navigationItem] titleView];
     
@@ -127,7 +142,7 @@
         }
     }; // Finish declaring a code block to run after finish running the connection
     
-    [[QWZQwizzleStore sharedStore] sendQwizzle:quizSet WithCompletion:completionBlock];
+    [[QWZQwizzleStore sharedStore] sendAQwizzle:quizSet WithCompletion:completionBlock];
 }
 
 // This method receives a newly created Qwizzle from the QWZTakeQwizzleController and updates the mainview
@@ -325,24 +340,21 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 - (IBAction)fetchQwizzle:(id)sender
 {
     NSLog(@"fetchQwizzle");
-//    // Get ahold of the segmented control that is currently in the title view
-//    UIView *currentTitleView = [[self navigationItem] titleView];
-//    
-//    // Create an activity indicator while loading
-//    UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-//    
-//    [[self navigationItem] setTitleView:aiView];
-//    [aiView startAnimating];
-//    
-//    // To handle a-synchronous connection, we need to provide codeblock to run "LATER"
-//    // whenever the connection really finish loading stuffs from the web
-//    // Think of a codeblock as an anonymous function in JavaScript (this codeblock's named completionBlock)
-//    void (^completionBlock)(QWZQwizzle *obj, NSError *err) = ^(QWZQwizzle *obj, NSError *err) {
-//        
-//        // When the request completes, this block will be called.
-//        
-//        // When the request completes - success or failure, replaces the activity indicator with the previous title
-//        [[self navigationItem] setTitleView:currentTitleView];
+    // Get ahold of the segmented control that is currently in the title view
+    UIView *currentTitleView = [[self navigationItem] titleView];
+    
+    // Create an activity indicator while loading
+    UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    
+    [[self navigationItem] setTitleView:aiView];
+    [aiView startAnimating];
+    
+    // Create a codeblock to run when finish loading
+    void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
+
+        
+        // When the request completes - success or failure, replaces the activity indicator with the previous title
+        [[self navigationItem] setTitleView:currentTitleView];
 //        
 //        if (!err) {
 //            // If everything went ok (not error), grab the object, and reload the table
@@ -356,12 +368,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 //            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 //            [av show];
 //        }
-//    }; // Finish declaring a code block to run after finish running the connection
-//    
-//    // Initiate the request, send the code block to the Store object to run after the connection is completed.
-//    [[QWZQwizzleStore sharedStore] fetchQwizzleWithCompletion:completionBlock];
-//    
-//    [[QWZQwizzleStore sharedStore] fetchAnsweredQwizzleWithCompletion:completionBlock];
+    }; // Finish declaring a code block to run after finish running the connection
+    
+    // Initiate the request, send the code block to the Store object to run after the connection is completed.
+    [[QWZQwizzleStore sharedStore] fetchQwizzleWithCompletion:completionBlock];
+    
+    [[QWZQwizzleStore sharedStore] fetchAnsweredQwizzleWithCompletion:completionBlock];
 }
 
 - (IBAction)sendInformation:(id)sender

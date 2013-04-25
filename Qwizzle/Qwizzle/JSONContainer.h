@@ -13,4 +13,8 @@
 
 @property (nonatomic, copy) NSMutableDictionary *JSONData;
 
+// Implement the JSONSerializable protocol
+- (void)setJSON:(NSMutableDictionary *)JSON;
+- (NSMutableDictionary *)JSON;
+
 @end

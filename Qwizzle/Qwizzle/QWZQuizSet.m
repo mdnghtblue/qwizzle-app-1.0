@@ -37,7 +37,7 @@
 - (id)initWithTitle:(NSString *)t
 {
     // Call the designated initializer with a default value
-    return [self initWithTitle:@"Default Title" andID:-1];
+    return [self initWithTitle:t andID:-1];
 }
 
 - (id)init

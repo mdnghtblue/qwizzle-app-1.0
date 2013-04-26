@@ -28,21 +28,37 @@
     
     // For each quiz
     QWZQuiz *quiz;
-    CGFloat position;
-    CGFloat latestHeight;
+    CGFloat latestPosition; // the latest position for a ui element
+    CGFloat latestHeight; // the latest height of a ui element
+    CGSize labelSize; // stores label's height
+    
+    CGRect titleFrame = CGRectMake(40, 10, 250, 60);
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
+    [titleLabel setText:[[NSString alloc] initWithFormat:@"%@", [quizSet title]]];
+    [titleLabel setBackgroundColor:[UIColor clearColor]];
+    [titleLabel setTextAlignment:NSTextAlignmentCenter];
+    
+    // Fix multiple lines issue of those long questions.
+    [titleLabel setNumberOfLines:0];
+    [titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    [titleLabel sizeToFit];
+    labelSize = [titleLabel.text sizeWithFont:titleLabel.font
+                            constrainedToSize:titleLabel.frame.size
+                                lineBreakMode:NSLineBreakByWordWrapping];
+    latestPosition = titleFrame.origin.y;
+    latestHeight = labelSize.height + latestPosition;
+    [scrollView addSubview:titleLabel];
+    
+    // Begin the dynamic parts
     UILabel *label;
     for (NSInteger i = 0; i < [[quizSet allQuizzes] count]; i++) {
         quiz = [[quizSet allQuizzes] objectAtIndex:i];
         
-        if (i == 0) { // Set initial position
-            position = (i + 1) * OFFSET;
-        }
-        else { // Otherwise, set the position by the latest bound
-            position = latestHeight + OFFSET;
-        }
+        // Move the next question's text a little bit
+        latestPosition = latestHeight + OFFSET;
         
         // Preparing a label for a question
-        CGRect labelFrame = CGRectMake(QUESTION_HORIZONTAL_POS, position, QUIZSET_ITEM_WIDTH, QUIZSET_ITEM_HEIGHT);
+        CGRect labelFrame = CGRectMake(QUIZSET_HORIZONTAL_POS, latestPosition, QUIZSET_ITEM_WIDTH, QUIZSET_ITEM_HEIGHT);
         
         // Create the new label and assign values to the necessary fields
         label = [[UILabel alloc] initWithFrame:labelFrame];
@@ -56,12 +72,15 @@
         CGSize labelSize = [label.text sizeWithFont:label.font
                                   constrainedToSize:label.frame.size
                                       lineBreakMode:NSLineBreakByWordWrapping];
-        latestHeight = labelSize.height + position;
+        
+        latestHeight = labelSize.height + latestPosition;
         [scrollView addSubview:label];
-
-        // Preparing the label for an answer
-        position = latestHeight + 10; // Move just a little bit
-        labelFrame = CGRectMake(ANSWER_HORIZONTAL_POS, position, QUIZSET_ITEM_WIDTH, QUIZSET_ITEM_HEIGHT);
+        
+        // Move the UI element's position according to the lastest height of the textfield
+        // and the offset between question and answer
+        latestPosition = latestHeight + QUESTION_ANSWER_OFFSET; // Move just a little bit
+        
+        labelFrame = CGRectMake(QUIZSET_HORIZONTAL_POS, latestPosition, QUIZSET_ITEM_WIDTH, QUIZSET_ITEM_HEIGHT);
         
         // Create the new label and assign values to the necessary fields
         label = [[UILabel alloc] initWithFrame:labelFrame];
@@ -72,14 +91,14 @@
         [label sizeToFit];
         
         labelSize = [label.text sizeWithFont:label.font
-                                  constrainedToSize:label.frame.size
-                                      lineBreakMode:NSLineBreakByWordWrapping];
-        latestHeight = labelSize.height + position;
+                           constrainedToSize:label.frame.size
+                               lineBreakMode:NSLineBreakByWordWrapping];
+        latestHeight = labelSize.height + latestPosition;
 
         [scrollView addSubview:label];
     }
     
-    [scrollView setContentSize:CGSizeMake(SCROLLVIEW_WIDTH, latestHeight + SCROLLVIEW_HEIGHT_OFFSET)];
+    [scrollView setContentSize:CGSizeMake(SCROLLVIEW_WIDTH, latestHeight + OFFSET)];
 }
 
 // Implement this method if there is anything needed to be done if we receive a memory warning

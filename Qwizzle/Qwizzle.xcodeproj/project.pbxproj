@@ -74,6 +74,7 @@
 		E873E6BD16FD41730097F4F2 /* QWZViewQwizzleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZViewQwizzleViewController.m; sourceTree = "<group>"; };
 		E873ED1F17279CB300F84FA7 /* JSONContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONContainer.h; sourceTree = "<group>"; };
 		E873ED2017279CB300F84FA7 /* JSONContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONContainer.m; sourceTree = "<group>"; };
+		E8914A1D172B400F00F14075 /* QWZConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZConstant.h; sourceTree = "<group>"; };
 		E8A31CDF171297620090BECD /* Qwicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Qwicon@2x.png"; path = "../Qwicon@2x.png"; sourceTree = "<group>"; };
 		E8A31CE1171297650090BECD /* Qwicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Qwicon.png; path = ../Qwicon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -168,6 +169,7 @@
 				E873E67E16FCF6640097F4F2 /* Default.png */,
 				E873E68016FCF6640097F4F2 /* Default@2x.png */,
 				E873E68216FCF6640097F4F2 /* Default-568h@2x.png */,
+				E8914A1D172B400F00F14075 /* QWZConstant.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

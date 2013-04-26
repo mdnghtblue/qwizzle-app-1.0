@@ -94,45 +94,74 @@
 
 - (void)constructUI
 {
-    
     // Set the initial content size of the scroll view to make it scrollable
-    [scrollView setContentSize:CGSizeMake(SCROLL_VIEW_WIDTH, SCROLL_VIEW_HEIGHT)];
+    [scrollView setContentSize:CGSizeMake(SCROLLVIEW_WIDTH, SCROLLVIEW_HEIGHT)];
     
     // Preparing UI - Create and configure programmatically
+    CGFloat latestPosition; // the latest position for a ui element
+    CGFloat latestHeight; // the latest height of a ui element
+    CGSize labelSize; // stores label's height
+    
     CGRect titleFrame = CGRectMake(40, 10, 250, 60);
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
     [titleLabel setText:[[NSString alloc] initWithFormat:@"Taking Qwizzle:\n %@", [quizSet title]]];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [titleLabel setNumberOfLines:2];
+    
+    // Fix multiple lines issue of those long questions.
+    [titleLabel setNumberOfLines:0];
+    [titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    [titleLabel sizeToFit];
+    labelSize = [titleLabel.text sizeWithFont:titleLabel.font
+                            constrainedToSize:titleLabel.frame.size
+                                lineBreakMode:NSLineBreakByWordWrapping];
+    latestPosition = titleFrame.origin.y;
+    latestHeight = labelSize.height + latestPosition;
     [scrollView addSubview:titleLabel];
 
-    NSInteger y = QUIZSET_VERTICAL_OFFSET; // initial vertical position for question set
+    // Begin the dynamic parts
     for (NSInteger i = 0; i < [[quizSet allQuizzes] count]; i++)
     {
         NSString *qwzQuestion = [(QWZQuiz *)quizSet.allQuizzes[i] question];
-        NSLog(@"question: %@", qwzQuestion);
+        
+        // Move the next question's text a little bit
+        latestPosition = latestHeight + OFFSET;
 
         // Adding the text field for the question
-        UILabel *questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(QUIZSET_HORIZONTAL_POS, y, QUIZSET_ITEM_WIDTH, QUIZSET_ITEM_HEIGHT)];
-        [questionLabel setText:[[NSString alloc] initWithFormat:@"%@", qwzQuestion]];
+        UILabel *questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(QUIZSET_HORIZONTAL_POS, latestPosition, QUIZSET_ITEM_WIDTH, QUIZSET_ITEM_HEIGHT)];
+        
+        [questionLabel setText:[[NSString alloc] initWithFormat:@"%d.) %@", (i + 1), qwzQuestion]];
         [questionLabel setBackgroundColor:[UIColor clearColor]];
-        [scrollView addSubview:questionLabel];
 
+        // Fix multiple lines issue of those long questions.
+        [questionLabel setNumberOfLines:0];
+        [questionLabel setLineBreakMode:NSLineBreakByWordWrapping];
+        [questionLabel sizeToFit];
+        CGSize labelSize = [questionLabel.text sizeWithFont:questionLabel.font
+                           constrainedToSize:questionLabel.frame.size
+                               lineBreakMode:NSLineBreakByWordWrapping];
+        
+        latestHeight = labelSize.height + latestPosition;
+        [scrollView addSubview:questionLabel];
+        
+        // Move the UI element's position according to the lastest height of the textfield
+        // and the offset between question and answer
+        latestPosition = latestHeight + QUESTION_ANSWER_OFFSET; 
+        
         // Adding the corresponding textfield for the first question
-        UITextView *answerField = [[UITextView alloc] initWithFrame:CGRectMake(QUIZSET_HORIZONTAL_POS, y + ANSWER_VERTICAL_OFFSET, QUIZSET_ITEM_WIDTH, QUIZSET_ITEM_HEIGHT)];
+        UITextView *answerField = [[UITextView alloc] initWithFrame:CGRectMake(QUIZSET_HORIZONTAL_POS, latestPosition, QUIZSET_ITEM_WIDTH, QUIZSET_ITEM_HEIGHT)];
         [answerField setScrollsToTop:true];
         [answerField setDelegate:self];
         answerField.layer.borderWidth = 2.0f;
         answerField.layer.borderColor = [[UIColor grayColor] CGColor];
         [controlList addObject:answerField]; // We will need the reference later
         [scrollView addSubview:answerField];
-
-        y += QUIZSET_VERTICAL_OFFSET;
-
-        scrollviewHeight = scrollviewHeight + QUESTION_DISTANCES;
-        [scrollView setContentSize:CGSizeMake(scrollviewWidth, scrollviewHeight)];
+        
+        latestHeight = latestPosition + QUIZSET_ITEM_HEIGHT;
     }
+    scrollviewHeight = latestHeight + OFFSET; // 20px is a minor adjustment of margin at the bottom of the screen
+    
+    [scrollView setContentSize:CGSizeMake(SCROLLVIEW_WIDTH, scrollviewHeight)];
 }
 
 // Implement this method if there is anything needed to be configured before the view appears on the screen 

@@ -103,14 +103,6 @@
 {
     NSLog(@"A qwizzle has been submitted!! %@", quizSet);
     NSLog(@"There are %d questions for %@", [[quizSet allQuizzes] count], [quizSet title]);
-    [allQuizSets addObject:quizSet];
-    
-    // Adding new Qwizzle (unanswer qwizzle) into the table, this set reside in the section 0
-    NSInteger lastRow = [allQuizSets indexOfObject:quizSet];
-    NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
-    
-    // Insert this Qwizzle into the table
-    [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationTop];
     
     // Prepare to connect to the web service
     // Get ahold of the segmented control that is currently in the title view
@@ -130,11 +122,19 @@
         
         if (!err) {
             // If everything went ok (with no error), grab the object, and reload the table
-            NSLog(@"Information sent with no error: %@", obj);
+            NSLog(@"Receiving the Qwizzle ID: %@", [[obj JSON] objectForKey:@"qwizzle_id"]);
             
-            // Update the datasource model and the view
-            //allQuizSet = obj;
-            //[[self tableView] reloadData];
+            // Set the qwizzle_id received from the server into the quizset
+            [quizSet setQuizSetID:[[[obj JSON] objectForKey:@"qwizzle_id"] intValue]];
+
+            [allQuizSets addObject:quizSet];
+            
+            // Adding new Qwizzle (unanswer qwizzle) into the table, this set reside in the section 0
+            NSInteger lastRow = [allQuizSets indexOfObject:quizSet];
+            NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
+            
+            // Insert this Qwizzle into the table
+            [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationTop];
         } else {
             // If things went bad, show an alert view to users
             UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

@@ -16,7 +16,7 @@
 @synthesize dateCreated;
 
 // The designated initializer
-- (id)initWithTitle:(NSString *)t
+- (id)initWithTitle:(NSString *)t andID:(NSInteger)ID
 {
     // Always call the superclass's designated initializer
     self = [super init];
@@ -27,10 +27,17 @@
         title = [t copy];
         dateCreated = [[NSDate alloc] init]; // Initialize the date this quiz was taken
         creator = [[NSString alloc] initWithFormat:@"iOS user"]; // Temporary: we will get it from the device UniqueID
+        quizSetID = ID;
     }
     
     // Return the address of the newly initialized object
     return self;
+}
+
+- (id)initWithTitle:(NSString *)t
+{
+    // Call the designated initializer with a default value
+    return [self initWithTitle:@"Default Title" andID:-1];
 }
 
 - (id)init

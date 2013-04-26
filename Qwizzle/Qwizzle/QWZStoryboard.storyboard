@@ -75,7 +75,7 @@
                     <navigationItem key="navigationItem" title="Qwizzle" id="Uj6-ly-SHP">
                         <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="0Xn-Gg-Xc4">
                             <connections>
-                                <action selector="fetchQwizzle:" destination="gsN-V7-zIA" id="2T4-gg-Jaj"/>
+                                <action selector="reloadQwizzle:" destination="gsN-V7-zIA" id="4aq-Vm-6OL"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="9iK-hW-aAI">
@@ -261,7 +261,7 @@
         <class className="QWZQwizzleViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZQwizzleViewController.h"/>
             <relationships>
-                <relationship kind="action" name="fetchQwizzle:"/>
+                <relationship kind="action" name="reloadQwizzle:"/>
                 <relationship kind="action" name="sendInformation:"/>
             </relationships>
         </class>

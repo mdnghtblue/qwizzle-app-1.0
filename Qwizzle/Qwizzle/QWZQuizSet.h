@@ -24,6 +24,8 @@
 @property (nonatomic, readonly, strong) NSDate *dateCreated;    // Hold the creation date of the question
 
 // The designated initializer
+- (id)initWithTitle:(NSString *)title andID:(NSInteger)ID;
+
 - (id)initWithTitle:(NSString *)title;
 
 // Get all questions in the quizset

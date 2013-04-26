@@ -37,11 +37,14 @@
 - (void)fillOutAQwizzle:(QWZAnsweredQuizSet *)qzAnswers;
 
 // This method is called when users tap the refresh button
-- (IBAction)fetchQwizzle:(id)sender;
+- (IBAction)reloadQwizzle:(id)sender;
 
 - (IBAction)sendInformation:(id)sender;
 
 // This method redirect the user into the login page
 - (void)redirectToLoginPage;
+
+// This method fetch all YourQwizzles from the server
+- (void)fetchYourQwizzles;
 
 @end

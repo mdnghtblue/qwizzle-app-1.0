@@ -32,25 +32,36 @@
 - (void)fetchQwizzleWithCompletion:(void (^)(JSONContainer *, NSError *))block
 {
     NSLog(@"fetchQwizzleWithCompletion with codeblock %@", block);
-//    
-//    NSURL *url = [NSURL URLWithString:@"http://qwizzleapp.com/users.php"];
-//    
-//    NSURLRequest *req = [NSURLRequest requestWithURL:url];
-//    
-//    // Create an empty Qwizzle
-//    QWZQwizzle *qwizzle = [[QWZQwizzle alloc] init];
-//    
-//    // Create a connection "actor" object that will transfer data to/from the server
-//    QWZConnection *connection = [[QWZConnection alloc] initWithRequest:req];
-//    
-//    // When the connection completes, this block from the controller will be called
-//    [connection setCompletionBlock:block];
-//    
-//    // Let the empty channel parse the returning data from the web service
-//    [connection setJsonRootObject:qwizzle];
-//    
-//    // Fire the connection
-//    [connection start];
+    
+    // Get User's ID
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userID = [defaults objectForKey:@"user_id"];
+    
+    // Construct URL
+    NSString *loadQwizzleURL = [NSString stringWithFormat:@"http://qwizzleapp.com/qwizzle/%@", userID];
+    
+    NSURL *url = [NSURL URLWithString:loadQwizzleURL];
+    
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url
+                                                       cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                   timeoutInterval:60.0];
+
+    [req setHTTPMethod:@"GET"];
+    
+    // Create an empty JSONContainer
+    JSONContainer *json = [[JSONContainer alloc] init];
+    
+    // Create a connection "actor" object that will transfer data to/from the server
+    QWZConnection *connection = [[QWZConnection alloc] initWithRequest:req];
+    
+    // When the connection completes, this block from the controller will be called
+    [connection setCompletionBlock:block];
+    
+    // Let the empty channel parse the returning data from the web service
+    [connection setJsonRootObject:json];
+    
+    // Fire the connection
+    [connection start];
 }
 
 // This method fetch all Qwizzle that this user has answered

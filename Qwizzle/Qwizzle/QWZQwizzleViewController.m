@@ -76,6 +76,19 @@
     [allQuizSets addObject:qs1];
     [allQuizSets addObject:qs2];
     [allAnsweredQuizSets addObject:aqs1];
+    
+    // Get the stored data before the view appear
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userID = [defaults objectForKey:@"user_id"];
+    if (userID == nil) {
+        // There is no user information stored on the device yet, redirect to the login page
+        [self redirectToLoginPage];
+    }
+    else {
+        // Otherwise, Load all the data associated with this user
+        NSLog(@"Loading user's data... ");
+        [self fetchYourQwizzles];
+    }
 }
 
 // Implement this method if there is anything needed to be configure before the view appear on-screen
@@ -91,8 +104,7 @@
         [self redirectToLoginPage];
     }
     else {
-        // Otherwise, Load all the data associated with this user
-        NSLog(@"Loading user's data... ");
+        NSLog(@"The user has already been logined, do nothing");
     }
     
     [[self tableView] reloadData];
@@ -329,17 +341,18 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     }
 }
 
-// Implement this method if there is anything needed to be done if we receive a memory warning
-- (void)didReceiveMemoryWarning
+#pragma mark store object & connection
+- (IBAction)reloadQwizzle:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSLog(@"reloadQwizzle");
+
+    [self fetchYourQwizzles];
+    
+    //[[QWZQwizzleStore sharedStore] fetchAnsweredQwizzleWithCompletion:completionBlock];
 }
 
-#pragma mark store object & connection
-- (IBAction)fetchQwizzle:(id)sender
+- (void)fetchYourQwizzles
 {
-    NSLog(@"fetchQwizzle");
     // Get ahold of the segmented control that is currently in the title view
     UIView *currentTitleView = [[self navigationItem] titleView];
     
@@ -351,29 +364,49 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     
     // Create a codeblock to run when finish loading
     void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
-
         
         // When the request completes - success or failure, replaces the activity indicator with the previous title
         [[self navigationItem] setTitleView:currentTitleView];
-//        
-//        if (!err) {
-//            // If everything went ok (not error), grab the object, and reload the table
-//            NSLog(@"Inside a block with no error: %@", obj);
-//            
-//            // Update the datasource model and the view
-//            //allQuizSet = obj;
-//            //[[self tableView] reloadData];
-//        } else {
-//            // If things went bad, show an alert view to users
-//            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//            [av show];
-//        }
-    }; // Finish declaring a code block to run after finish running the connection
+        
+        if (!err) {
+            NSLog(@"Information sent with no error: %@", obj);
+            
+            [allQuizSets removeAllObjects];
+            [[self tableView] reloadData];
+            
+            NSArray *receivedQuizSets = [[obj JSON] objectForKey:@"qwizzles"];
+            
+            QWZQuizSet *newQuizSet = nil;
+            NSString *title = nil;
+            NSInteger ID = -1;
+            NSDictionary *quizSet = nil;
+            for (int i = 0; i < [receivedQuizSets count]; i++) {
+                quizSet = [[receivedQuizSets objectAtIndex:i] objectForKey:@"qwizzle"];
+                
+                title = [quizSet objectForKey:@"title"];
+                ID = [[quizSet objectForKey:@"id"] intValue];
+                
+                newQuizSet = [[QWZQuizSet alloc] initWithTitle:title andID:ID];
+                
+                [allQuizSets addObject:newQuizSet];
+                
+                // Adding new Qwizzle (unanswer qwizzle) into the table, this set reside in the section 0
+                NSInteger lastRow = [allQuizSets indexOfObject:newQuizSet];
+                NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
+                
+                // Insert this Qwizzle into the table
+                [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationTop];
+            }
+        }
+        else {
+            // If things went bad, show an alert view to users
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [av show];
+        }
+    };
     
     // Initiate the request, send the code block to the Store object to run after the connection is completed.
     [[QWZQwizzleStore sharedStore] fetchQwizzleWithCompletion:completionBlock];
-    
-    [[QWZQwizzleStore sharedStore] fetchAnsweredQwizzleWithCompletion:completionBlock];
 }
 
 - (IBAction)sendInformation:(id)sender
@@ -419,6 +452,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)redirectToLoginPage
 {
     [self performSegueWithIdentifier:@"SEGUELogin" sender:self];
+}
+
+// Implement this method if there is anything needed to be done if we receive a memory warning
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

@@ -10,7 +10,9 @@
 @class QWZQuizSet;
 
 @interface QWZShareQwizzleViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
-
+{
+    int cellCount;
+}
 @property (nonatomic, strong) QWZQuizSet *quizSet;
 
 - (IBAction)shareAQwizzle:(id)sender;

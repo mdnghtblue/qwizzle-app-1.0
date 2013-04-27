@@ -94,7 +94,6 @@
 // Implement this method if there is anything needed to be configure before the view appear on-screen
 - (void)viewWillAppear:(BOOL)animated
 {
-    
     [super viewWillAppear:animated];
     
     // No toolbar in this view

@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class QWZQuizSet;
 
 @interface QWZShareQwizzleViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) QWZQuizSet *quizSet;
+
+- (IBAction)shareAQwizzle:(id)sender;
 
 @end

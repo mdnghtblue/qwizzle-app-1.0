@@ -19,6 +19,8 @@
 #import "QWZQwizzleStore.h"
 #import "JSONContainer.h"
 
+#import "QWZShareQwizzleViewController.h"
+
 @interface QWZTakeQwizzleViewController ()
 
 @end
@@ -315,6 +317,18 @@
     point.x = 0;
     point.y = point.y - KEYBOARD_OFFSET; // adjust the position just to accommodate the keyboard
     [scrollView setContentOffset:point animated:YES]; // Move the scrollView to the position
+}
+
+// This method get called automatically when we're moving to the other view in the storyboard
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSLog(@"prepareForSegue: %@", segue.identifier);
+    if ([segue.identifier isEqualToString:@"SEGUEShareQwizzle"])
+    {
+        // Get the destination's view controller (User is taking a Qwizzle)
+        QWZShareQwizzleViewController *destinationViewController = segue.destinationViewController;
+        [destinationViewController setQuizSet:quizSet];
+    }
 }
 
 // This method was registered to the UITapGestureRecognizer

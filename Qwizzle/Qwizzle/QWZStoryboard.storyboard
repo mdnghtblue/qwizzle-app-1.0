@@ -242,12 +242,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Share a Qwizzle" id="NH7-N0-ddU">
-                        <barButtonItem key="rightBarButtonItem" title="Share" id="SDd-j1-XaU"/>
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="SDd-j1-XaU">
+                            <connections>
+                                <action selector="shareAQwizzle:" destination="ymA-2j-adu" id="ZLQ-my-7ZC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mlc-OS-tSJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1430" y="15"/>
+            <point key="canvasLocation" x="1454" y="24"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="AbM-sD-HAJ">
@@ -357,6 +361,9 @@
         </class>
         <class className="QWZShareQwizzleViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZShareQwizzleViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="shareAQwizzle:"/>
+            </relationships>
         </class>
         <class className="QWZTakeQwizzleViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZTakeQwizzleViewController.h"/>

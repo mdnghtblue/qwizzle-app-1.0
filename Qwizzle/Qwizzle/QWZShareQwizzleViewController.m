@@ -7,12 +7,17 @@
 //
 
 #import "QWZShareQwizzleViewController.h"
+#import "QWZQuizSet.h"
+#import "QWZQwizzleStore.h"
+#import "JSONContainer.h"
 
 @interface QWZShareQwizzleViewController ()
 
 @end
 
 @implementation QWZShareQwizzleViewController
+
+@synthesize quizSet;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,8 +40,8 @@
         
         [cell setAccessibilityElementsHidden:YES];
     }
-    
-    [[self tableView] cellForRowAtIndexPath:0];
+
+    NSLog(@"Receiving a Qwizzle to share: %@ with ID:%d", [[self quizSet] title], [[self quizSet] quizSetID]);
 }
 
 // Implement this method to respond when the user is tapping any row
@@ -60,6 +65,14 @@
     [[self tableView] deselectRowAtIndexPath:indexPath animated:YES];
 
     NSLog(@"The user is selecting %@", name);
+}
+
+- (IBAction)shareAQwizzle:(id)sender
+{
+    NSLog(@"shareAQwizzle");
+    
+    // Dismiss this view
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning

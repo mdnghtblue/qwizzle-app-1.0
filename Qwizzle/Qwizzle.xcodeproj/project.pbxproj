@@ -7,10 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B8E4D222172B5F610016397B /* QWZLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E4D221172B5F610016397B /* QWZLoginViewController.m */; };
+		B8E4D226172B60090016397B /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = B8E4D225172B60090016397B /* title.png */; };
+		B8E4D228172B60450016397B /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B8E4D227172B60450016397B /* background.png */; };
 		E833CF871707681A0006B832 /* QWZStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E833CF861707681A0006B832 /* QWZStoryboard.storyboard */; };
 		E833CF90170904150006B832 /* UIView+FindFirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = E833CF8F170904150006B832 /* UIView+FindFirstResponder.m */; };
+<<<<<<< HEAD
 		E844DEF4172C5F8400AC2527 /* QWZShareQwizzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E844DEF3172C5F8400AC2527 /* QWZShareQwizzleViewController.m */; };
 		E85D2C541720E34C00447785 /* QWZLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85D2C531720E34C00447785 /* QWZLoginViewController.m */; };
+=======
+>>>>>>> commit qwizzle qwizzle view
 		E85E40A3171E53DA007A9296 /* QWZConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = E85E40A2171E53DA007A9296 /* QWZConnection.m */; };
 		E85E40A6171E5B28007A9296 /* QWZQwizzleStore.m in Sources */ = {isa = PBXBuildFile; fileRef = E85E40A5171E5B27007A9296 /* QWZQwizzleStore.m */; };
 		E873E66D16FCF6640097F4F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E873E66C16FCF6640097F4F2 /* UIKit.framework */; };
@@ -36,13 +42,15 @@
 
 /* Begin PBXFileReference section */
 		B877B19A16FFD25D00007668 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B8E4D221172B5F610016397B /* QWZLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZLoginViewController.m; sourceTree = "<group>"; };
+		B8E4D225172B60090016397B /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
+		B8E4D227172B60450016397B /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		E833CF861707681A0006B832 /* QWZStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QWZStoryboard.storyboard; sourceTree = "<group>"; };
 		E833CF8E170904150006B832 /* UIView+FindFirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindFirstResponder.h"; sourceTree = "<group>"; };
 		E833CF8F170904150006B832 /* UIView+FindFirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindFirstResponder.m"; sourceTree = "<group>"; };
 		E844DEF2172C5F8400AC2527 /* QWZShareQwizzleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZShareQwizzleViewController.h; sourceTree = "<group>"; };
 		E844DEF3172C5F8400AC2527 /* QWZShareQwizzleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZShareQwizzleViewController.m; sourceTree = "<group>"; };
 		E85D2C521720E34C00447785 /* QWZLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZLoginViewController.h; sourceTree = "<group>"; };
-		E85D2C531720E34C00447785 /* QWZLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZLoginViewController.m; sourceTree = "<group>"; };
 		E85E409D171E51C6007A9296 /* JSONSerializable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONSerializable.h; sourceTree = "<group>"; };
 		E85E40A1171E53D9007A9296 /* QWZConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZConnection.h; sourceTree = "<group>"; };
 		E85E40A2171E53DA007A9296 /* QWZConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZConnection.m; sourceTree = "<group>"; };
@@ -137,7 +145,7 @@
 				E873E68F16FD062F0097F4F2 /* QWZAnsweredQuizSet.h */,
 				E873E69016FD062F0097F4F2 /* QWZAnsweredQuizSet.m */,
 				E85D2C521720E34C00447785 /* QWZLoginViewController.h */,
-				E85D2C531720E34C00447785 /* QWZLoginViewController.m */,
+				B8E4D221172B5F610016397B /* QWZLoginViewController.m */,
 				E873E69916FD0F980097F4F2 /* QWZQwizzleViewController.h */,
 				E873E69A16FD0F980097F4F2 /* QWZQwizzleViewController.m */,
 				E873E6B216FD382C0097F4F2 /* QWZCreateQwizzleViewController.h */,
@@ -165,6 +173,8 @@
 		E873E67316FCF6640097F4F2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B8E4D227172B60450016397B /* background.png */,
+				B8E4D225172B60090016397B /* title.png */,
 				E8A31CE1171297650090BECD /* Qwicon.png */,
 				E8A31CDF171297620090BECD /* Qwicon@2x.png */,
 				E873E67416FCF6640097F4F2 /* Qwizzle-Info.plist */,
@@ -238,6 +248,8 @@
 				E833CF871707681A0006B832 /* QWZStoryboard.storyboard in Resources */,
 				E8A31CE3171299680090BECD /* Qwicon@2x.png in Resources */,
 				E8A31CE41712996D0090BECD /* Qwicon.png in Resources */,
+				B8E4D226172B60090016397B /* title.png in Resources */,
+				B8E4D228172B60450016397B /* background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,9 +272,12 @@
 				E833CF90170904150006B832 /* UIView+FindFirstResponder.m in Sources */,
 				E85E40A3171E53DA007A9296 /* QWZConnection.m in Sources */,
 				E85E40A6171E5B28007A9296 /* QWZQwizzleStore.m in Sources */,
-				E85D2C541720E34C00447785 /* QWZLoginViewController.m in Sources */,
 				E873ED2117279CB300F84FA7 /* JSONContainer.m in Sources */,
+<<<<<<< HEAD
 				E844DEF4172C5F8400AC2527 /* QWZShareQwizzleViewController.m in Sources */,
+=======
+				B8E4D222172B5F610016397B /* QWZLoginViewController.m in Sources */,
+>>>>>>> commit qwizzle qwizzle view
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="hwZ-yV-2Jt" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2EK-cF-bJB">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -24,7 +25,7 @@
             <objects>
                 <tableViewController id="gsN-V7-zIA" customClass="QWZQwizzleViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="QUS-4I-OE1">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -84,18 +85,18 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6L8-tl-oTO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="771" y="20"/>
+            <point key="canvasLocation" x="429" y="24"/>
         </scene>
         <!--View Qwizzle View Controller - View a Qwizzle-->
         <scene sceneID="Lcl-iQ-deA">
             <objects>
                 <viewController id="wkX-4Q-uxH" customClass="QWZViewQwizzleViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r0Y-f6-fIL">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AK0-Eg-NOb"/>
@@ -115,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tb2-yj-vxl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1315" y="679"/>
+            <point key="canvasLocation" x="973" y="683"/>
         </scene>
         <!--Take Qwizzle View Controller - Take a Qwizzle-->
         <scene sceneID="kPC-6o-jmI">
@@ -134,7 +135,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0zT-dP-UK0" firstAttribute="bottom" secondItem="ywf-0l-9ei" secondAttribute="bottom" type="default" id="2Qe-Dd-iy4"/>
+                            <constraint firstItem="0zT-dP-UK0" firstAttribute="bottom" secondItem="ywf-0l-9ei" secondAttribute="bottom" type="default" id="8Ot-ld-kTV"/>
                             <constraint firstItem="0zT-dP-UK0" firstAttribute="top" secondItem="ywf-0l-9ei" secondAttribute="top" type="default" id="MSY-8x-Syp"/>
                             <constraint firstItem="0zT-dP-UK0" firstAttribute="trailing" secondItem="ywf-0l-9ei" secondAttribute="trailing" type="default" id="P6t-zM-Ux8"/>
                             <constraint firstItem="eVd-nm-LCx" firstAttribute="top" secondItem="ywf-0l-9ei" secondAttribute="top" constant="49" id="Q9f-Sr-MM6"/>
@@ -142,7 +143,14 @@
                             <constraint firstItem="0zT-dP-UK0" firstAttribute="leading" secondItem="ywf-0l-9ei" secondAttribute="leading" type="default" id="dcg-ek-b2T"/>
                         </constraints>
                     </view>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem width="265" style="plain" systemItem="fixedSpace" id="dng-y3-ZLs"/>
+                        <barButtonItem style="plain" systemItem="action" id="wWK-CI-Wyb">
+                            <connections>
+                                <action selector="displayActionSheet:" destination="AdB-gS-UTD" id="ZyD-uM-mQt"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Take a Qwizzle" id="m9Q-Ym-Axj">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="3m9-p0-yo0">
                             <connections>
@@ -153,11 +161,93 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="scrollView" destination="0zT-dP-UK0" id="aLm-by-ey3"/>
+                        <segue destination="ymA-2j-adu" kind="push" identifier="SEGUEShareQwizzle" id="cgz-AT-yh9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lwF-T2-Vf9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1315" y="20"/>
+            <point key="canvasLocation" x="973" y="24"/>
+        </scene>
+        <!--Share Qwizzle View Controller - Share a Qwizzle-->
+        <scene sceneID="f88-yu-1gj">
+            <objects>
+                <tableViewController id="ymA-2j-adu" customClass="QWZShareQwizzleViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="gkI-1R-3gd">
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Your friends" id="at1-fd-eei">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCELL" textLabel="taf-Up-u7e" style="IBUITableViewCellStyleDefault" id="k1y-LL-xrV">
+                                        <rect key="frame" x="0.0" y="46" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Stephanie Day" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="taf-Up-u7e">
+                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCELL" textLabel="1Fz-Ua-kFL" style="IBUITableViewCellStyleDefault" id="1bf-yo-ksd">
+                                        <rect key="frame" x="0.0" y="91" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Krissada Dechokul" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Fz-Ua-kFL">
+                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCELL" textLabel="50U-hn-fUJ" style="IBUITableViewCellStyleDefault" id="dbw-fV-6K7">
+                                        <rect key="frame" x="0.0" y="135" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Baneen Al Mubarak" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="50U-hn-fUJ">
+                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="ymA-2j-adu" id="a6V-UQ-0YI"/>
+                            <outlet property="delegate" destination="ymA-2j-adu" id="lzd-jV-oaS"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Share a Qwizzle" id="NH7-N0-ddU">
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="SDd-j1-XaU"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mlc-OS-tSJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1430" y="15"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="AbM-sD-HAJ">
@@ -189,7 +279,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PL0-cu-2hn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="771" y="-648"/>
+            <point key="canvasLocation" x="429" y="-644"/>
         </scene>
         <!--Create Qwizzle View Controller - Create a Qwizzle-->
         <scene sceneID="voW-5Y-1yT">
@@ -237,7 +327,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hUN-AV-H8Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1315" y="-648"/>
+            <point key="canvasLocation" x="973" y="-644"/>
         </scene>
     </scenes>
     <classes>
@@ -265,11 +355,16 @@
                 <relationship kind="action" name="sendInformation:"/>
             </relationships>
         </class>
+        <class className="QWZShareQwizzleViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZShareQwizzleViewController.h"/>
+        </class>
         <class className="QWZTakeQwizzleViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZTakeQwizzleViewController.h"/>
             <relationships>
+                <relationship kind="action" name="displayActionSheet:"/>
                 <relationship kind="action" name="prepareToFillOutAQwizzle:"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
             </relationships>
         </class>
         <class className="QWZViewQwizzleViewController" superclassName="UIViewController">

@@ -96,6 +96,9 @@
 {
     [super viewWillAppear:animated];
     
+    // No toolbar in this view
+    self.navigationController.toolbarHidden = YES;
+    
     // Get the stored data before the view appear
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *userID = [defaults objectForKey:@"user_id"];

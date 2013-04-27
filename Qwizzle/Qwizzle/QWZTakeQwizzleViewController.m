@@ -31,10 +31,14 @@
 @synthesize answerList;
 @synthesize answeredQuizSet;
 
+@synthesize actionSheet = _actionSheet;
+
 // Implement this method if there is anything needed to be configured before the view is loaded for the first time
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationController.toolbarHidden = NO;
     
     // Do any additional setup after loading the view from its nib.
     NSLog(@"QWZTakeQwizzleViewController with a quizset %@", [quizSet title]);
@@ -162,6 +166,31 @@
     scrollviewHeight = latestHeight + OFFSET; // 20px is a minor adjustment of margin at the bottom of the screen
     
     [scrollView setContentSize:CGSizeMake(SCROLLVIEW_WIDTH, scrollviewHeight)];
+}
+
+- (IBAction)displayActionSheet:(id)sender
+{
+    NSLog(@"displayActionSheet");
+    if (self.actionSheet) {
+        // do nothing
+    } else {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Share This Qwizzle", nil];
+        [actionSheet showFromBarButtonItem:sender animated:YES];
+    }
+}
+
+// A delegate method that handle actionsheet action
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *choice = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if (buttonIndex == [actionSheet destructiveButtonIndex]) {
+        // destroy something, never happen because we did not provide any destructive button
+        NSLog(@"Destroy");
+    } else if ([choice isEqualToString:@"Share This Qwizzle"]){
+        // do something else
+        NSLog(@"Share this qwizzle!");
+        [self performSegueWithIdentifier:@"SEGUEShareQwizzle" sender:self];
+    }
 }
 
 // Implement this method if there is anything needed to be configured before the view appears on the screen 

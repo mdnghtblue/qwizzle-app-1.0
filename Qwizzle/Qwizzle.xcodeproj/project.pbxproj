@@ -42,9 +42,9 @@
 		B87A8568172CC96C0041DFCF /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		B87A856A172CC99F0041DFCF /* QWZLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZLoginViewController.h; sourceTree = "<group>"; };
 		B87A856B172CC99F0041DFCF /* QWZLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZLoginViewController.m; sourceTree = "<group>"; };
-		B87A856D172CC9BB0041DFCF /* QWZStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = QWZStoryboard.storyboard; path = ../QWZStoryboard.storyboard; sourceTree = "<group>"; };
-		B87A856F172CC9F10041DFCF /* QWZQwizzleStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QWZQwizzleStore.h; path = ../QWZQwizzleStore.h; sourceTree = "<group>"; };
-		B87A8570172CC9F10041DFCF /* QWZQwizzleStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QWZQwizzleStore.m; path = ../QWZQwizzleStore.m; sourceTree = "<group>"; };
+		B87A856D172CC9BB0041DFCF /* QWZStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QWZStoryboard.storyboard; sourceTree = "<group>"; };
+		B87A856F172CC9F10041DFCF /* QWZQwizzleStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZQwizzleStore.h; sourceTree = "<group>"; };
+		B87A8570172CC9F10041DFCF /* QWZQwizzleStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWZQwizzleStore.m; sourceTree = "<group>"; };
 		E833CF8E170904150006B832 /* UIView+FindFirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindFirstResponder.h"; sourceTree = "<group>"; };
 		E833CF8F170904150006B832 /* UIView+FindFirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindFirstResponder.m"; sourceTree = "<group>"; };
 		E844DEF2172C5F8400AC2527 /* QWZShareQwizzleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZShareQwizzleViewController.h; sourceTree = "<group>"; };
@@ -82,8 +82,8 @@
 		E873ED1F17279CB300F84FA7 /* JSONContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONContainer.h; sourceTree = "<group>"; };
 		E873ED2017279CB300F84FA7 /* JSONContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONContainer.m; sourceTree = "<group>"; };
 		E8914A1D172B400F00F14075 /* QWZConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWZConstant.h; sourceTree = "<group>"; };
-		E8A31CDF171297620090BECD /* Qwicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Qwicon@2x.png"; path = "../Qwicon@2x.png"; sourceTree = "<group>"; };
-		E8A31CE1171297650090BECD /* Qwicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Qwicon.png; path = ../Qwicon.png; sourceTree = "<group>"; };
+		E8A31CDF171297620090BECD /* Qwicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Qwicon@2x.png"; sourceTree = "<group>"; };
+		E8A31CE1171297650090BECD /* Qwicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Qwicon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

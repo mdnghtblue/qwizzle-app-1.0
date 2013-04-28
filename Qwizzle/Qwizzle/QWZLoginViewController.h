@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QWZLoginViewController : UIViewController <UITextViewDelegate>
+@interface QWZLoginViewController : UIViewController <UITextFieldDelegate>
 {
-    
+
     NSInteger scrollviewWidth;
     NSInteger scrollviewHeight;
 }
@@ -19,8 +19,6 @@
 @property (strong, nonatomic) IBOutlet UIView *viewController;
 @property (weak, nonatomic) IBOutlet UITextField *userNameText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
-
-
 
 - (IBAction)login:(id)sender;
 

@@ -43,10 +43,15 @@
 
 - (IBAction)logout:(id)sender;
 
-// This method redirect the user into the login page
+// This method redirects the user into the login page
 - (void)redirectToLoginPage;
 
-// This method fetch all YourQwizzles from the server
+// This method fetchs all YourQwizzles from the server
 - (void)fetchYourQwizzles;
+
+// This method reloads everything
+- (void)reloadAllQwizzles;
+
+@property (nonatomic) BOOL reloadFlag; // Reload Flag, set to YES when redirected to the login view
 
 @end

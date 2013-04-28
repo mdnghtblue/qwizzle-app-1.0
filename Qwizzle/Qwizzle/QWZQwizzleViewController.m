@@ -24,6 +24,8 @@
 
 @implementation QWZQwizzleViewController
 
+@synthesize reloadFlag;
+
 #pragma mark - Default App's Behavior
 // Implement this method if there is anything needed to be configured before the view is loaded for the first time
 - (void)viewDidLoad
@@ -80,14 +82,19 @@
     // Get the stored data before the view appear
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *userID = [defaults objectForKey:@"user_id"];
+    
+    NSLog(@"viewDidLoad QwizzleView - user info:%@",[defaults objectForKey:@"user_id"]);
+    
     if (userID == nil) {
         // There is no user information stored on the device yet, redirect to the login page
         [self redirectToLoginPage];
+        reloadFlag = YES;
     }
     else {
         // Otherwise, Load all the data associated with this user
         NSLog(@"Loading user's data... ");
         [self fetchYourQwizzles];
+        reloadFlag = NO;
     }
 }
 
@@ -105,9 +112,14 @@
     if (userID == nil) {
         // There is no user information stored on the device yet, redirect to the login page
         [self redirectToLoginPage];
+        reloadFlag = YES;
     }
     else {
         NSLog(@"The user has already been logined, do nothing");
+        if (reloadFlag) {
+            [self reloadAllQwizzles];
+            reloadFlag = NO;
+        }
     }
     
     [[self tableView] reloadData];
@@ -350,9 +362,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     NSLog(@"Log Out");
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:@"" forKey:@"user_id"];
+    [defaults setObject:nil forKey:@"user_id"];
+    
+    NSLog(@"logging out - user info:%@",[defaults objectForKey:@"user_id"]);
     
     [self redirectToLoginPage];
+    
+    reloadFlag = YES;
 }
 
 - (IBAction)reloadQwizzle:(id)sender
@@ -362,6 +378,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     [self fetchYourQwizzles];
     
     //[[QWZQwizzleStore sharedStore] fetchAnsweredQwizzleWithCompletion:completionBlock];
+}
+
+- (void)reloadAllQwizzles
+{
+    NSLog(@"reloadQwizzle");
+    [self fetchYourQwizzles];
 }
 
 - (void)fetchYourQwizzles

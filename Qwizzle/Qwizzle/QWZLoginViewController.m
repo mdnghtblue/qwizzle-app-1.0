@@ -46,18 +46,13 @@
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
     [scrollView addGestureRecognizer:tap];
-   
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"viewDidLoad - user info:%@",[defaults objectForKey:@"user_id"]);
 }
 
 - (IBAction)login:(id)sender
 {
-    // Suppose the login was successful, set this parameter as an indication and dismiss this view
-    // Otherwise, the user can't use this app and stay in this login view.
-    // In the future, we might provide the register button in this view that allow user to actually register for an account
-   // NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-   // [defaults setObject:@"2" forKey:@"user_id"];
-    
     NSString *userName= userNameText.text;
     NSString *password=passwordText.text;
     
@@ -65,7 +60,6 @@
     void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
         
         // Replaces the activity indicator with the previous title
-     
         
         if (!err) {
             // If everything went ok (with no error), grab the object, and reload the table
@@ -77,11 +71,19 @@
                 
             NSLog(@"loging for user:%@",[[obj JSON] objectForKey:@"user_id"]);
           
-
-            
+                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                NSString *userID = [[NSString alloc] initWithFormat:@"%d", [[[obj JSON] objectForKey:@"user_id"] intValue]];
+                 [defaults setObject:[userID copy] forKey:@"user_id"];
+            NSLog(@"user info:%@",[defaults objectForKey:@"user_id"]);
                  [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 
-                
+
+            }
+            else {
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:nil forKey:@"user_id"];
+                UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Invalid Information" message:@"Wrong username and password combination. please retry." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [av show];
             }
             
         } else {
@@ -96,85 +98,30 @@
    
    }
 
-// Implement this method if there is anything needed to be configured before the view appears on the screen
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-
-        [self registerForKeyboardNotifications];
-}
-
-// Implement this method if there is anything needed to be configured before the view disappears on the screen
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self removeKeyboardNotifications];
-}
-
-#pragma mark handling keyboard
-// Call this method to register for all keyboard appearance notifications
-- (void)registerForKeyboardNotifications
-{
-    NSLog(@"Registering for Keyboard Notification");
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardDidShowNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillBeHidden:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
-}
-
-// Call this method to remove all keyboard appearance notifications
-- (void)removeKeyboardNotifications
-{
-    NSLog(@"Removeing for Keyboard Notification");
-    // unregister for keyboard notifications while not visible.
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillShowNotification
-                                                  object:nil];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillHideNotification
-                                                  object:nil];
-}
-// Called when the UIKeyboardDidShowNotification is sent.
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
-    // Getting the keyboard's size
-    NSDictionary* info = [aNotification userInfo];
-    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    // Getting the scrollView's height and add it with the keyboard's height
-    scrollviewHeight += keyboardSize.height;
-    
-    // Make the scrollView bigger
-    [scrollView setContentSize:CGSizeMake(scrollviewWidth, scrollviewHeight)];
-}
-
-// Called when the UIKeyboardWillHideNotification is sent
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{
-    // Getting the keyboard's size
-    NSDictionary* info = [aNotification userInfo];
-    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    // Getting the scrollView's height and add it with the keyboard's height
-    scrollviewHeight -= keyboardSize.height;
-    
-    // Make the scrollView bigger
-    [scrollView setContentSize:CGSizeMake(scrollviewWidth, scrollviewHeight)];
-}
-
-
-//Called when the user is beginning to edit a text field
-- (void)textViewDidBeginEditing:(UITextView *)textView
+// Called when the user is beginning to edit a text field
+- (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     // Get the current origin of the textfield
-    CGPoint point = textView.frame.origin ;
+    CGPoint point = textField.frame.origin ;
     point.x = 0;
-    point.y = point.y - KEYBOARD_OFFSET; // adjust the position just to accommodate the keyboard
+    point.y = 75; // adjust the position just to accommodate the keyboard
     [scrollView setContentOffset:point animated:YES]; // Move the scrollView to the position
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    // Get the current origin of the textfield
+    CGPoint point = textField.frame.origin ;
+    point.x = 0;
+    point.y = 25; // adjust the position just to accommodate the keyboard
+    [scrollView setContentOffset:point animated:YES]; // Move the scrollView to the position
+}
+
+// The system will call this method to see whether a text field should return and dismiss the keyboard
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 // This method was registered to the UITapGestureRecognizer

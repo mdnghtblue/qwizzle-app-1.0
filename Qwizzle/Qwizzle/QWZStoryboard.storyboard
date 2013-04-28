@@ -282,18 +282,21 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HXr-KH-LdX">
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="JSc-Rp-cEe" id="Qjr-6E-uKA"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="o4x-s4-1rR" secondAttribute="trailing" constant="57" id="31p-e2-FfB"/>
-                                    <constraint firstItem="o4x-s4-1rR" firstAttribute="leading" secondItem="goq-Lp-0b5" secondAttribute="leading" constant="40" id="82I-Ue-BNv"/>
                                     <constraint firstItem="HXr-KH-LdX" firstAttribute="trailing" secondItem="f4a-uy-TFY" secondAttribute="trailing" type="default" id="KNB-fW-E29"/>
                                     <constraint firstItem="HXr-KH-LdX" firstAttribute="top" secondItem="goq-Lp-0b5" secondAttribute="top" constant="364" id="WGw-Pq-UW1"/>
-                                    <constraint firstItem="f4a-uy-TFY" firstAttribute="leading" secondItem="goq-Lp-0b5" secondAttribute="leading" constant="49" id="btD-DQ-Wat"/>
+                                    <constraint firstItem="o4x-s4-1rR" firstAttribute="leading" secondItem="goq-Lp-0b5" secondAttribute="leading" constant="41" id="e0Z-sz-Sax"/>
                                     <constraint firstItem="f4a-uy-TFY" firstAttribute="leading" secondItem="HXr-KH-LdX" secondAttribute="leading" type="default" id="fdr-sP-OYN"/>
                                     <constraint firstItem="f4a-uy-TFY" firstAttribute="top" secondItem="goq-Lp-0b5" secondAttribute="top" constant="305" id="ipE-NQ-Omj"/>
                                     <constraint firstItem="o4x-s4-1rR" firstAttribute="top" secondItem="goq-Lp-0b5" secondAttribute="top" constant="185" id="jpm-gv-dGQ"/>
                                     <constraint firstAttribute="bottom" secondItem="HXr-KH-LdX" secondAttribute="bottom" constant="245" id="oi5-Ff-Hgj"/>
+                                    <constraint firstAttribute="trailing" secondItem="o4x-s4-1rR" secondAttribute="trailing" constant="56" id="rcq-OZ-cxI"/>
+                                    <constraint firstItem="f4a-uy-TFY" firstAttribute="centerX" secondItem="o4x-s4-1rR" secondAttribute="centerX" type="default" id="sk4-xB-OJa"/>
                                 </constraints>
                             </scrollView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Puy-Iu-eDk">

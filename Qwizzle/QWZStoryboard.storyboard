@@ -261,6 +261,41 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="goq-Lp-0b5">
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4x-s4-1rR">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="84" id="3yb-2p-310"/>
+                                            <constraint firstAttribute="width" constant="243" id="aXN-Jo-EO7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Name..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f4a-uy-TFY">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="226" id="Ldl-gy-yYG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HXr-KH-LdX">
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="o4x-s4-1rR" secondAttribute="trailing" constant="57" id="31p-e2-FfB"/>
+                                    <constraint firstItem="o4x-s4-1rR" firstAttribute="leading" secondItem="goq-Lp-0b5" secondAttribute="leading" constant="40" id="82I-Ue-BNv"/>
+                                    <constraint firstItem="HXr-KH-LdX" firstAttribute="trailing" secondItem="f4a-uy-TFY" secondAttribute="trailing" type="default" id="KNB-fW-E29"/>
+                                    <constraint firstItem="HXr-KH-LdX" firstAttribute="top" secondItem="goq-Lp-0b5" secondAttribute="top" constant="364" id="WGw-Pq-UW1"/>
+                                    <constraint firstItem="f4a-uy-TFY" firstAttribute="leading" secondItem="goq-Lp-0b5" secondAttribute="leading" constant="49" id="btD-DQ-Wat"/>
+                                    <constraint firstItem="f4a-uy-TFY" firstAttribute="leading" secondItem="HXr-KH-LdX" secondAttribute="leading" type="default" id="fdr-sP-OYN"/>
+                                    <constraint firstItem="f4a-uy-TFY" firstAttribute="top" secondItem="goq-Lp-0b5" secondAttribute="top" constant="305" id="ipE-NQ-Omj"/>
+                                    <constraint firstItem="o4x-s4-1rR" firstAttribute="top" secondItem="goq-Lp-0b5" secondAttribute="top" constant="185" id="jpm-gv-dGQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="HXr-KH-LdX" secondAttribute="bottom" constant="245" id="oi5-Ff-Hgj"/>
+                                </constraints>
+                            </scrollView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Puy-Iu-eDk">
                                 <items>
                                     <navigationItem title="Login" id="gSw-v6-saB">
@@ -276,10 +311,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Puy-Iu-eDk" firstAttribute="top" secondItem="iNU-kW-0Gl" secondAttribute="top" type="default" id="GZx-Rx-pZR"/>
+                            <constraint firstAttribute="trailing" secondItem="goq-Lp-0b5" secondAttribute="trailing" constant="-20" id="HjM-Am-bCO"/>
                             <constraint firstItem="Puy-Iu-eDk" firstAttribute="leading" secondItem="iNU-kW-0Gl" secondAttribute="leading" type="default" id="IPG-hQ-gqa"/>
                             <constraint firstItem="Puy-Iu-eDk" firstAttribute="trailing" secondItem="iNU-kW-0Gl" secondAttribute="trailing" type="default" id="Id2-YM-4NB"/>
+                            <constraint firstItem="goq-Lp-0b5" firstAttribute="top" secondItem="iNU-kW-0Gl" secondAttribute="top" constant="-91" id="Nec-Kf-HZm"/>
+                            <constraint firstItem="goq-Lp-0b5" firstAttribute="leading" secondItem="iNU-kW-0Gl" secondAttribute="leading" type="default" id="cgw-3R-EGI"/>
+                            <constraint firstItem="goq-Lp-0b5" firstAttribute="bottom" secondItem="iNU-kW-0Gl" secondAttribute="bottom" type="default" id="sdu-xE-r3d"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="passwordText" destination="HXr-KH-LdX" id="zo8-8G-S74"/>
+                        <outlet property="scrollView" destination="goq-Lp-0b5" id="GLz-AZ-uEX"/>
+                        <outlet property="titleLabel" destination="o4x-s4-1rR" id="ERw-8F-aQb"/>
+                        <outlet property="userNameText" destination="f4a-uy-TFY" id="yWJ-Ke-TLT"/>
+                        <outlet property="viewController" destination="iNU-kW-0Gl" id="6IB-8L-07N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PL0-cu-2hn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -350,6 +396,11 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZLoginViewController.h"/>
             <relationships>
                 <relationship kind="action" name="login:"/>
+                <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userNameText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="viewController" candidateClass="UIView"/>
             </relationships>
         </class>
         <class className="QWZQwizzleViewController" superclassName="UITableViewController">

@@ -189,47 +189,5 @@
     // Fire the connection
     [connection start];
 }
-- (void)fetchUserWithUsername:(NSString *)userName andPassword:(NSString *)password WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
-{
-    NSLog(@"fetchUser for User Name %@ with codeblock: %@", userName, block);
-    
-    // 1- Construct URL
-    NSString *fetchUserURL = [NSString stringWithFormat:@"http://qwizzleapp.com/user"];
-    
-    NSURL *url = [NSURL URLWithString:fetchUserURL];
-    
-    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
-  
-    
-    // Prepare the request
-    [req setHTTPMethod:@"POST"]; // Or get, push, put
-    NSMutableString *parmeters = [[NSMutableString alloc] init];
-    [parmeters appendString:@"{\"username\":\"" ];
-    [parmeters appendString:userName];
-    [parmeters appendString:@"\",\"password\":\"" ] ;
-    [parmeters appendString:password];
-    [parmeters appendString:@"\"}"];
-    
-      
-    [req setHTTPBody:[parmeters dataUsingEncoding:NSUTF8StringEncoding]];
-   
-    
-      // Create an empty JSONContainer
-   JSONContainer *json = [[JSONContainer alloc] init];
-    
-    // Create a connection "actor" object that will transfer data to/from the server
-   QWZConnection *connection = [[QWZConnection alloc] initWithRequest:req];
-    
-    // When the connection completes, this block from the controller will be called
-   [connection setCompletionBlock:block];
-    
-    // Let the empty channel parse the returning data from the web service
-   [connection setJsonRootObject:json];
-    
-    // Fire the connection
-  [connection start];
- 
-}
-
 
 @end

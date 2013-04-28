@@ -32,7 +32,5 @@
 
 // This method send a QwizzleID to get all questions
 - (void)fetchQuestions:(NSInteger)qwizzleID WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
-// This method fetch account for the user
-- (void)fetchUserWithUsername:(NSString *)userName andPassword:(NSString *)password WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
 
 @end

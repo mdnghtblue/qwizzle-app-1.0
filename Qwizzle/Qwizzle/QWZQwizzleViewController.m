@@ -345,6 +345,16 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 }
 
 #pragma mark store object & connection
+- (IBAction)logout:(id)sender
+{
+    NSLog(@"Log Out");
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"" forKey:@"user_id"];
+    
+    [self redirectToLoginPage];
+}
+
 - (IBAction)reloadQwizzle:(id)sender
 {
     NSLog(@"reloadQwizzle");

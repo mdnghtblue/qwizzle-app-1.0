@@ -36,10 +36,12 @@
 // This method receives a newly created Qwizzle from the QWZTakeQwizzleController and updates the mainview
 - (void)fillOutAQwizzle:(QWZAnsweredQuizSet *)qzAnswers;
 
-// This method is called when users tap the refresh button
+// This method is called when users tap the refresh button - Will be removed soon
 - (IBAction)reloadQwizzle:(id)sender;
 
-- (IBAction)sendInformation:(id)sender;
+- (IBAction)sendInformation:(id)sender; // Will be removed soon
+
+- (IBAction)logout:(id)sender;
 
 // This method redirect the user into the login page
 - (void)redirectToLoginPage;

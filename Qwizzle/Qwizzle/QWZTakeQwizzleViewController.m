@@ -74,7 +74,7 @@
         [[self navigationItem] setTitleView:currentTitleView];
         
         if (!err) {
-            // If everything went ok (with no error), grab the object, and reload the table
+            // If everything went ok (with no error), grab all questions and construct all the UI
             
             QWZQuiz *qz = nil;
             NSDictionary *question = nil;
@@ -238,11 +238,16 @@
     else {
         NSLog(@"answerList: %@", answerList);
         
-        answeredQuizSet = [[QWZAnsweredQuizSet alloc] initWithTitle:[quizSet title]];
+        QWZQuiz *qz = nil;
+        answeredQuizSet = [[QWZAnsweredQuizSet alloc] initWithTitle:[quizSet title] andID:[quizSet quizSetID]];
+        
         for (NSInteger i = 0; i < [answerList count]; i++) {
             // Add a new item to the answered quiz set with the original question and the given answer
-            NSLog(@"getting the question: %@", [[[quizSet allQuizzes] objectAtIndex:i] question]);
-            [answeredQuizSet addQuiz:[[QWZQuiz alloc] initWithQuestion:[[[quizSet allQuizzes] objectAtIndex:i] question] answer:[answerList objectAtIndex:i]]];
+            NSLog(@"getting the question (id=%d): %@", [[[quizSet allQuizzes] objectAtIndex:i] questionID], [[[quizSet allQuizzes] objectAtIndex:i] question]);
+            
+            qz = [[QWZQuiz alloc] initWithID:[[[quizSet allQuizzes] objectAtIndex:i] questionID] question:[[[quizSet allQuizzes] objectAtIndex:i] question] andAnswer:[answerList objectAtIndex:i]];
+            
+            [answeredQuizSet addQuiz:qz];
         }
         
         // Submit a qwizzle to parents' view controller

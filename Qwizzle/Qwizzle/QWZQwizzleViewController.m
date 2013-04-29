@@ -52,6 +52,7 @@
     QWZQuiz *q4 = [[QWZQuiz alloc] initWithQuestion:@"What is your favourite food?" answer:@"Fried Rice"];
     QWZQuiz *q5 = [[QWZQuiz alloc] initWithQuestion:@"What is your favourite sport?" answer:@"Table Tennis"];
     QWZAnsweredQuizSet *aqs1 = [[QWZAnsweredQuizSet alloc] initWithTitle:@"My favorite things"];
+    [aqs1 setCreatorID:2];
     [aqs1 addQuiz:q3];
     [aqs1 addQuiz:q5];
     [aqs1 addQuiz:q4];
@@ -93,7 +94,7 @@
     else {
         // Otherwise, Load all the data associated with this user
         NSLog(@"Loading user's data... ");
-        [self fetchYourQwizzles];
+        [self reloadAllQwizzles];
         reloadFlag = NO;
     }
 }
@@ -169,21 +170,51 @@
         }
     }; // Finish declaring a code block to run after finish running the connection
     
-    [[QWZQwizzleStore sharedStore] sendAQwizzle:quizSet WithCompletion:completionBlock];
+    [[QWZQwizzleStore sharedStore] createAQwizzle:quizSet WithCompletion:completionBlock];
 }
 
 // This method receives a newly created Qwizzle from the QWZTakeQwizzleController and updates the mainview
 - (void)fillOutAQwizzle:(QWZAnsweredQuizSet *)qzAnswers
 {
-    NSLog(@"Submitting qwizzle answers");
-    [allAnsweredQuizSets addObject:qzAnswers];
+    NSLog(@"Submitting qwizzle answers for qwizzle_id: %d", [qzAnswers quizSetID]);
     
-    NSInteger lastRow = [allAnsweredQuizSets indexOfObject:qzAnswers];
-    NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:1];
+    for (int i = 0; i < [[qzAnswers allQuizzes] count]; i++) {
+        NSLog(@"%d) [id=%d] %@/%@", i+1, [[[qzAnswers allQuizzes] objectAtIndex:i] questionID], [[[qzAnswers allQuizzes] objectAtIndex:i] question], [[[qzAnswers allQuizzes] objectAtIndex:i] answer]);
+    }
+    // Prepare to connect to the web service
+    // Get ahold of the segmented control that is currently in the title view
+    UIView *currentTitleView = [[self navigationItem] titleView];
     
-    // Insert the new Qwizzle answers into the table
-    [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip]
-                            withRowAnimation:UITableViewRowAnimationTop];
+    // Create an activity indicator while loading
+    UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    
+    [[self navigationItem] setTitleView:aiView];
+    [aiView startAnimating];
+    
+    // The codeblock to run after the connection finish loading
+    void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
+        
+        // Replaces the activity indicator with the previous title
+        [[self navigationItem] setTitleView:currentTitleView];
+        
+        if (!err) {
+            
+            [allAnsweredQuizSets addObject:qzAnswers];
+            
+            NSInteger lastRow = [allAnsweredQuizSets indexOfObject:qzAnswers];
+            NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:1];
+            
+            // Insert the new Qwizzle answers into the table
+            [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip]
+                                    withRowAnimation:UITableViewRowAnimationTop];
+        } else {
+            // If things went bad, show an alert view to users
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [av show];
+        }
+    }; // Finish declaring a code block to run after finish running the connection
+    
+    [[QWZQwizzleStore sharedStore] takeAQwizzle:qzAnswers WithCompletion:completionBlock];
 }
 
 #pragma mark - Handle table view datasource
@@ -192,31 +223,64 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // We can ignore this stuff, it's just that everybody is doing this when they use UITableView
-    static NSString *QWizzleCellIdentifier = @"QWizzleCell";
-    
-    // Check for a reusable cell first, use that if it exists
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:QWizzleCellIdentifier];
-    
-    // If there is no reusable cell of this type, create a new one
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:QWizzleCellIdentifier];
-    }
-
     // Set the text on the cell with the desciption of the item
     // We need to get the cell from the correct section here
     NSInteger section = [indexPath section];
-    if (section == 0) { 
+    if (section == 0) {
+        // We can ignore this stuff, it's just that everybody is doing this when they use UITableView
+        static NSString *QWizzleCellIdentifier = @"QWizzleCell";
+        
+        // Check for a reusable cell first, use that if it exists
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:QWizzleCellIdentifier];
+        
+        // If there is no reusable cell of this type, create a new one
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                          reuseIdentifier:QWizzleCellIdentifier];
+        }
+        
         QWZQuizSet *qs = [allQuizSets objectAtIndex:[indexPath row]];
         [[cell textLabel] setText:[qs title]];
+        
+        return cell;
     }
     else {
+        // We can ignore this stuff, it's just that everybody is doing this when they use UITableView
+        static NSString *AnsweredQWizzleCellIdentifier = @"AnsweredQWizzleCell";
+        
+        // Check for a reusable cell first, use that if it exists
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:AnsweredQWizzleCellIdentifier];
+        
+        // If there is no reusable cell of this type, create a new one
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+                                          reuseIdentifier:AnsweredQWizzleCellIdentifier];
+        }
+        
         QWZAnsweredQuizSet *qs = [allAnsweredQuizSets objectAtIndex:[indexPath row]];
         [[cell textLabel] setText:[qs title]];
+        
+        // Get the stored data before the view appear
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *userID = [defaults objectForKey:@"user_id"];
+        
+        NSInteger creatorID = [qs creatorID];
+        
+        // This part is hard-coded
+        if (creatorID == 1 && [userID intValue] != 1) {
+            [[cell detailTextLabel] setText:@"Stephanie Day"];
+        }
+        else if (creatorID == 2 && [userID intValue] != 2) {
+            [[cell detailTextLabel] setText:@"Krissada Dechokul"];
+        }
+        else if (creatorID == 3 && [userID intValue] != 3) {
+            [[cell detailTextLabel] setText:@"Baneen Al Mubarak"];
+        }
+        else {
+            [[cell detailTextLabel] setText:@""];
+        }
+        return cell;
     }
-    
-    return cell;
 }
 
 // One of the required methods needed to be implemented to use UITableViewController
@@ -376,7 +440,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     NSLog(@"reloadQwizzle");
 
     [self fetchYourQwizzles];
-    
+    [self fetchAnsweredQwizzles];
     //[[QWZQwizzleStore sharedStore] fetchAnsweredQwizzleWithCompletion:completionBlock];
 }
 
@@ -384,6 +448,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"reloadQwizzle");
     [self fetchYourQwizzles];
+    [self fetchAnsweredQwizzles];
 }
 
 - (void)fetchYourQwizzles
@@ -444,9 +509,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     [[QWZQwizzleStore sharedStore] fetchQwizzleWithCompletion:completionBlock];
 }
 
-- (IBAction)sendInformation:(id)sender
+- (void)fetchAnsweredQwizzles
 {
-    NSLog(@"sendInformation");
     // Get ahold of the segmented control that is currently in the title view
     UIView *currentTitleView = [[self navigationItem] titleView];
     
@@ -455,32 +519,54 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     
     [[self navigationItem] setTitleView:aiView];
     [aiView startAnimating];
-
-    // To handle a-synchronous connection, we need to provide codeblock to run "LATER"
-    // whenever the connection really finish loading stuffs from the web
-    // Think of a codeblock as an anonymous function in JavaScript (this codeblock's named completionBlock)
+    
+    // Create a codeblock to run when finish loading
     void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
-        
-        // When the request completes, this block will be called.
         
         // When the request completes - success or failure, replaces the activity indicator with the previous title
         [[self navigationItem] setTitleView:currentTitleView];
         
         if (!err) {
-            // If everything went ok (with no error), grab the object, and reload the table
             NSLog(@"Information sent with no error: %@", obj);
             
-            // Update the datasource model and the view
-            //allQuizSet = obj;
-            //[[self tableView] reloadData];
-        } else {
+            [allAnsweredQuizSets removeAllObjects];
+            [[self tableView] reloadData];
+            
+            NSArray *receivedQuizSets = [[obj JSON] objectForKey:@"qwizzles"];
+            QWZAnsweredQuizSet *newQuizSet = nil;
+            NSString *title = nil;
+            NSInteger ID = -1;
+            NSDictionary *quizSet = nil;
+            NSInteger creatorID = -1;
+            for (int i = 0; i < [receivedQuizSets count]; i++) {
+                quizSet = [[receivedQuizSets objectAtIndex:i] objectForKey:@"qwizzle"];
+                
+                title = [quizSet objectForKey:@"title"];
+                ID = [[quizSet objectForKey:@"id"] intValue];
+                creatorID = [[quizSet objectForKey:@"creator"] intValue];
+                
+                newQuizSet = [[QWZAnsweredQuizSet alloc] initWithTitle:title andID:ID];
+                [newQuizSet setCreatorID:creatorID];
+                
+                [allAnsweredQuizSets addObject:newQuizSet];
+                
+                // Adding new Qwizzle (answered qwizzle) into the table, this set reside in the section 1
+                NSInteger lastRow = [allAnsweredQuizSets indexOfObject:newQuizSet];
+                NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:1];
+                
+                // Insert this Qwizzle into the table
+                [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationTop];
+            }
+        }
+        else {
             // If things went bad, show an alert view to users
             UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [av show];
         }
-    }; // Finish declaring a code block to run after finish running the connection
+    };
     
-    [[QWZQwizzleStore sharedStore] sendInformationToServerWithCompletion:completionBlock];
+    // Initiate the request, send the code block to the Store object to run after the connection is completed.
+    [[QWZQwizzleStore sharedStore] fetchAnsweredQwizzleWithCompletion:completionBlock];
 }
 
 #pragma mark login and logout

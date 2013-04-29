@@ -39,15 +39,16 @@
 // This method is called when users tap the refresh button - Will be removed soon
 - (IBAction)reloadQwizzle:(id)sender;
 
-- (IBAction)sendInformation:(id)sender; // Will be removed soon
-
 - (IBAction)logout:(id)sender;
 
 // This method redirects the user into the login page
 - (void)redirectToLoginPage;
 
-// This method fetchs all YourQwizzles from the server
+// This method fetches all YourQwizzles from the server
 - (void)fetchYourQwizzles;
+
+// This method fetches all Qwizzles that users have taken from the server
+- (void)fetchAnsweredQwizzles;
 
 // This method reloads everything
 - (void)reloadAllQwizzles;

@@ -411,7 +411,6 @@
             <relationships>
                 <relationship kind="action" name="logout:"/>
                 <relationship kind="action" name="reloadQwizzle:"/>
-                <relationship kind="action" name="sendInformation:"/>
             </relationships>
         </class>
         <class className="QWZShareQwizzleViewController" superclassName="UITableViewController">

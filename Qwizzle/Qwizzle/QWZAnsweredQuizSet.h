@@ -11,4 +11,6 @@
 
 @interface QWZAnsweredQuizSet : QWZQuizSet
 
+@property (nonatomic) NSInteger creatorID;    // Hold the creator' ID of this person who sent this quizset
+
 @end

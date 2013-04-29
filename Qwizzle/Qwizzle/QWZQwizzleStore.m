@@ -12,6 +12,7 @@
 // The store need to know the data structure
 #import "JSONContainer.h"
 #import "QWZQuizSet.h"
+#import "QWZAnsweredQuizSet.h"
 #import "QWZQuiz.h"
 
 @implementation QWZQwizzleStore
@@ -69,23 +70,19 @@
 {
     NSLog(@"fetchAnsweredQwizzleWithCompletion with codeblock: %@", block);
     
-//    NSURL *url = [NSURL URLWithString:@"http://boatboat001.com/index.php/feed/latest.json"];
-}
-
-// Test sending information to the server
-- (void)sendInformationToServerWithCompletion:(void (^)(JSONContainer *, NSError *))block
-{
-    NSLog(@"sendInformationToServerWithCompletion with codeblock: %@", block);
+    // Get User's ID
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userID = [defaults objectForKey:@"user_id"];
     
-    NSURL *url = [NSURL URLWithString:@"http://boatboat001.com/index.php/feed/submit_info.json"];
+    NSString *loadAnsweredQwizzleURL = [NSString stringWithFormat:@"http://qwizzleapp.com/qwizzle/taken/%@", userID];
+    
+    NSURL *url = [NSURL URLWithString:loadAnsweredQwizzleURL];
     
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url
-                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                       timeoutInterval:60.0];
+                                                       cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                   timeoutInterval:60.0];
     
-    [req setHTTPMethod:@"POST"];
-    NSString *postString = @"company=nanosoft&quality=AWESOME!";
-    [req setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    [req setHTTPMethod:@"GET"];
     
     // Create an empty JSONContainer
     JSONContainer *json = [[JSONContainer alloc] init];
@@ -103,17 +100,16 @@
     [connection start];
 }
 
-- (void)sendAQwizzle:(QWZQuizSet *)quizSet
+- (void)createAQwizzle:(QWZQuizSet *)quizSet
      WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
 {
-    NSLog(@"sendQwizzle %@ with codeblock: %@", quizSet, block);
+    NSLog(@"createAQwizzle %@ with codeblock: %@", quizSet, block);
     
     // Get User's ID
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *userID = [defaults objectForKey:@"user_id"];
     
     // Construct URL
-    //NSString *createQwizzleURL = [NSString stringWithFormat:@"http://qwizzleapp.com/qwizzle/%@", userID];
     NSString *createQwizzleURL = [NSString stringWithFormat:@"http://qwizzleapp.com/qwizzle/"];
     
     NSURL *url = [NSURL URLWithString:createQwizzleURL];
@@ -140,6 +136,63 @@
     [postString appendString:@"]"];
     
     [postString appendString:@"}"];
+    
+    [req setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    // End constructing body message
+    
+    // Create an empty JSONContainer
+    JSONContainer *json = [[JSONContainer alloc] init];
+    
+    // Create a connection "actor" object that will transfer data to/from the server
+    QWZConnection *connection = [[QWZConnection alloc] initWithRequest:req];
+    
+    // When the connection completes, this block from the controller will be called
+    [connection setCompletionBlock:block];
+    
+    // Let the empty channel parse the returning data from the web service
+    [connection setJsonRootObject:json];
+    
+    // Fire the connection
+    [connection start];
+}
+
+- (void)takeAQwizzle:(QWZAnsweredQuizSet *)quizSet WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block
+{
+    NSLog(@"takeQwizzle %@ with codeblock: %@", quizSet, block);
+    
+    // Get User's ID
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userID = [defaults objectForKey:@"user_id"];
+    
+    // Construct URL
+    NSString *createQwizzleURL = [NSString stringWithFormat:@"http://qwizzleapp.com/qwizzle/"];
+    
+    NSURL *url = [NSURL URLWithString:createQwizzleURL];
+    
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url
+                                                       cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                   timeoutInterval:60.0];
+    
+    // Start constructing body message
+    [req setHTTPMethod:@"POST"];
+    NSMutableString *postString = [[NSMutableString alloc] init];
+    [postString appendString:@"{"];
+    
+    [postString appendString:[NSString stringWithFormat:@"\"user_id\": %@,", userID]];
+    [postString appendString:[NSString stringWithFormat:@"\"qwizzle_id\": %@,", userID]];
+    
+    [postString appendString:@"\"answers\": ["];
+    NSInteger count = 0;
+    for (QWZQuiz *quiz in [quizSet allQuizzes]) {
+        if (count > 0) { [postString appendString:@","]; }
+        [postString appendString:[NSString stringWithFormat:@"{\"answer\": \"%@\", \"question_id\": %d}", [quiz answer], [quiz questionID]]];
+        count++;
+    }
+    [postString appendString:@"]"];
+    
+    [postString appendString:@"}"];
+    
+    NSLog(@"postString: %@", postString);
     
     [req setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     // End constructing body message

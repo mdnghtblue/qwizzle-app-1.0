@@ -10,6 +10,7 @@
 
 @class JSONContainer;
 @class QWZQuizSet;
+@class QWZAnsweredQuizSet;
 
 // This class prepare network request for every object in this app
 @interface QWZQwizzleStore : NSObject
@@ -24,14 +25,15 @@
 // This method fetch all Qwizzle that this user has answered
 - (void)fetchAnsweredQwizzleWithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
 
-// For testing
-- (void)sendInformationToServerWithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
+// This method send a created Qwizzle to the web service
+- (void)createAQwizzle:(QWZQuizSet *)quizSet WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
 
-// This method send a Qwizzle to the web service
-- (void)sendAQwizzle:(QWZQuizSet *)quizSet WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
+// This method send a taken Qwizzle to the web service
+- (void)takeAQwizzle:(QWZAnsweredQuizSet *)quizSet WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
 
 // This method send a QwizzleID to get all questions
 - (void)fetchQuestions:(NSInteger)qwizzleID WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
+
 // This method fetch account for the user
 - (void)fetchUserWithUsername:(NSString *)userName andPassword:(NSString *)password WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
 

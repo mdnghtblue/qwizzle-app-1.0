@@ -228,7 +228,6 @@
     
     // Fire the connection
     [connection start];
-    SELECT q.id, q.creator, q.title, q.creation_date, r.sender_id FROM qwizzles q, requests r where q.id in (select qwizzle_id from requests where user_id=2)
 }
 
 @end

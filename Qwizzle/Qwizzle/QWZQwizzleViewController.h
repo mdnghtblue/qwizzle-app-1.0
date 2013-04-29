@@ -10,7 +10,7 @@
 @class QWZQuizSet;
 @class QWZAnsweredQuizSet;
 
-#define NUMBER_OF_SECTION 2
+#define NUMBER_OF_SECTION 3
 
 // QWZQwizzleViewController can fill all 3 roles: view controller, data source, and delegate
 // by implementing the following protocol: UITableViewDataSource and UITableViewDelegate.
@@ -25,6 +25,9 @@
     
     // This array stores all answered quiz sets
     NSMutableArray *allAnsweredQuizSets;
+    
+    // This array would store all requested quiz sets
+    NSMutableArray *allRequestedQuizSet;
     
     // Handle the selected quiz tapped by the user
     QWZQuizSet *selectedQuiz;

@@ -10,6 +10,9 @@
 #import "QWZQuiz.h"
 #import "QWZQuizSet.h"
 
+#import "QWZQwizzleStore.h"
+#import "JSONContainer.h"
+
 @interface QWZViewQwizzleViewController ()
 
 @end
@@ -21,11 +24,98 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    self.navigationController.toolbarHidden = YES;
     
     NSLog(@"QWZViewQwizzleViewController with a quizset %@", [quizSet title]);
     NSLog(@"This quizset has %d questions", [[quizSet allQuizzes] count]);
     
+    [quizSet removeAllQuizzes];
+    
+    // Start preparing to get all the questions of this quizset
+    // Prepare to connect to the web service
+    // Get ahold of the segmented control that is currently in the title view
+    UIView *currentTitleView = [[self navigationItem] titleView];
+    
+    // Create an activity indicator while loading
+    UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    
+    [[self navigationItem] setTitleView:aiView];
+    [aiView startAnimating];
+    
+    // The codeblock to run after finish loading the connection
+    void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
+        
+        // Replaces the activity indicator with the previous title
+        [[self navigationItem] setTitleView:currentTitleView];
+        
+        if (!err) {
+            // If everything went ok (with no error), grab all questions and construct all the UI
+            
+            QWZQuiz *qz = nil;
+            NSDictionary *question = nil;
+            NSArray *questions = [[obj JSON] objectForKey:@"questions"];
+            for (int i = 0; i < [questions count]; i++) {
+                question = [[questions objectAtIndex:i] objectForKey:@"question"];
+                qz = [[QWZQuiz alloc] initWithID:[[question objectForKey:@"id"] intValue] question:[[question objectForKey:@"text"] copy] andAnswer:@""];
+                
+                [quizSet addQuiz:qz];
+            }
+            
+            [self fetchesAnswers:quizSet];
+        } else {
+            // If things went bad, show an alert view to users
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [av show];
+        }
+    }; // Finish declaring a code block to run after finish running the connection
+    
+    [[QWZQwizzleStore sharedStore] fetchQuestions:[quizSet quizSetID] WithCompletion:completionBlock];
+}
+
+- (void)fetchesAnswers:(QWZQuizSet *)qz
+{
+    // Start preparing to get all the questions of this quizset
+    // Prepare to connect to the web service
+    // Get ahold of the segmented control that is currently in the title view
+    UIView *currentTitleView = [[self navigationItem] titleView];
+    
+    // Create an activity indicator while loading
+    UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    
+    [[self navigationItem] setTitleView:aiView];
+    [aiView startAnimating];
+    
+    // The codeblock to run after finish loading the connection
+    void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
+        
+        // Replaces the activity indicator with the previous title
+        [[self navigationItem] setTitleView:currentTitleView];
+        
+        if (!err) {
+            // If everything went ok (with no error), grab all questions and construct all the UI
+            
+            NSMutableArray *answers = [[obj JSON] objectForKey:@"answers"];
+            NSString *answer = nil;
+            for (int i = 0; i < [answers count]; i++) {
+                answer = [[answers objectAtIndex:i] objectForKey:@"answer"];
+                [[[qz allQuizzes] objectAtIndex:i] setAnswer:answer];
+            }
+            
+            // Construct the UI
+            [self constructUI];
+        } else {
+            // If things went bad, show an alert view to users
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [av show];
+        }
+    }; // Finish declaring a code block to run after finish running the connection
+    
+    [[QWZQwizzleStore sharedStore] fetchAnswers:[quizSet quizSetID] WithCompletion:completionBlock];
+}
+
+- (void)constructUI
+{
     // For each quiz
     QWZQuiz *quiz;
     CGFloat latestPosition; // the latest position for a ui element
@@ -94,7 +184,7 @@
                            constrainedToSize:label.frame.size
                                lineBreakMode:NSLineBreakByWordWrapping];
         latestHeight = labelSize.height + latestPosition;
-
+        
         [scrollView addSubview:label];
     }
     

@@ -58,7 +58,7 @@ static NSMutableArray *sharedConnectionList = nil;
     if ([self jsonRootObject]) {
         // Create a parser with the incoming data and let the root object parse its contents
         NSString *myString = [[NSString alloc] initWithData:container encoding:NSUTF8StringEncoding];
-        NSLog(@"The raw data was %@", container);
+        //NSLog(@"The raw data was %@", container);
         NSLog(@"The downloaded data was %@", myString);
         
         // Turn JSON data into basic model objects

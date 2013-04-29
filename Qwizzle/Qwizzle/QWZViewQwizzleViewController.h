@@ -17,4 +17,8 @@
 // Hold a quiz set
 @property (nonatomic, strong) QWZQuizSet *quizSet;
 
+- (void)constructUI;
+
+- (void)fetchesAnswers:(QWZQuizSet *)qz;
+
 @end

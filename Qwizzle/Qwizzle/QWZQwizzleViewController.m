@@ -36,6 +36,7 @@
     // Initialize the 2 quiz sets here
     allQuizSets = [[NSMutableArray alloc] init];
     allAnsweredQuizSets = [[NSMutableArray alloc] init];
+    allRequestedQuizSet = [[NSMutableArray alloc] init];
     
 //    // Add hard-coded question set here
 //    QWZQuiz *q1 = [[QWZQuiz alloc] initWithQuestion:@"What is your name?"];
@@ -292,8 +293,11 @@
     if (section == 0) {
         row = [allQuizSets count];
     }
-    else {
+    else if (section == 1){
         row = [allAnsweredQuizSets count];
+    }
+    else {
+        row = [allRequestedQuizSet count];
     }
 
     // Return the number of rows in the section.
@@ -312,8 +316,11 @@
     if(section == 0) {
         return @"Your Qwizzles";
     }
-    else {
+    else if (section == 1){
         return @"Qwizzles You've Taken";
+    }
+    else {
+        return @"Requested Qwizzles";
     }
 }
 
@@ -327,9 +334,17 @@
             return nil;
         }
     }
-    else {
+    else if (section == 1){
         if ([allAnsweredQuizSets count] == 0) {
             return @"None taken yet";
+        }
+        else {
+            return nil;
+        }
+    }
+    else {
+        if ([allRequestedQuizSet count] == 0) {
+            return @"No requested yet";
         }
         else {
             return nil;

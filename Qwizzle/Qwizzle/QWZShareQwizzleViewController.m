@@ -70,6 +70,8 @@
 {
     NSLog(@"shareAQwizzle");
     
+    NSInteger count = 0;
+    NSMutableArray *user_id = [[NSMutableArray alloc] init];
     for (int row = 0; row < [[self tableView] numberOfRowsInSection:0]; row++) {
         NSIndexPath* cellPath = [NSIndexPath indexPathForRow:row inSection:0];
         UITableViewCell* cell = [[self tableView] cellForRowAtIndexPath:cellPath];
@@ -77,11 +79,52 @@
         
         if (![cell accessibilityElementsHidden]) {
             NSLog(@"Sharing to %@ who has the user id of %d", name, cell.tag);
+            count++;
+            
+            [user_id addObject:[[NSString alloc] initWithFormat:@"%d", cell.tag]];
         }
     }
     
-    // Dismiss this view
-    [self.navigationController popViewControllerAnimated:YES];
+    if (count == 0) {
+        // If things went bad, show an alert view to users
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"You should select some of your friends." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+    }
+    else {
+        // Prepare to connect to the web service
+        // Get ahold of the segmented control that is currently in the title view
+        UIView *currentTitleView = [[self navigationItem] titleView];
+        
+        // Create an activity indicator while loading
+        UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        
+        [[self navigationItem] setTitleView:aiView];
+        [aiView startAnimating];
+        
+        // The codeblock to run after the connection finish loading
+        void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
+            
+            // Replaces the activity indicator with the previous title
+            [[self navigationItem] setTitleView:currentTitleView];
+            
+            if (!err) {
+                UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Congratulations" message:@"Your Qwizzle has been sent." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [av show];
+                
+                // Dismiss this view
+                [self.navigationController popViewControllerAnimated:YES];
+
+            } else {
+                // If things went bad, show an alert view to users
+                UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [av show];
+            }
+        }; // Finish declaring a code block to run after finish running the connection
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *userID = [defaults objectForKey:@"user_id"];
+        [[QWZQwizzleStore sharedStore] shareAQwizzle:[quizSet quizSetID] WithUserID:user_id AndSenderID:userID WithCompletion:completionBlock];
+    }
 }
 
 #pragma mark - Handle table view datasource

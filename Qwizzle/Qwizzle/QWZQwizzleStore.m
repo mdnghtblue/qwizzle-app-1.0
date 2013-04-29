@@ -242,6 +242,64 @@
     // Fire the connection
     [connection start];
 }
+
+- (void)shareAQwizzle:(NSInteger)qwizzleID WithUserID:(NSMutableArray *)user_id AndSenderID:(NSString *)sender_ID WithCompletion:(void (^)(JSONContainer *, NSError *))block
+{
+    NSLog(@"shareAQwizzle from %@ to %@ with codeblock: %@", sender_ID, user_id, block);
+    
+    // Get User's ID
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userID = [defaults objectForKey:@"user_id"];
+    
+    // Construct URL
+    NSString *createQwizzleURL = [NSString stringWithFormat:@"http://qwizzleapp.com/request/"];
+    
+    NSURL *url = [NSURL URLWithString:createQwizzleURL];
+    
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url
+                                                       cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                   timeoutInterval:60.0];
+    
+    // Start constructing body message
+    [req setHTTPMethod:@"PUT"];
+    NSMutableString *postString = [[NSMutableString alloc] init];
+    [postString appendString:@"{"];
+    
+    [postString appendString:[NSString stringWithFormat:@"\"sender_id\": %@,", userID]];
+    [postString appendString:[NSString stringWithFormat:@"\"qwizzle_id\": %d,", qwizzleID]];
+    
+    [postString appendString:@"\"user_id\": ["];
+    for (int i = 0; i < [user_id count]; i++) {
+        if (i > 0) {
+            [postString appendString:@","];
+        }
+        [postString appendString:[NSString stringWithFormat:@"{\"id\": %@}", [user_id objectAtIndex:i]]];
+    }
+    [postString appendString:@"]"];
+    
+    [postString appendString:@"}"];
+    
+    [req setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    // End constructing body message
+    
+    NSLog(@"postString: %@", postString);
+    
+//    // Create an empty JSONContainer
+//    JSONContainer *json = [[JSONContainer alloc] init];
+//    
+//    // Create a connection "actor" object that will transfer data to/from the server
+//    QWZConnection *connection = [[QWZConnection alloc] initWithRequest:req];
+//    
+//    // When the connection completes, this block from the controller will be called
+//    [connection setCompletionBlock:block];
+//    
+//    // Let the empty channel parse the returning data from the web service
+//    [connection setJsonRootObject:json];
+//    
+//    // Fire the connection
+//    [connection start];
+}
+
 - (void)fetchUserWithUsername:(NSString *)userName andPassword:(NSString *)password WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
 {
     NSLog(@"fetchUser for User Name %@ with codeblock: %@", userName, block);

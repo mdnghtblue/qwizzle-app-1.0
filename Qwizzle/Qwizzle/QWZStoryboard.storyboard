@@ -28,6 +28,10 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <adBannerView key="tableFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="3W6-UR-3Hp">
+                            <rect key="frame" x="0.0" y="196" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        </adBannerView>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PrototypeCells1" id="qpA-Wx-mx9">
                                 <rect key="frame" x="0.0" y="46" width="320" height="45"/>
@@ -86,6 +90,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="adView" destination="3W6-UR-3Hp" id="JqL-N2-AgE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6L8-tl-oTO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -99,7 +106,22 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AK0-Eg-NOb"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AK0-Eg-NOb">
+                                <subviews>
+                                    <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="BDJ-pL-wYK">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="NqS-JB-r5f"/>
+                                        </constraints>
+                                    </adBannerView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="BDJ-pL-wYK" firstAttribute="leading" secondItem="AK0-Eg-NOb" secondAttribute="leading" type="default" id="BEK-bd-CHV"/>
+                                    <constraint firstItem="BDJ-pL-wYK" firstAttribute="top" secondItem="AK0-Eg-NOb" secondAttribute="top" constant="368" id="KWL-RR-Imn"/>
+                                    <constraint firstAttribute="bottom" secondItem="BDJ-pL-wYK" secondAttribute="bottom" constant="86" id="NST-vu-Nw2"/>
+                                    <constraint firstItem="BDJ-pL-wYK" firstAttribute="centerX" secondItem="AK0-Eg-NOb" secondAttribute="centerX" type="default" id="sYh-nb-hoi"/>
+                                    <constraint firstItem="BDJ-pL-wYK" firstAttribute="trailing" secondItem="AK0-Eg-NOb" secondAttribute="trailing" type="default" id="xv2-rx-2pj"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -111,6 +133,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="View a Qwizzle" id="han-uO-Hbw"/>
                     <connections>
+                        <outlet property="adView" destination="BDJ-pL-wYK" id="jlf-4I-31j"/>
                         <outlet property="scrollView" destination="AK0-Eg-NOb" id="Exh-ik-Vtb"/>
                     </connections>
                 </viewController>
@@ -131,7 +154,22 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zT-dP-UK0"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zT-dP-UK0">
+                                <subviews>
+                                    <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="5Dj-jU-Bkt">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="QNm-jE-S2v"/>
+                                        </constraints>
+                                    </adBannerView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="5Dj-jU-Bkt" firstAttribute="leading" secondItem="0zT-dP-UK0" secondAttribute="leading" type="default" id="0Mf-Dh-70F"/>
+                                    <constraint firstAttribute="bottom" secondItem="5Dj-jU-Bkt" secondAttribute="bottom" constant="84" id="RgJ-O9-WQ9"/>
+                                    <constraint firstItem="5Dj-jU-Bkt" firstAttribute="centerX" secondItem="0zT-dP-UK0" secondAttribute="centerX" type="default" id="YBp-hB-y1o"/>
+                                    <constraint firstItem="5Dj-jU-Bkt" firstAttribute="trailing" secondItem="0zT-dP-UK0" secondAttribute="trailing" type="default" id="pty-7U-y8X"/>
+                                    <constraint firstItem="5Dj-jU-Bkt" firstAttribute="top" secondItem="0zT-dP-UK0" secondAttribute="top" constant="326" id="tfn-Uy-KfI"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -160,6 +198,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="adView" destination="5Dj-jU-Bkt" id="byq-sr-coW"/>
                         <outlet property="scrollView" destination="0zT-dP-UK0" id="aLm-by-ey3"/>
                         <segue destination="ymA-2j-adu" kind="push" identifier="SEGUEShareQwizzle" id="cgz-AT-yh9"/>
                     </connections>
@@ -176,6 +215,10 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <adBannerView key="tableFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ve6-2L-VKX">
+                            <rect key="frame" x="0.0" y="196" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        </adBannerView>
                         <sections>
                             <tableViewSection headerTitle="Your friends" id="at1-fd-eei">
                                 <cells>
@@ -248,6 +291,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="adView" destination="Ve6-2L-VKX" id="tby-Cn-CBh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mlc-OS-tSJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -281,22 +327,30 @@
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HXr-KH-LdX">
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <connections>
                                             <outlet property="delegate" destination="JSc-Rp-cEe" id="Qjr-6E-uKA"/>
                                         </connections>
                                     </textField>
+                                    <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="4RD-4c-gMU">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="320" id="Yoi-vV-itn"/>
+                                            <constraint firstAttribute="height" constant="50" id="tvT-kM-4ra"/>
+                                        </constraints>
+                                    </adBannerView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="4RD-4c-gMU" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="EMe-B6-1YL"/>
                                     <constraint firstItem="HXr-KH-LdX" firstAttribute="trailing" secondItem="f4a-uy-TFY" secondAttribute="trailing" type="default" id="KNB-fW-E29"/>
+                                    <constraint firstItem="4RD-4c-gMU" firstAttribute="top" secondItem="goq-Lp-0b5" secondAttribute="top" constant="508" id="N8U-Km-3yl"/>
+                                    <constraint firstItem="4RD-4c-gMU" firstAttribute="leading" secondItem="goq-Lp-0b5" secondAttribute="leading" type="default" id="UhX-Vo-tSg"/>
                                     <constraint firstItem="HXr-KH-LdX" firstAttribute="top" secondItem="goq-Lp-0b5" secondAttribute="top" constant="364" id="WGw-Pq-UW1"/>
                                     <constraint firstItem="o4x-s4-1rR" firstAttribute="leading" secondItem="goq-Lp-0b5" secondAttribute="leading" constant="41" id="e0Z-sz-Sax"/>
                                     <constraint firstItem="f4a-uy-TFY" firstAttribute="leading" secondItem="HXr-KH-LdX" secondAttribute="leading" type="default" id="fdr-sP-OYN"/>
+                                    <constraint firstItem="o4x-s4-1rR" firstAttribute="top" secondItem="goq-Lp-0b5" secondAttribute="top" constant="185" id="g3o-jf-pBp"/>
                                     <constraint firstItem="f4a-uy-TFY" firstAttribute="top" secondItem="goq-Lp-0b5" secondAttribute="top" constant="305" id="ipE-NQ-Omj"/>
-                                    <constraint firstItem="o4x-s4-1rR" firstAttribute="top" secondItem="goq-Lp-0b5" secondAttribute="top" constant="185" id="jpm-gv-dGQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="HXr-KH-LdX" secondAttribute="bottom" constant="245" id="oi5-Ff-Hgj"/>
-                                    <constraint firstAttribute="trailing" secondItem="o4x-s4-1rR" secondAttribute="trailing" constant="56" id="rcq-OZ-cxI"/>
                                     <constraint firstItem="f4a-uy-TFY" firstAttribute="centerX" secondItem="o4x-s4-1rR" secondAttribute="centerX" type="default" id="sk4-xB-OJa"/>
+                                    <constraint firstAttribute="bottom" secondItem="4RD-4c-gMU" secondAttribute="bottom" constant="81" id="v2l-dd-dtZ"/>
                                 </constraints>
                             </scrollView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Puy-Iu-eDk">
@@ -323,6 +377,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="adView" destination="4RD-4c-gMU" id="xtg-qI-Kaf"/>
                         <outlet property="passwordText" destination="HXr-KH-LdX" id="zo8-8G-S74"/>
                         <outlet property="scrollView" destination="goq-Lp-0b5" id="GLz-AZ-uEX"/>
                         <outlet property="titleLabel" destination="o4x-s4-1rR" id="ERw-8F-aQb"/>
@@ -358,7 +413,22 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="Ds6-BJ-vxO"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="Ds6-BJ-vxO">
+                                <subviews>
+                                    <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="spq-7c-rdv">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="eBa-E1-HxH"/>
+                                        </constraints>
+                                    </adBannerView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="spq-7c-rdv" firstAttribute="centerX" secondItem="Ds6-BJ-vxO" secondAttribute="centerX" type="default" id="AbN-Yo-XG0"/>
+                                    <constraint firstItem="spq-7c-rdv" firstAttribute="top" secondItem="Ds6-BJ-vxO" secondAttribute="top" constant="372" id="eJT-mM-MbD"/>
+                                    <constraint firstAttribute="bottom" secondItem="spq-7c-rdv" secondAttribute="bottom" constant="82" id="iTg-yq-YwY"/>
+                                    <constraint firstItem="spq-7c-rdv" firstAttribute="trailing" secondItem="Ds6-BJ-vxO" secondAttribute="trailing" type="default" id="woz-8Z-1xn"/>
+                                    <constraint firstItem="spq-7c-rdv" firstAttribute="leading" secondItem="Ds6-BJ-vxO" secondAttribute="leading" type="default" id="ygJ-ck-ZQq"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -375,6 +445,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="55x-I1-qeR"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="adView" destination="spq-7c-rdv" id="Ggh-S6-K6e"/>
                         <outlet property="scrollView" destination="Ds6-BJ-vxO" id="mnG-QK-GAt"/>
                     </connections>
                 </viewController>
@@ -392,6 +463,7 @@
             <relationships>
                 <relationship kind="action" name="cancel:"/>
                 <relationship kind="action" name="prepareToSubmitAQwizzle:"/>
+                <relationship kind="outlet" name="adView" candidateClass="ADBannerView"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
@@ -399,6 +471,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZLoginViewController.h"/>
             <relationships>
                 <relationship kind="action" name="login:"/>
+                <relationship kind="outlet" name="adView" candidateClass="ADBannerView"/>
                 <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
@@ -411,12 +484,14 @@
             <relationships>
                 <relationship kind="action" name="logout:"/>
                 <relationship kind="action" name="reloadQwizzle:"/>
+                <relationship kind="outlet" name="adView" candidateClass="ADBannerView"/>
             </relationships>
         </class>
         <class className="QWZShareQwizzleViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZShareQwizzleViewController.h"/>
             <relationships>
                 <relationship kind="action" name="shareAQwizzle:"/>
+                <relationship kind="outlet" name="adView" candidateClass="ADBannerView"/>
             </relationships>
         </class>
         <class className="QWZTakeQwizzleViewController" superclassName="UIViewController">
@@ -424,6 +499,7 @@
             <relationships>
                 <relationship kind="action" name="displayActionSheet:"/>
                 <relationship kind="action" name="prepareToFillOutAQwizzle:"/>
+                <relationship kind="outlet" name="adView" candidateClass="ADBannerView"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
             </relationships>
@@ -431,6 +507,7 @@
         <class className="QWZViewQwizzleViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QWZViewQwizzleViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="adView" candidateClass="ADBannerView"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>

@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 @class QWZQuizSet;
 @class QWZAnsweredQuizSet;
 @class QWZQwizzleViewController;
 
-@interface QWZTakeQwizzleViewController : UIViewController <UITextViewDelegate, UIActionSheetDelegate>
+@interface QWZTakeQwizzleViewController : UIViewController <UITextViewDelegate, UIActionSheetDelegate,ADBannerViewDelegate>
 {
     IBOutlet UIScrollView *scrollView;
     
@@ -19,6 +20,8 @@
     NSInteger scrollviewHeight;
 
     IBOutlet UIToolbar *toolbar;
+    
+     ADBannerView *adView;
 }
 
 @property (nonatomic, weak) QWZQwizzleViewController *origin;
@@ -28,6 +31,8 @@
 @property (nonatomic, strong) QWZAnsweredQuizSet *answeredQuizSet;
 
 @property (weak, nonatomic) UIActionSheet *actionSheet;
+@property(nonatomic,retain) IBOutlet ADBannerView *adView; // handle banner componenet
+
 
 - (IBAction)displayActionSheet:(id)sender;
 

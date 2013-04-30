@@ -35,10 +35,17 @@
 
 @synthesize actionSheet = _actionSheet;
 
+@synthesize adView; // handle iAd
+
 // Implement this method if there is anything needed to be configured before the view is loaded for the first time
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // setting the iAd
+    adView.delegate=self;
+    [adView setHidden:YES]; // setting the defualt behvior for iAd
+    
+
     
     self.navigationController.toolbarHidden = NO;
     
@@ -350,5 +357,22 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark iAd view
+// Implement this method if iAd is load to be set only if it has adv
+-(void) bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    [adView setHidden:NO]; // show iAd view when avialble
+    NSLog(@"iAd showing");
+    
+    
+}
+// Implement this method if there is an error for governer Ad
+- (void) bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    [adView setHidden:YES]; // hide iAd when there is an error
+    NSLog(@"iAd is hidden");
+}
+
+
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 
 @class QWZQwizzleViewController;
 @class QWZQuizSet;
@@ -14,7 +15,7 @@
 #define MAX_NUMBEROFQUESTIONS 5
 #define KEYBOARD_OFFSET 115
 
-@interface QWZCreateQwizzleViewController : UIViewController <UITextFieldDelegate>
+@interface QWZCreateQwizzleViewController : UIViewController <UITextFieldDelegate,ADBannerViewDelegate>
 {
     IBOutlet UIScrollView *scrollView;
     
@@ -39,12 +40,15 @@
     NSInteger scrollviewHeight;
     
     NSInteger tag;
+    // Handle iAd view
+    ADBannerView *adView;
 }
 
 @property (nonatomic, weak) QWZQwizzleViewController *origin; // Store the origin's viewcontroller for submitting data back
 @property (nonatomic, strong) NSMutableArray *questionList; // Store the questions that users actually filled out
 @property (nonatomic, strong) NSMutableArray *controlList; // Store the dynamically created text fields
 @property (nonatomic, strong) QWZQuizSet *quizSet; // Store the newly created quizSet (a Qwizzle)
+@property(nonatomic,retain) IBOutlet ADBannerView *adView; // handle banner componenet
 
 // prepareToSubmitAQwizzle will create a new quiz, check & validate every question here
 // Then will submit the quiz into the origin's viewcontroller.
@@ -59,5 +63,7 @@
 // This method was registered to the UITapGestureRecognizer
 // To allow user to tap anywhere on the screen to dismiss the keyboard
 - (void)dismissKeyboard;
+
+
 
 @end

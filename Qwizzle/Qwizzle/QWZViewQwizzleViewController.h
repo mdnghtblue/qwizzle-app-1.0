@@ -7,15 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 @class QWZQuizSet;
 
-@interface QWZViewQwizzleViewController : UIViewController
+@interface QWZViewQwizzleViewController : UIViewController<ADBannerViewDelegate>
 {
     IBOutlet UIScrollView *scrollView;
+    ADBannerView *adView;
 }
 
 // Hold a quiz set
 @property (nonatomic, strong) QWZQuizSet *quizSet;
+
+@property(nonatomic,retain) IBOutlet ADBannerView *adView; // handle banner componenet
+
 
 - (void)constructUI;
 

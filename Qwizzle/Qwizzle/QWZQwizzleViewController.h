@@ -7,6 +7,8 @@
 //
 #import <UIKit/UIKit.h>
 
+#import <iAd/iAd.h>
+
 @class QWZQuizSet;
 @class QWZAnsweredQuizSet;
 
@@ -18,7 +20,8 @@
 // Implement UITableViewDelegate to set the label of the delete button
 // Optional methods of the protocol allow the delegate to manage selections,
 // configure section headings and footers, help to delete and reorder cells, and perform other actions...
-@interface QWZQwizzleViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+// Implement ADBannerViewDelegate to view iAd
+@interface QWZQwizzleViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate,ADBannerViewDelegate>
 {
     // This array stores all quiz sets
     NSMutableArray *allQuizSets;
@@ -31,6 +34,9 @@
     
     // Handle the selected quiz tapped by the user
     QWZQuizSet *selectedQuiz;
+    
+    // Handle iAd view
+    ADBannerView *adView;
 }
 
 // This method receives a newly created Qwizzle from the QWZCreateQwizzleController and updates the mainview
@@ -57,5 +63,7 @@
 - (void)reloadAllQwizzles;
 
 @property (nonatomic) BOOL reloadFlag; // Reload Flag, set to YES when redirected to the login view
+
+@property(nonatomic,retain) IBOutlet ADBannerView *adView; // handle banner componenet
 
 @end

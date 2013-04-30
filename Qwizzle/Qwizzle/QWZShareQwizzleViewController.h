@@ -7,13 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 @class QWZQuizSet;
 
-@interface QWZShareQwizzleViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface QWZShareQwizzleViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate,ADBannerViewDelegate>
 {
     int cellCount;
+    ADBannerView *adView;
 }
 @property (nonatomic, strong) QWZQuizSet *quizSet;
+@property(nonatomic,retain) IBOutlet ADBannerView *adView; // handle banner componenet
+
 
 - (IBAction)shareAQwizzle:(id)sender;
 

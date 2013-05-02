@@ -124,7 +124,7 @@
         reloadFlag = YES;
     }
     else {
-        NSLog(@"The user has already been logined, do nothing");
+        NSLog(@"The user has already been logged in, do nothing");
         if (reloadFlag) {
             [self reloadAllQwizzles];
             reloadFlag = NO;
@@ -406,7 +406,7 @@
         return @"Qwizzles You've Taken";
     }
     else {
-        return @"Requested Qwizzles";
+        return @"Qwizzle Requests";
     }
 }
 
@@ -430,7 +430,7 @@
     }
     else {
         if ([allRequestedQuizSet count] == 0) {
-            return @"No requested yet";
+            return @"No requests yet";
         }
         else {
             return nil;

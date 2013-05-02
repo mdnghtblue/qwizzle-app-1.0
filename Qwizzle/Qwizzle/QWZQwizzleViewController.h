@@ -53,9 +53,13 @@
 // This method deletes the taken requested Qwizzle
 - (void)deleteARequestedQwizzle:(QWZAnsweredQuizSet *)qzAnswers;
 
-// This method is called when users tap the refresh button - Will be removed soon
+// This method is called when users tap the refresh button
 - (IBAction)reloadQwizzle:(id)sender;
 
+// This method reloads everything
+- (void)reloadAllQwizzles;
+
+// This method lets the user log out
 - (IBAction)logout:(id)sender;
 
 // This method redirects the user into the login page
@@ -69,9 +73,6 @@
 
 // This method fetches all Requested Qwizzles 
 - (void)fetchRequestedQwizzles;
-
-// This method reloads everything
-- (void)reloadAllQwizzles;
 
 @property (nonatomic) BOOL reloadFlag; // Reload Flag, set to YES when redirected to the login view
 

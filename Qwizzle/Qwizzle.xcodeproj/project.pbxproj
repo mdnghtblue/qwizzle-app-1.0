@@ -137,35 +137,35 @@
 			children = (
 				E873E67316FCF6640097F4F2 /* Supporting Files */,
 				E873E67B16FCF6640097F4F2 /* QWZAppDelegate.h */,
-				B87A856A172CC99F0041DFCF /* QWZLoginViewController.h */,
-				B87A856B172CC99F0041DFCF /* QWZLoginViewController.m */,
 				E873E67C16FCF6640097F4F2 /* QWZAppDelegate.m */,
+				B87A856D172CC9BB0041DFCF /* QWZStoryboard.storyboard */,
 				E873E68916FCF6990097F4F2 /* QWZQuiz.h */,
 				E873E68A16FCF6990097F4F2 /* QWZQuiz.m */,
 				E873E68C16FCF9930097F4F2 /* QWZQuizSet.h */,
 				E873E68D16FCF9930097F4F2 /* QWZQuizSet.m */,
 				E873E68F16FD062F0097F4F2 /* QWZAnsweredQuizSet.h */,
 				E873E69016FD062F0097F4F2 /* QWZAnsweredQuizSet.m */,
+				B87A856A172CC99F0041DFCF /* QWZLoginViewController.h */,
+				B87A856B172CC99F0041DFCF /* QWZLoginViewController.m */,
 				E873E69916FD0F980097F4F2 /* QWZQwizzleViewController.h */,
 				E873E69A16FD0F980097F4F2 /* QWZQwizzleViewController.m */,
 				E873E6B216FD382C0097F4F2 /* QWZCreateQwizzleViewController.h */,
 				E873E6B316FD382C0097F4F2 /* QWZCreateQwizzleViewController.m */,
-				B87A856F172CC9F10041DFCF /* QWZQwizzleStore.h */,
-				B87A8570172CC9F10041DFCF /* QWZQwizzleStore.m */,
-				B87A856D172CC9BB0041DFCF /* QWZStoryboard.storyboard */,
 				E873E6B716FD40020097F4F2 /* QWZTakeQwizzleViewController.h */,
 				E873E6B816FD40020097F4F2 /* QWZTakeQwizzleViewController.m */,
 				E873E6BC16FD41730097F4F2 /* QWZViewQwizzleViewController.h */,
 				E873E6BD16FD41730097F4F2 /* QWZViewQwizzleViewController.m */,
-				E833CF8E170904150006B832 /* UIView+FindFirstResponder.h */,
-				E833CF8F170904150006B832 /* UIView+FindFirstResponder.m */,
+				E844DEF2172C5F8400AC2527 /* QWZShareQwizzleViewController.h */,
+				E844DEF3172C5F8400AC2527 /* QWZShareQwizzleViewController.m */,
+				B87A856F172CC9F10041DFCF /* QWZQwizzleStore.h */,
+				B87A8570172CC9F10041DFCF /* QWZQwizzleStore.m */,
 				E85E40A1171E53D9007A9296 /* QWZConnection.h */,
 				E85E40A2171E53DA007A9296 /* QWZConnection.m */,
 				E85E409D171E51C6007A9296 /* JSONSerializable.h */,
 				E873ED1F17279CB300F84FA7 /* JSONContainer.h */,
 				E873ED2017279CB300F84FA7 /* JSONContainer.m */,
-				E844DEF2172C5F8400AC2527 /* QWZShareQwizzleViewController.h */,
-				E844DEF3172C5F8400AC2527 /* QWZShareQwizzleViewController.m */,
+				E833CF8E170904150006B832 /* UIView+FindFirstResponder.h */,
+				E833CF8F170904150006B832 /* UIView+FindFirstResponder.m */,
 			);
 			path = Qwizzle;
 			sourceTree = "<group>";
@@ -353,11 +353,13 @@
 		E873E68716FCF6640097F4F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Krissada Dechokul (YUCM2TVTJ4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Qwizzle/Qwizzle-Prefix.pch";
 				INFOPLIST_FILE = "Qwizzle/Qwizzle-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -365,11 +367,13 @@
 		E873E68816FCF6640097F4F2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Krissada Dechokul (YUCM2TVTJ4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Qwizzle/Qwizzle-Prefix.pch";
 				INFOPLIST_FILE = "Qwizzle/Qwizzle-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

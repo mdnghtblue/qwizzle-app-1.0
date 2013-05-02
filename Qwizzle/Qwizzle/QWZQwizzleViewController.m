@@ -38,55 +38,10 @@
     adView.delegate=self;
     [adView setHidden:YES]; // setting the defualt behvior for iAd
     
-    
-    // Loading sample data
-    // Initialize the 2 quiz sets here
+    // Initialize the qwizzles here
     allQuizSets = [[NSMutableArray alloc] init];
     allAnsweredQuizSets = [[NSMutableArray alloc] init];
     allRequestedQuizSet = [[NSMutableArray alloc] init];
-    
-//    // Add hard-coded question set here
-//    QWZQuiz *q1 = [[QWZQuiz alloc] initWithQuestion:@"What is your name?"];
-//    QWZQuiz *q2 = [[QWZQuiz alloc] initWithQuestion:@"What is your last name?"];
-//    
-//    QWZQuizSet *qs1 = [[QWZQuizSet alloc] initWithTitle:@"Sample Qwizzle"];
-//    [qs1 addQuiz:q1];
-//    [qs1 addQuiz:q2];
-//    
-//    QWZQuizSet *qs2 = [[QWZQuizSet alloc] initWithTitle:@"Sample Qwizzle Pack 2"];
-//    [qs2 addQuiz:q1];
-    
-    QWZQuiz *q3 = [[QWZQuiz alloc] initWithQuestion:@"What is your favourite color?" answer:@"Green"];
-    QWZQuiz *q4 = [[QWZQuiz alloc] initWithQuestion:@"What is your favourite food?" answer:@"Fried Rice"];
-    QWZQuiz *q5 = [[QWZQuiz alloc] initWithQuestion:@"What is your favourite sport?" answer:@"Table Tennis"];
-    QWZAnsweredQuizSet *aqs1 = [[QWZAnsweredQuizSet alloc] initWithTitle:@"My favorite things"];
-    [aqs1 setCreatorID:2];
-    [aqs1 addQuiz:q3];
-    [aqs1 addQuiz:q5];
-    [aqs1 addQuiz:q4];
-    
-    // Add hard-coded question set here
-    //QWZQuiz *nq1 = [[QWZQuiz alloc] initWithID:13 question:@"Why are you so awesome?" andAnswer:@""];
-    //QWZQuiz *nq2 = [[QWZQuiz alloc] initWithID:14 question:@"How do you feel being so awesome?" andAnswer:@""];
-    //QWZQuiz *nq3 = [[QWZQuiz alloc] initWithID:15 question:@"What would you do next?" andAnswer:@""];
-    
-    QWZQuizSet *qs1 = [[QWZQuizSet alloc] initWithTitle:@"How to be awesome"];
-    //[qs1 addQuiz:nq1];
-    //[qs1 addQuiz:nq2];
-    //[qs1 addQuiz:nq3];
-    [qs1 setQuizSetID:19];
-    
-    QWZQuiz *nq4 = [[QWZQuiz alloc] initWithID:7 question:@"What do you think about apples?" andAnswer:@""];
-    QWZQuiz *nq5 = [[QWZQuiz alloc] initWithID:8 question:@"What do you think about bananas?" andAnswer:@""];
-    
-    QWZQuizSet *qs2 = [[QWZQuizSet alloc] initWithTitle:@"Favorite Foods 2"];
-    [qs2 addQuiz:nq4];
-    [qs2 addQuiz:nq5];
-    [qs2 setQuizSetID:16];
-    
-    [allQuizSets addObject:qs1];
-    [allQuizSets addObject:qs2];
-    [allAnsweredQuizSets addObject:aqs1];
     
     // Get the stored data before the view appear
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -134,7 +89,7 @@
     [[self tableView] reloadData];
 }
 
-// This method receives a newly created Qwizzle from the QWZCreateQwizzleController and updates the mainview
+// This method receives a newly created Qwizzle from the QWZCreateQwizzleController
 - (void)submitAQwizzle:(QWZQuizSet *)quizSet
 {
     NSLog(@"A qwizzle has been submitted!! %@", quizSet);
@@ -174,7 +129,7 @@
     [[QWZQwizzleStore sharedStore] createAQwizzle:quizSet WithCompletion:completionBlock];
 }
 
-// This method receives a newly created Qwizzle from the QWZTakeQwizzleController and updates the mainview
+// This method receives a filled out Qwizzle from the QWZTakeQwizzleController 
 - (void)fillOutAQwizzle:(QWZAnsweredQuizSet *)qzAnswers
 {
     NSLog(@"Submitting qwizzle answers for qwizzle_id: %d", [qzAnswers quizSetID]);
@@ -212,7 +167,7 @@
     [[QWZQwizzleStore sharedStore] takeAQwizzle:qzAnswers WithCompletion:completionBlock];
 }
 
-// This method receives a newly created Qwizzle from the QWZTakeQwizzleController and updates the mainview
+// This method receives a filled out the requested Qwizzle from the QWZTakeQwizzleController 
 - (void)fillOutARequestedQwizzle:(QWZAnsweredQuizSet *)qzAnswers
 {
     NSLog(@"Submitting requested qwizzle answers for qwizzle_id: %d and requested_id: %d", [qzAnswers quizSetID], [qzAnswers requestID]);
@@ -252,6 +207,7 @@
     [[QWZQwizzleStore sharedStore] takeAQwizzle:qzAnswers WithCompletion:completionBlock];
 }
 
+// This method deletes the taken requested Qwizzle
 - (void)deleteARequestedQwizzle:(QWZAnsweredQuizSet *)qzAnswers
 {
     // Prepare to connect to the web service
@@ -293,7 +249,7 @@
     // We need to get the cell from the correct section here
     NSInteger section = [indexPath section];
     if (section == 0) {
-        // We can ignore this stuff, it's just that everybody is doing this when they use UITableView
+        // This Cell identifier used to identify reusable table cell
         static NSString *QWizzleCellIdentifier = @"QWizzleCell";
         
         // Check for a reusable cell first, use that if it exists
@@ -311,7 +267,7 @@
         return cell;
     }
     else if (section == 1){
-        // We can ignore this stuff, it's just that everybody is doing this when they use UITableView
+        // This Cell identifier used to identify reusable table cell
         static NSString *AnsweredQWizzleCellIdentifier = @"AnsweredQWizzleCell";
         
         // Check for a reusable cell first, use that if it exists
@@ -340,7 +296,7 @@
         return cell;
     }
     else if (section == 2){
-        // We can ignore this stuff, it's just that everybody is doing this when they use UITableView
+        // This Cell identifier used to identify reusable table cell
         static NSString *RequestedQWizzleCellIdentifier = @"RequestedQWizzleCell";
         
         // Check for a reusable cell first, use that if it exists
@@ -368,6 +324,23 @@
         }
         return cell;
     }
+    
+    // Generic type of cell, if it previously does not fall into any category
+    static NSString *CellIdentifier = @"GenericQWizzleCell";
+    
+    // Check for a reusable cell first, use that if it exists
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    // If there is no reusable cell of this type, create a new one
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:CellIdentifier];
+    }
+    
+    QWZQuizSet *qs = [allQuizSets objectAtIndex:[indexPath row]];
+    [[cell textLabel] setText:[qs title]];
+    
+    return cell;
 }
 
 // One of the required methods needed to be implemented to use UITableViewController
@@ -494,7 +467,7 @@
         [destinationViewController setOrigin:self];
     }
     else if ([segue.identifier isEqualToString:@"SEGUELogin"]) {
-
+        // Do not have to send any information to the destination viewControllers
     }
     else {
         NSLog(@"Unidentifiable Segue");
@@ -536,20 +509,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 }
 
 #pragma mark store object & connection
-- (IBAction)logout:(id)sender
-{
-    NSLog(@"Log Out");
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:nil forKey:@"user_id"];
-    
-    NSLog(@"logging out - user info:%@",[defaults objectForKey:@"user_id"]);
-    
-    [self redirectToLoginPage];
-    
-    reloadFlag = YES;
-}
-
+// This method is called when users tap the refresh button
 - (IBAction)reloadQwizzle:(id)sender
 {
     NSLog(@"reloadQwizzle");
@@ -558,6 +518,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     //[[QWZQwizzleStore sharedStore] fetchAnsweredQwizzleWithCompletion:completionBlock];
 }
 
+// This method reloads everything
 - (void)reloadAllQwizzles
 {
     NSLog(@"reloadQwizzle");
@@ -735,6 +696,22 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 }
 
 #pragma mark login and logout
+// This method lets the user log out
+- (IBAction)logout:(id)sender
+{
+    NSLog(@"Log Out");
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:nil forKey:@"user_id"];
+    
+    NSLog(@"logging out - user info:%@",[defaults objectForKey:@"user_id"]);
+    
+    [self redirectToLoginPage];
+    
+    reloadFlag = YES;
+}
+
+// This method redirects the user into the login page
 - (void)redirectToLoginPage
 {
     [self performSegueWithIdentifier:@"SEGUELogin" sender:self];

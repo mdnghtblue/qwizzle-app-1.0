@@ -16,8 +16,7 @@
     ADBannerView *adView;
 }
 
-// Hold a quiz set
-@property (nonatomic, strong) QWZQuizSet *quizSet;
+@property (nonatomic, strong) QWZQuizSet *quizSet; // Hold a quiz set
 
 @property(nonatomic,retain) IBOutlet ADBannerView *adView; // handle banner componenet
 

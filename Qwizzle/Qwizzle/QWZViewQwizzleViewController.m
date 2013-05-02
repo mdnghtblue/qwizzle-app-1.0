@@ -51,7 +51,7 @@
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
         if (!err) {
-            // If everything went ok (with no error), grab all questions and construct all the UI
+            // If everything went ok (with no error), grab all questions
             
             QWZQuiz *qz = nil;
             NSDictionary *question = nil;
@@ -63,6 +63,7 @@
                 [quizSet addQuiz:qz];
             }
             
+            // Fetch all the coordinaring answers
             [self fetchesAnswers:quizSet];
         } else {
             // If things went bad, show an alert view to users
@@ -88,7 +89,7 @@
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
         if (!err) {
-            // If everything went ok (with no error), grab all questions and construct all the UI
+            // If everything went ok (with no error), grab all answers and construct the UI
             
             NSMutableArray *answers = [[obj JSON] objectForKey:@"answers"];
             NSString *answer = nil;
@@ -198,8 +199,6 @@
 {
     [adView setHidden:NO]; // show iAd view when avialble
     NSLog(@"iAd showing");
-    
-    
 }
 // Implement this method if there is an error for governer Ad
 - (void) bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error

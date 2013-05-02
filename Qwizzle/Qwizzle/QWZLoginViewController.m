@@ -6,14 +6,9 @@
 //  Copyright (c) 2013 Florida Tech. All rights reserved.
 
 #import "QWZLoginViewController.h"
-
 #import "QWZQwizzleStore.h"
 #import "JSONContainer.h"
-
 #import "UIView+FindFirstResponder.h"
-#define KEYBOARD_OFFSET 115
-#define SCROLL_VIEW_WIDTH 320
-#define SCROLL_VIEW_HEIGHT 175
 
 @interface QWZLoginViewController ()
 
@@ -46,7 +41,6 @@
     //setting the interface
     self.titleLabel.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"title"]];
     self.viewController.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
-    // Do any additional setup after loading the view from its nib.
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -71,20 +65,20 @@
         
         if (!err) {
             // If everything went ok (with no error), grab the object, and reload the table
-         
-          
+            
+            // Check the status
             NSString *status = [[obj JSON] objectForKey:@"status"];
-           
             if ([status isEqualToString:@"success"]) {
                 
-            NSLog(@"loging for user:%@ (%@)", [[obj JSON] objectForKey:@"user_name"], [[obj JSON] objectForKey:@"user_id"]);
-          
-                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                NSLog(@"loging for user:%@ (%@)", [[obj JSON] objectForKey:@"user_name"], [[obj JSON] objectForKey:@"user_id"]);
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 NSString *userID = [[NSString alloc] initWithFormat:@"%d", [[[obj JSON] objectForKey:@"user_id"] intValue]];
                 NSString *userName = [[NSString alloc] initWithFormat:@"%@", [[obj JSON] objectForKey:@"user_name"]];
-                 [defaults setObject:[userID copy] forKey:@"user_id"];
+            
+                [defaults setObject:[userID copy] forKey:@"user_id"];
                 [defaults setObject:[userName copy] forKey:@"user_name"];
-            NSLog(@"user info:%@",[defaults objectForKey:@"user_id"]);
+            
+                NSLog(@"user info:%@",[defaults objectForKey:@"user_id"]);
                  [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
             }
             else {
@@ -93,7 +87,6 @@
                 UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Invalid Information" message:@"Wrong username and password combination. please retry." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [av show];
             }
-            
         } else {
             // If things went bad, show an alert view to users
             UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -102,8 +95,6 @@
     }; // Finish declaring a code block to run after finish running the connection
     
     [[QWZQwizzleStore sharedStore]fetchUserWithUsername:userName andPassword:password WithCompletion:completionBlock];
-    
-   
 }
 
 // Called when the user is beginning to edit a text field

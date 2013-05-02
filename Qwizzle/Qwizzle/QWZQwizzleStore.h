@@ -37,6 +37,9 @@
 // This method delete a taken requested Qwizzle to the web service
 - (void)deleteARequestedQwizzle:(QWZAnsweredQuizSet *)quizSet WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
 
+// This method share a Qwizzle to the list of user_id
+- (void)shareAQwizzle:(NSInteger)qwizzleID WithUserID:(NSMutableArray *)user_id AndSenderID:(NSString *)sender_ID WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
+
 // This method send a QwizzleID to get all questions
 - (void)fetchQuestions:(NSInteger)qwizzleID WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
 
@@ -45,7 +48,5 @@
 
 // This method fetch account for the user
 - (void)fetchUserWithUsername:(NSString *)userName andPassword:(NSString *)password WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
-
-- (void)shareAQwizzle:(NSInteger)qwizzleID WithUserID:(NSMutableArray *)user_id AndSenderID:(NSString *)sender_ID WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
 
 @end

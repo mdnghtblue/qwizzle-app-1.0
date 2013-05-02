@@ -2,7 +2,7 @@
 //  QWZConstant.h
 //  Qwizzle
 //
-//  Created by Krissada Dechokul on 4/26/13.
+//  Created by Team Qwizzle on 4/26/13.
 //  Copyright (c) 2013 Florida Tech. All rights reserved.
 //
 

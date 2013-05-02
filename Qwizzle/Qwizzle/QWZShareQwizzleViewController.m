@@ -74,6 +74,7 @@
     NSLog(@"The user is selecting %@", name);
 }
 
+// Initiate sharing, called when the user hit the share button
 - (IBAction)shareAQwizzle:(id)sender
 {
     NSLog(@"shareAQwizzle");
@@ -150,6 +151,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *userID = [defaults objectForKey:@"user_id"];
     
+    // Still hard-coded - For the future releases
     if ([indexPath row] == 0 && ![userID isEqualToString:@"1"]) {
         [[cell textLabel] setText:@"Stephanie Day"];
         cell.tag = 1;

@@ -10,10 +10,10 @@
 
 @protocol JSONSerializable <NSObject>
 
-- (void)readFromJSONDictionary:(NSDictionary *)dict;
+- (void)readFromJSONDictionary:(NSDictionary *)dict; // Parse and distribute the json dictionary object according to the structure app's model (for future use)
 
-- (void)setJSON:(NSDictionary *)dict;
+- (void)setJSON:(NSDictionary *)dict; // Store the json dictionary object 
 
-- (NSDictionary *)JSON;
+- (NSDictionary *)JSON; // Access the json dictionary object
 
 @end

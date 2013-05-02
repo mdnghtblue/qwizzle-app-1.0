@@ -12,7 +12,8 @@
 
 @synthesize JSONData;
 
-// Reading and handle JSON's dictionary data
+// Implement the JSONSerializable protocol
+// Parse and distribute the json dictionary object according to the structure app's model (for future use)
 - (void)readFromJSONDictionary:(NSDictionary *)dict
 {
     NSLog(@"reading data from Qwizzle root object: %@", dict);
@@ -26,11 +27,13 @@
     }
 }
 
+// Store the json dictionary object 
 - (void)setJSON:(NSMutableDictionary *)JSON
 {
     [self setJSONData:[JSON copy]];
 }
 
+// Access the json dictionary object
 - (NSMutableDictionary *)JSON
 {
     return [self JSONData];

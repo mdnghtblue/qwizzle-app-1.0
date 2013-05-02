@@ -37,13 +37,21 @@
     
     // Handle iAd view
     ADBannerView *adView;
+    
+    BOOL requestedQwizzle;
 }
 
-// This method receives a newly created Qwizzle from the QWZCreateQwizzleController and updates the mainview
+// This method receives a newly created Qwizzle from the QWZCreateQwizzleController
 - (void)submitAQwizzle:(QWZQuizSet *)qz; 
 
-// This method receives a newly created Qwizzle from the QWZTakeQwizzleController and updates the mainview
+// This method receives a filled out Qwizzle from the QWZTakeQwizzleController 
 - (void)fillOutAQwizzle:(QWZAnsweredQuizSet *)qzAnswers;
+
+// This method receives a filled out the requested Qwizzle from the QWZTakeQwizzleController 
+- (void)fillOutARequestedQwizzle:(QWZAnsweredQuizSet *)qzAnswers;
+
+// This method deletes the taken requested Qwizzle
+- (void)deleteARequestedQwizzle:(QWZAnsweredQuizSet *)qzAnswers;
 
 // This method is called when users tap the refresh button - Will be removed soon
 - (IBAction)reloadQwizzle:(id)sender;
@@ -58,6 +66,9 @@
 
 // This method fetches all Qwizzles that users have taken from the server
 - (void)fetchAnsweredQwizzles;
+
+// This method fetches all Requested Qwizzles 
+- (void)fetchRequestedQwizzles;
 
 // This method reloads everything
 - (void)reloadAllQwizzles;

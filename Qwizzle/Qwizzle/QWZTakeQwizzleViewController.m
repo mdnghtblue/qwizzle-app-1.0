@@ -34,6 +34,7 @@
 @synthesize answeredQuizSet;
 
 @synthesize actionSheet = _actionSheet;
+@synthesize isRequestedQwizzle;
 
 @synthesize adView; // handle iAd
 
@@ -44,8 +45,6 @@
     // setting the iAd
     adView.delegate=self;
     [adView setHidden:YES]; // setting the defualt behvior for iAd
-    
-
     
     self.navigationController.toolbarHidden = NO;
     
@@ -65,20 +64,13 @@
     
     // Start preparing to get all the questions of this quizset
     // Prepare to connect to the web service
-    // Get ahold of the segmented control that is currently in the title view
-    UIView *currentTitleView = [[self navigationItem] titleView];
-    
-    // Create an activity indicator while loading
-    UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    
-    [[self navigationItem] setTitleView:aiView];
-    [aiView startAnimating];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     // The codeblock to run after finish loading the connection
     void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
         
         // Replaces the activity indicator with the previous title
-        [[self navigationItem] setTitleView:currentTitleView];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
         if (!err) {
             // If everything went ok (with no error), grab all questions and construct all the UI
@@ -257,9 +249,15 @@
             [answeredQuizSet addQuiz:qz];
         }
         
-        // Submit a qwizzle to parents' view controller
-        [origin fillOutAQwizzle:answeredQuizSet];
-        
+        if (isRequestedQwizzle){
+            [answeredQuizSet setRequestID:[quizSet requestID]];
+            [origin fillOutARequestedQwizzle:answeredQuizSet];
+        }
+        else {
+            // Submit a qwizzle to parents' view controller
+            [origin fillOutAQwizzle:answeredQuizSet];
+        }
+
         // Dismiss this view
         [self.navigationController popViewControllerAnimated:YES];
     }

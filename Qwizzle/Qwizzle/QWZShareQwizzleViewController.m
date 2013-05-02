@@ -100,20 +100,14 @@
     }
     else {
         // Prepare to connect to the web service
-        // Get ahold of the segmented control that is currently in the title view
-        UIView *currentTitleView = [[self navigationItem] titleView];
-        
         // Create an activity indicator while loading
-        UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-        
-        [[self navigationItem] setTitleView:aiView];
-        [aiView startAnimating];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         
         // The codeblock to run after the connection finish loading
         void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
             
             // Replaces the activity indicator with the previous title
-            [[self navigationItem] setTitleView:currentTitleView];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             
             if (!err) {
                 UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Congratulations" message:@"Your Qwizzle has been sent." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

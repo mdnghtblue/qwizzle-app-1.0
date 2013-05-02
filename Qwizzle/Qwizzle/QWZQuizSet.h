@@ -23,6 +23,9 @@
 @property (nonatomic, copy) NSString *creator;    // Hold the owner of this set of quiz
 @property (nonatomic, readonly, strong) NSDate *dateCreated;    // Hold the creation date of the question
 
+@property (nonatomic) NSInteger creatorID;    // Hold the creator' ID of this quizset
+@property (nonatomic) NSInteger requestID;    // Hold the request' ID of this quizset
+
 // The designated initializer
 - (id)initWithTitle:(NSString *)title andID:(NSInteger)ID;
 

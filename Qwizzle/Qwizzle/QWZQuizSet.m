@@ -13,6 +13,8 @@
 @synthesize quizSetID;
 @synthesize title;
 @synthesize creator;
+@synthesize creatorID;
+@synthesize requestID;
 @synthesize dateCreated;
 
 // The designated initializer
@@ -23,10 +25,13 @@
     
     // Did the superclass's designated initializer succeed?
     if (self) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *userName = [defaults objectForKey:@"user_name"];
+        
         allQuizzes = [[NSMutableArray alloc] init];
         title = [t copy];
         dateCreated = [[NSDate alloc] init]; // Initialize the date this quiz was taken
-        creator = [[NSString alloc] initWithFormat:@"iOS user"]; // Temporary: we will get it from the device UniqueID
+        creator = [userName copy]; // Store creator, which is the username
         quizSetID = ID;
     }
     

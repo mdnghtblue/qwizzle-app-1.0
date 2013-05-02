@@ -41,20 +41,14 @@
     
     // Start preparing to get all the questions of this quizset
     // Prepare to connect to the web service
-    // Get ahold of the segmented control that is currently in the title view
-    UIView *currentTitleView = [[self navigationItem] titleView];
-    
     // Create an activity indicator while loading
-    UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    
-    [[self navigationItem] setTitleView:aiView];
-    [aiView startAnimating];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     // The codeblock to run after finish loading the connection
     void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
         
         // Replaces the activity indicator with the previous title
-        [[self navigationItem] setTitleView:currentTitleView];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
         if (!err) {
             // If everything went ok (with no error), grab all questions and construct all the UI
@@ -84,27 +78,21 @@
 {
     // Start preparing to get all the questions of this quizset
     // Prepare to connect to the web service
-    // Get ahold of the segmented control that is currently in the title view
-    UIView *currentTitleView = [[self navigationItem] titleView];
-    
     // Create an activity indicator while loading
-    UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    
-    [[self navigationItem] setTitleView:aiView];
-    [aiView startAnimating];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     // The codeblock to run after finish loading the connection
     void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
         
         // Replaces the activity indicator with the previous title
-        [[self navigationItem] setTitleView:currentTitleView];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
         if (!err) {
             // If everything went ok (with no error), grab all questions and construct all the UI
             
             NSMutableArray *answers = [[obj JSON] objectForKey:@"answers"];
             NSString *answer = nil;
-            for (int i = 0; i < [answers count]; i++) {
+            for (int i = 0; i < [[qz allQuizzes] count]; i++) {
                 answer = [[answers objectAtIndex:i] objectForKey:@"answer"];
                 [[[qz allQuizzes] objectAtIndex:i] setAnswer:answer];
             }

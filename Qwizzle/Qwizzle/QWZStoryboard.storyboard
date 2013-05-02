@@ -25,11 +25,11 @@
             <objects>
                 <tableViewController id="gsN-V7-zIA" customClass="QWZQwizzleViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="QUS-4I-OE1">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <adBannerView key="tableFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="3W6-UR-3Hp">
-                            <rect key="frame" x="0.0" y="196" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="197" width="320" height="43"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         </adBannerView>
                         <prototypes>
@@ -76,7 +76,14 @@
                             <outlet property="delegate" destination="gsN-V7-zIA" id="Rom-ay-s5v"/>
                         </connections>
                     </tableView>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem width="272" style="plain" systemItem="fixedSpace" id="K7g-lj-Qrs"/>
+                        <barButtonItem style="plain" systemItem="refresh" id="ia6-xJ-bIf">
+                            <connections>
+                                <action selector="reloadQwizzle:" destination="gsN-V7-zIA" id="CDW-aC-pFo"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Qwizzle" id="Uj6-ly-SHP">
                         <barButtonItem key="leftBarButtonItem" title="Log Out" id="cKj-CV-Co0">
                             <connections>
@@ -89,7 +96,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="adView" destination="3W6-UR-3Hp" id="JqL-N2-AgE"/>
                     </connections>
@@ -103,7 +110,7 @@
             <objects>
                 <viewController id="wkX-4Q-uxH" customClass="QWZViewQwizzleViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r0Y-f6-fIL">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AK0-Eg-NOb">
@@ -216,7 +223,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <adBannerView key="tableFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ve6-2L-VKX">
-                            <rect key="frame" x="0.0" y="196" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="190" width="320" height="50"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         </adBannerView>
                         <sections>

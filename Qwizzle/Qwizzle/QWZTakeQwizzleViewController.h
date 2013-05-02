@@ -33,6 +33,7 @@
 @property (weak, nonatomic) UIActionSheet *actionSheet;
 @property(nonatomic,retain) IBOutlet ADBannerView *adView; // handle banner componenet
 
+@property (nonatomic) BOOL isRequestedQwizzle; // Store whether this is a requested qwizzle from someone else
 
 - (IBAction)displayActionSheet:(id)sender;
 

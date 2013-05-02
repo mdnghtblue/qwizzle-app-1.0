@@ -113,7 +113,7 @@
     [super viewWillAppear:animated];
     
     // No toolbar in this view
-    self.navigationController.toolbarHidden = YES;
+    self.navigationController.toolbarHidden = NO;
     
     // Get the stored data before the view appear
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -141,20 +141,13 @@
     NSLog(@"There are %d questions for %@", [[quizSet allQuizzes] count], [quizSet title]);
     
     // Prepare to connect to the web service
-    // Get ahold of the segmented control that is currently in the title view
-    UIView *currentTitleView = [[self navigationItem] titleView];
-    
     // Create an activity indicator while loading
-    UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    
-    [[self navigationItem] setTitleView:aiView];
-    [aiView startAnimating];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     // The codeblock to run after the connection finish loading
     void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
         
-        // Replaces the activity indicator with the previous title
-        [[self navigationItem] setTitleView:currentTitleView];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
         if (!err) {
             // If everything went ok (with no error), grab the object, and reload the table
@@ -189,21 +182,15 @@
     for (int i = 0; i < [[qzAnswers allQuizzes] count]; i++) {
         NSLog(@"%d) [id=%d] %@/%@", i+1, [[[qzAnswers allQuizzes] objectAtIndex:i] questionID], [[[qzAnswers allQuizzes] objectAtIndex:i] question], [[[qzAnswers allQuizzes] objectAtIndex:i] answer]);
     }
+    
     // Prepare to connect to the web service
-    // Get ahold of the segmented control that is currently in the title view
-    UIView *currentTitleView = [[self navigationItem] titleView];
-    
     // Create an activity indicator while loading
-    UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    
-    [[self navigationItem] setTitleView:aiView];
-    [aiView startAnimating];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     // The codeblock to run after the connection finish loading
     void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
         
-        // Replaces the activity indicator with the previous title
-        [[self navigationItem] setTitleView:currentTitleView];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
         if (!err) {
             
@@ -223,6 +210,77 @@
     }; // Finish declaring a code block to run after finish running the connection
     
     [[QWZQwizzleStore sharedStore] takeAQwizzle:qzAnswers WithCompletion:completionBlock];
+}
+
+// This method receives a newly created Qwizzle from the QWZTakeQwizzleController and updates the mainview
+- (void)fillOutARequestedQwizzle:(QWZAnsweredQuizSet *)qzAnswers
+{
+    NSLog(@"Submitting requested qwizzle answers for qwizzle_id: %d and requested_id: %d", [qzAnswers quizSetID], [qzAnswers requestID]);
+    
+    for (int i = 0; i < [[qzAnswers allQuizzes] count]; i++) {
+        NSLog(@"%d) [id=%d] %@/%@", i+1, [[[qzAnswers allQuizzes] objectAtIndex:i] questionID], [[[qzAnswers allQuizzes] objectAtIndex:i] question], [[[qzAnswers allQuizzes] objectAtIndex:i] answer]);
+    }
+    
+    // Prepare to connect to the web service
+    // Create an activity indicator while loading
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    // The codeblock to run after the connection finish loading
+    void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        
+        if (!err) {
+            
+            [allAnsweredQuizSets addObject:qzAnswers];
+            
+            NSInteger lastRow = [allAnsweredQuizSets indexOfObject:qzAnswers];
+            NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:1];
+            
+            // Insert the new Qwizzle answers into the table
+            [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip]
+                                    withRowAnimation:UITableViewRowAnimationTop];
+            
+            [self deleteARequestedQwizzle:qzAnswers];
+        } else {
+            // If things went bad, show an alert view to users
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [av show];
+        }
+    }; // Finish declaring a code block to run after finish running the connection
+    
+    [[QWZQwizzleStore sharedStore] takeAQwizzle:qzAnswers WithCompletion:completionBlock];
+}
+
+- (void)deleteARequestedQwizzle:(QWZAnsweredQuizSet *)qzAnswers
+{
+    // Prepare to connect to the web service
+    // Create an activity indicator while loading
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    // The codeblock to run after the connection finish loading
+    void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        
+        if (!err) {
+            
+            for (int i = 0; i < [allRequestedQuizSet count]; i++) {
+                if ([qzAnswers requestID] == [[allRequestedQuizSet objectAtIndex:i] requestID]) {
+                    [allRequestedQuizSet removeObjectAtIndex:i];
+                    break;
+                }
+            }
+            
+            [[self tableView] reloadData];
+            
+        } else {
+            // If things went bad, show an alert view to users
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [av show];
+        }
+    }; // Finish declaring a code block to run after finish running the connection
+    
+    [[QWZQwizzleStore sharedStore] deleteARequestedQwizzle:qzAnswers WithCompletion:completionBlock];
 }
 
 #pragma mark - Handle table view datasource
@@ -252,7 +310,7 @@
         
         return cell;
     }
-    else {
+    else if (section == 1){
         // We can ignore this stuff, it's just that everybody is doing this when they use UITableView
         static NSString *AnsweredQWizzleCellIdentifier = @"AnsweredQWizzleCell";
         
@@ -270,19 +328,40 @@
         
         // Get the stored data before the view appear
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *userID = [defaults objectForKey:@"user_id"];
-        
-        NSInteger creatorID = [qs creatorID];
-        
-        // This part is hard-coded
-        if (creatorID == 1 && [userID intValue] != 1) {
-            [[cell detailTextLabel] setText:@"Stephanie Day"];
+        NSString *userName = [defaults objectForKey:@"user_name"];
+
+        NSString *creator = [qs creator];
+        if (![creator isEqualToString:userName]) {
+            [[cell detailTextLabel] setText:[creator copy]];
         }
-        else if (creatorID == 2 && [userID intValue] != 2) {
-            [[cell detailTextLabel] setText:@"Krissada Dechokul"];
+        else {
+            [[cell detailTextLabel] setText:@""];
         }
-        else if (creatorID == 3 && [userID intValue] != 3) {
-            [[cell detailTextLabel] setText:@"Baneen Al Mubarak"];
+        return cell;
+    }
+    else if (section == 2){
+        // We can ignore this stuff, it's just that everybody is doing this when they use UITableView
+        static NSString *RequestedQWizzleCellIdentifier = @"RequestedQWizzleCell";
+        
+        // Check for a reusable cell first, use that if it exists
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:RequestedQWizzleCellIdentifier];
+        
+        // If there is no reusable cell of this type, create a new one
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+                                          reuseIdentifier:RequestedQWizzleCellIdentifier];
+        }
+        
+        QWZQuizSet *qs = [allRequestedQuizSet objectAtIndex:[indexPath row]];
+        [[cell textLabel] setText:[qs title]];
+        
+        // Get the stored data before the view appear
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *userName = [defaults objectForKey:@"user_name"];
+        
+        NSString *creator = [qs creator];
+        if (![creator isEqualToString:userName]) {
+            [[cell detailTextLabel] setText:[creator copy]];
         }
         else {
             [[cell detailTextLabel] setText:@""];
@@ -368,6 +447,7 @@
     NSInteger section = [indexPath section];
     if (section == 0) {
         selectedQuiz = [allQuizSets objectAtIndex:[indexPath row]];
+        requestedQwizzle = NO;
         
         // Perform a segue (a view's transition) given a storyboard segue's ID that we specified in storyboard
         // We need to do it this way because our data cells are dynamically generated, so we can't pre-wire them.
@@ -379,10 +459,48 @@
         
         [self performSegueWithIdentifier:@"SEGUEViewQwizzle" sender:self];
     }
+    else if (section == 2) {
+        selectedQuiz = [allRequestedQuizSet objectAtIndex:[indexPath row]];
+        requestedQwizzle = YES;
+        
+        // This cell is sharing the same view as taking your own qwizzle
+        [self performSegueWithIdentifier:@"SEGUETakeQwizzle" sender:self];
+    }
     else {
         
     }
 }
+
+// This method get called automatically when we're moving to the other view in the storyboard
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSLog(@"prepareForSegue: %@", segue.identifier);
+    if ([segue.identifier isEqualToString:@"SEGUETakeQwizzle"])
+    {
+        // Get the destination's view controller (User is taking a Qwizzle)
+        QWZTakeQwizzleViewController *destinationViewController = segue.destinationViewController;
+        [destinationViewController setQuizSet:selectedQuiz];
+        [destinationViewController setOrigin:self];
+        [destinationViewController setIsRequestedQwizzle:requestedQwizzle];
+    }
+    else if ([segue.identifier isEqualToString:@"SEGUEViewQwizzle"]){
+        // Get the destination's view controller (User is viewing a Qwizzle)
+        QWZViewQwizzleViewController *destinationViewController = segue.destinationViewController;
+        [destinationViewController setQuizSet:selectedQuiz];
+    }
+    else if ([segue.identifier isEqualToString:@"SEGUECreateQwizzle"]) {
+        // Get the destination's view controller (User is creating a Qwizzle)
+        QWZCreateQwizzleViewController *destinationViewController = segue.destinationViewController;
+        [destinationViewController setOrigin:self];
+    }
+    else if ([segue.identifier isEqualToString:@"SEGUELogin"]) {
+
+    }
+    else {
+        NSLog(@"Unidentifiable Segue");
+    }
+}
+
 
 // Change the label of the delete button
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -407,38 +525,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
             [allAnsweredQuizSets removeObjectAtIndex:[indexPath row]];
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
+        else if (section == 2) {
+            [allRequestedQuizSet removeObjectAtIndex:[indexPath row]];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
         else {
             NSLog(@"Unidentified section");
         }
-    }
-}
-
-// This method get called automatically when we're moving to the other view in the storyboard
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    NSLog(@"prepareForSegue: %@", segue.identifier);
-    if ([segue.identifier isEqualToString:@"SEGUETakeQwizzle"])
-    {
-        // Get the destination's view controller (User is taking a Qwizzle)
-        QWZTakeQwizzleViewController *destinationViewController = segue.destinationViewController;
-        [destinationViewController setQuizSet:selectedQuiz];
-        [destinationViewController setOrigin:self];
-    }
-    else if ([segue.identifier isEqualToString:@"SEGUEViewQwizzle"]){
-        // Get the destination's view controller (User is viewing a Qwizzle)
-        QWZViewQwizzleViewController *destinationViewController = segue.destinationViewController;
-        [destinationViewController setQuizSet:selectedQuiz];
-    }
-    else if ([segue.identifier isEqualToString:@"SEGUECreateQwizzle"]) {
-        // Get the destination's view controller (User is creating a Qwizzle)
-        QWZCreateQwizzleViewController *destinationViewController = segue.destinationViewController;
-        [destinationViewController setOrigin:self];
-    }
-    else if ([segue.identifier isEqualToString:@"SEGUELogin"]) {
-
-    }
-    else {
-        NSLog(@"Unidentifiable Segue");
     }
 }
 
@@ -461,8 +554,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"reloadQwizzle");
 
-    [self fetchYourQwizzles];
-    [self fetchAnsweredQwizzles];
+    [self reloadAllQwizzles];
     //[[QWZQwizzleStore sharedStore] fetchAnsweredQwizzleWithCompletion:completionBlock];
 }
 
@@ -471,24 +563,19 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     NSLog(@"reloadQwizzle");
     [self fetchYourQwizzles];
     [self fetchAnsweredQwizzles];
+    [self fetchRequestedQwizzles];
 }
 
 - (void)fetchYourQwizzles
 {
-    // Get ahold of the segmented control that is currently in the title view
-    UIView *currentTitleView = [[self navigationItem] titleView];
-    
     // Create an activity indicator while loading
-    UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    
-    [[self navigationItem] setTitleView:aiView];
-    [aiView startAnimating];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     // Create a codeblock to run when finish loading
     void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
         
-        // When the request completes - success or failure, replaces the activity indicator with the previous title
-        [[self navigationItem] setTitleView:currentTitleView];
+        // When the request completes 
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
         if (!err) {
             NSLog(@"Information sent with no error: %@", obj);
@@ -533,20 +620,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)fetchAnsweredQwizzles
 {
-    // Get ahold of the segmented control that is currently in the title view
-    UIView *currentTitleView = [[self navigationItem] titleView];
-    
     // Create an activity indicator while loading
-    UIActivityIndicatorView *aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    
-    [[self navigationItem] setTitleView:aiView];
-    [aiView startAnimating];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     // Create a codeblock to run when finish loading
     void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
         
         // When the request completes - success or failure, replaces the activity indicator with the previous title
-        [[self navigationItem] setTitleView:currentTitleView];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
         if (!err) {
             NSLog(@"Information sent with no error: %@", obj);
@@ -560,14 +641,17 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
             NSInteger ID = -1;
             NSDictionary *quizSet = nil;
             NSInteger creatorID = -1;
+            NSString *creatorName = nil;
             for (int i = 0; i < [receivedQuizSets count]; i++) {
                 quizSet = [[receivedQuizSets objectAtIndex:i] objectForKey:@"qwizzle"];
                 
                 title = [quizSet objectForKey:@"title"];
                 ID = [[quizSet objectForKey:@"id"] intValue];
                 creatorID = [[quizSet objectForKey:@"creator"] intValue];
+                creatorName = [quizSet objectForKey:@"creator_name"];
                 
                 newQuizSet = [[QWZAnsweredQuizSet alloc] initWithTitle:title andID:ID];
+                [newQuizSet setCreator:[creatorName copy]];
                 [newQuizSet setCreatorID:creatorID];
                 
                 [allAnsweredQuizSets addObject:newQuizSet];
@@ -589,6 +673,65 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     
     // Initiate the request, send the code block to the Store object to run after the connection is completed.
     [[QWZQwizzleStore sharedStore] fetchAnsweredQwizzleWithCompletion:completionBlock];
+}
+
+- (void)fetchRequestedQwizzles
+{
+    // Create an activity indicator while loading
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    // Create a codeblock to run when finish loading
+    void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
+        // When the request completes - success or failure, replaces the activity indicator with the previous title
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        
+        if (!err) {
+            NSLog(@"Information sent with no error: %@", obj);
+            
+            [allRequestedQuizSet removeAllObjects];
+            [[self tableView] reloadData];
+            
+            NSArray *receivedQuizSets = [[obj JSON] objectForKey:@"requests"];
+            QWZAnsweredQuizSet *newQuizSet = nil;
+            NSString *title = nil;
+            NSInteger ID = -1;
+            NSDictionary *quizSet = nil;
+            NSInteger creatorID = -1;
+            NSString *creatorName = nil;
+            NSInteger requestID = -1;
+            for (int i = 0; i < [receivedQuizSets count]; i++) {
+                quizSet = [[receivedQuizSets objectAtIndex:i] objectForKey:@"request"];
+                
+                title = [quizSet objectForKey:@"title"];
+                ID = [[quizSet objectForKey:@"id"] intValue];
+                creatorID = [[quizSet objectForKey:@"sender_id"] intValue];
+                creatorName = [quizSet objectForKey:@"sender_name"];
+                requestID = [[quizSet objectForKey:@"request_id"] intValue];
+                
+                newQuizSet = [[QWZAnsweredQuizSet alloc] initWithTitle:title andID:ID];
+                [newQuizSet setCreator:[creatorName copy]];
+                [newQuizSet setCreatorID:creatorID];
+                [newQuizSet setRequestID:requestID];
+                
+                [allRequestedQuizSet addObject:newQuizSet];
+                
+                // Adding new Qwizzle (answered qwizzle) into the table, this set reside in the section 1
+                NSInteger lastRow = [allRequestedQuizSet indexOfObject:newQuizSet];
+                NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:2];
+                
+                // Insert this Qwizzle into the table
+                [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationTop];
+            }
+        }
+        else {
+            // If things went bad, show an alert view to users
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [av show];
+        }
+    };
+    
+    // Initiate the request, send the code block to the Store object to run after the connection is completed.
+    [[QWZQwizzleStore sharedStore] fetchRequestedQwizzleWithCompletion:completionBlock];
 }
 
 #pragma mark login and logout

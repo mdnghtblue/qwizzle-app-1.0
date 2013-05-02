@@ -62,10 +62,12 @@
     NSString *userName= userNameText.text;
     NSString *password=passwordText.text;
     
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
     // The codeblock to run after finish loading the connection
     void (^completionBlock)(JSONContainer *obj, NSError *err) = ^(JSONContainer *obj, NSError *err) {
         
-        // Replaces the activity indicator with the previous title
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
         if (!err) {
             // If everything went ok (with no error), grab the object, and reload the table
@@ -75,15 +77,15 @@
            
             if ([status isEqualToString:@"success"]) {
                 
-            NSLog(@"loging for user:%@",[[obj JSON] objectForKey:@"user_id"]);
+            NSLog(@"loging for user:%@ (%@)", [[obj JSON] objectForKey:@"user_name"], [[obj JSON] objectForKey:@"user_id"]);
           
                  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 NSString *userID = [[NSString alloc] initWithFormat:@"%d", [[[obj JSON] objectForKey:@"user_id"] intValue]];
+                NSString *userName = [[NSString alloc] initWithFormat:@"%@", [[obj JSON] objectForKey:@"user_name"]];
                  [defaults setObject:[userID copy] forKey:@"user_id"];
+                [defaults setObject:[userName copy] forKey:@"user_name"];
             NSLog(@"user info:%@",[defaults objectForKey:@"user_id"]);
                  [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
-
-
             }
             else {
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -102,7 +104,7 @@
     [[QWZQwizzleStore sharedStore]fetchUserWithUsername:userName andPassword:password WithCompletion:completionBlock];
     
    
-   }
+}
 
 // Called when the user is beginning to edit a text field
 - (void)textFieldDidBeginEditing:(UITextField *)textField

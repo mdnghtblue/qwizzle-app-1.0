@@ -19,17 +19,23 @@
 // ~ This is the singleton pattern
 + (QWZQwizzleStore *)sharedStore;
 
-// This method fetch all Qwizzle created by this user
+// This method fetch all Qwizzles created by this user
 - (void)fetchQwizzleWithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
 
-// This method fetch all Qwizzle that this user has answered
+// This method fetch all Qwizzles that this user has answered
 - (void)fetchAnsweredQwizzleWithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
+
+// This method fetch all Requested Qwizzles for this user
+- (void)fetchRequestedQwizzleWithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
 
 // This method send a created Qwizzle to the web service
 - (void)createAQwizzle:(QWZQuizSet *)quizSet WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
 
 // This method send a taken Qwizzle to the web service
 - (void)takeAQwizzle:(QWZAnsweredQuizSet *)quizSet WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
+
+// This method delete a taken requested Qwizzle to the web service
+- (void)deleteARequestedQwizzle:(QWZAnsweredQuizSet *)quizSet WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
 
 // This method send a QwizzleID to get all questions
 - (void)fetchQuestions:(NSInteger)qwizzleID WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;

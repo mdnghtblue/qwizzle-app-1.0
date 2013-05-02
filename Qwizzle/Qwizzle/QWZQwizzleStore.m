@@ -98,6 +98,39 @@
     [connection start];
 }
 
+- (void)fetchRequestedQwizzleWithCompletion:(void (^)(JSONContainer *obj, NSError *err))block
+{
+    // Get User's ID
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userID = [defaults objectForKey:@"user_id"];
+    
+    NSString *loadRequestedQwizzleURL = [NSString stringWithFormat:@"http://qwizzleapp.com/request/%@", userID];
+    NSLog(@"fetchRequestedQwizzle at %@", loadRequestedQwizzleURL);
+    
+    NSURL *url = [NSURL URLWithString:loadRequestedQwizzleURL];
+    
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url
+                                                       cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                   timeoutInterval:60.0];
+    
+    [req setHTTPMethod:@"GET"];
+    
+    // Create an empty JSONContainer
+    JSONContainer *json = [[JSONContainer alloc] init];
+    
+    // Create a connection "actor" object that will transfer data to/from the server
+    QWZConnection *connection = [[QWZConnection alloc] initWithRequest:req];
+    
+    // When the connection completes, this block from the controller will be called
+    [connection setCompletionBlock:block];
+    
+    // Let the empty channel parse the returning data from the web service
+    [connection setJsonRootObject:json];
+    
+    // Fire the connection
+    [connection start];
+}
+
 - (void)createAQwizzle:(QWZQuizSet *)quizSet
      WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block;
 {
@@ -210,6 +243,36 @@
     [connection start];
 }
 
+- (void)deleteARequestedQwizzle:(QWZAnsweredQuizSet *)quizSet WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block
+{
+    // Construct URL
+    NSString *deleteQwizzleURL = [NSString stringWithFormat:@"http://qwizzleapp.com/request/%d", [quizSet requestID]];
+    NSLog(@"delete a requested qwizzle at %@", deleteQwizzleURL);
+    
+    NSURL *url = [NSURL URLWithString:deleteQwizzleURL];
+    
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url
+                                                       cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                   timeoutInterval:60.0];
+    
+    [req setHTTPMethod:@"DELETE"];
+    
+    // Create an empty JSONContainer
+    JSONContainer *json = [[JSONContainer alloc] init];
+    
+    // Create a connection "actor" object that will transfer data to/from the server
+    QWZConnection *connection = [[QWZConnection alloc] initWithRequest:req];
+    
+    // When the connection completes, this block from the controller will be called
+    [connection setCompletionBlock:block];
+    
+    // Let the empty channel parse the returning data from the web service
+    [connection setJsonRootObject:json];
+    
+    // Fire the connection
+    [connection start];
+}
+
 - (void)fetchQuestions:(NSInteger)qwizzleID WithCompletion:(void (^)(JSONContainer *obj, NSError *err))block
 {
     NSString *fetchQuestionsURL = [NSString stringWithFormat:@"http://qwizzleapp.com/qwizzle/questions/%d", qwizzleID];
@@ -222,6 +285,7 @@
                                                    timeoutInterval:60.0];
     
     [req setHTTPMethod:@"GET"];
+    
     // Create an empty JSONContainer
     JSONContainer *json = [[JSONContainer alloc] init];
     
